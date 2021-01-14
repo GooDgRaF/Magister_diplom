@@ -15,6 +15,6 @@ using namespace std;
 
 
 void
-Read_SchemeRegExp(const string &name_of_file, vector<CheckPoint> &checkPoints, vector<Scheme> &schemes, vector<StandardScheme> &standardSchemes);
+Read_SchemesRegExp(const string &name_of_file, vector<CheckPoint> &checkPoints, vector<Scheme> &schemes, vector<StandardScheme> &standardSchemes);
 
 #endif

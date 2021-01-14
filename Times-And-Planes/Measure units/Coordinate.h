@@ -31,9 +31,9 @@ public:
 	
 	static Coordinate createNMs(double nms);
 	
-	Coordinate operator+();
+	Coordinate operator+() const;
 	
-	Coordinate operator-();
+	Coordinate operator-() const;
 	
 };
 

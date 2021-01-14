@@ -6,12 +6,12 @@
 #include <string>
 #include <regex>
 #include <fstream>
-#include <Functions/Find-InVector.h>
+#include <Functions/Assistant functions/Find-InVector.h>
 #include <Fields of Zone/StandardScheme.h>
 #include "Fields of Zone/Maps.h"
 #include "Fields of Zone/Scheme.h"
-#include "Functions/OpenFile.h"
-#include "Functions/Fill-scheme.h"
+#include "Functions/Assistant functions/OpenFile.h"
+#include "Functions/Assistant functions/Fill-scheme.h"
 
 using namespace std;
 
@@ -29,7 +29,7 @@ bool stoi_bool(const string &str)
 	} //Истина, если строка является числом, Ложь иначе
 
 void
-Read_SchemeRegExp(const string &name_of_file, vector<CheckPoint> &checkPoints, vector<Scheme> &schemes, vector<StandardScheme> &standardSchemes)
+Read_SchemesRegExp(const string &name_of_file, vector<CheckPoint> &checkPoints, vector<Scheme> &schemes, vector<StandardScheme> &standardSchemes)
 	{
 		int i, k;
 		
@@ -186,8 +186,8 @@ Read_SchemeRegExp(const string &name_of_file, vector<CheckPoint> &checkPoints, v
 					cerr << "Check in " << name_of_file << " amount of standardSchemes, it is low" << endl;
 					exit(-2);
 				}
-				
-				startPointIDtoStSchemeID[standardSchemes[k].start] = k;
+
+                checkPointIDtoStSchemeID[standardSchemes[k].start] = k;
 				
 				k++;
 				

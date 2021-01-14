@@ -90,19 +90,19 @@ CMakeFiles/Times_And_Planes.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Times_And_Planes.dir/main.cpp.s"
 	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Works\Diplom\Magister_diplom\Times-And-Planes\main.cpp -o CMakeFiles\Times_And_Planes.dir\main.cpp.s
 
-CMakeFiles/Times_And_Planes.dir/Functions/OpenFile.cpp.obj: CMakeFiles/Times_And_Planes.dir/flags.make
-CMakeFiles/Times_And_Planes.dir/Functions/OpenFile.cpp.obj: CMakeFiles/Times_And_Planes.dir/includes_CXX.rsp
-CMakeFiles/Times_And_Planes.dir/Functions/OpenFile.cpp.obj: ../Functions/OpenFile.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Works\Diplom\Magister_diplom\Times-And-Planes\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Times_And_Planes.dir/Functions/OpenFile.cpp.obj"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Times_And_Planes.dir\Functions\OpenFile.cpp.obj -c D:\Works\Diplom\Magister_diplom\Times-And-Planes\Functions\OpenFile.cpp
+CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/OpenFile.cpp.obj: CMakeFiles/Times_And_Planes.dir/flags.make
+CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/OpenFile.cpp.obj: CMakeFiles/Times_And_Planes.dir/includes_CXX.rsp
+CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/OpenFile.cpp.obj: ../Functions/Assistant\ functions/OpenFile.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Works\Diplom\Magister_diplom\Times-And-Planes\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/OpenFile.cpp.obj"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Times_And_Planes.dir\Functions\Assistant_functions\OpenFile.cpp.obj -c "D:\Works\Diplom\Magister_diplom\Times-And-Planes\Functions\Assistant functions\OpenFile.cpp"
 
-CMakeFiles/Times_And_Planes.dir/Functions/OpenFile.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Times_And_Planes.dir/Functions/OpenFile.cpp.i"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Works\Diplom\Magister_diplom\Times-And-Planes\Functions\OpenFile.cpp > CMakeFiles\Times_And_Planes.dir\Functions\OpenFile.cpp.i
+CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/OpenFile.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/OpenFile.cpp.i"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "D:\Works\Diplom\Magister_diplom\Times-And-Planes\Functions\Assistant functions\OpenFile.cpp" > CMakeFiles\Times_And_Planes.dir\Functions\Assistant_functions\OpenFile.cpp.i
 
-CMakeFiles/Times_And_Planes.dir/Functions/OpenFile.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Times_And_Planes.dir/Functions/OpenFile.cpp.s"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Works\Diplom\Magister_diplom\Times-And-Planes\Functions\OpenFile.cpp -o CMakeFiles\Times_And_Planes.dir\Functions\OpenFile.cpp.s
+CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/OpenFile.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/OpenFile.cpp.s"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:\Works\Diplom\Magister_diplom\Times-And-Planes\Functions\Assistant functions\OpenFile.cpp" -o CMakeFiles\Times_And_Planes.dir\Functions\Assistant_functions\OpenFile.cpp.s
 
 CMakeFiles/Times_And_Planes.dir/Fields_of_Zone/Maps.cpp.obj: CMakeFiles/Times_And_Planes.dir/flags.make
 CMakeFiles/Times_And_Planes.dir/Fields_of_Zone/Maps.cpp.obj: CMakeFiles/Times_And_Planes.dir/includes_CXX.rsp
@@ -118,33 +118,33 @@ CMakeFiles/Times_And_Planes.dir/Fields_of_Zone/Maps.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Times_And_Planes.dir/Fields_of_Zone/Maps.cpp.s"
 	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:\Works\Diplom\Magister_diplom\Times-And-Planes\Fields of Zone\Maps.cpp" -o CMakeFiles\Times_And_Planes.dir\Fields_of_Zone\Maps.cpp.s
 
-CMakeFiles/Times_And_Planes.dir/Read/Read_SchemeRegExp.cpp.obj: CMakeFiles/Times_And_Planes.dir/flags.make
-CMakeFiles/Times_And_Planes.dir/Read/Read_SchemeRegExp.cpp.obj: CMakeFiles/Times_And_Planes.dir/includes_CXX.rsp
-CMakeFiles/Times_And_Planes.dir/Read/Read_SchemeRegExp.cpp.obj: ../Read/Read_SchemeRegExp.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Works\Diplom\Magister_diplom\Times-And-Planes\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Times_And_Planes.dir/Read/Read_SchemeRegExp.cpp.obj"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Times_And_Planes.dir\Read\Read_SchemeRegExp.cpp.obj -c D:\Works\Diplom\Magister_diplom\Times-And-Planes\Read\Read_SchemeRegExp.cpp
+CMakeFiles/Times_And_Planes.dir/Read/Read_SchemesRegExp.cpp.obj: CMakeFiles/Times_And_Planes.dir/flags.make
+CMakeFiles/Times_And_Planes.dir/Read/Read_SchemesRegExp.cpp.obj: CMakeFiles/Times_And_Planes.dir/includes_CXX.rsp
+CMakeFiles/Times_And_Planes.dir/Read/Read_SchemesRegExp.cpp.obj: ../Read/Read_SchemesRegExp.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Works\Diplom\Magister_diplom\Times-And-Planes\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Times_And_Planes.dir/Read/Read_SchemesRegExp.cpp.obj"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Times_And_Planes.dir\Read\Read_SchemesRegExp.cpp.obj -c D:\Works\Diplom\Magister_diplom\Times-And-Planes\Read\Read_SchemesRegExp.cpp
 
-CMakeFiles/Times_And_Planes.dir/Read/Read_SchemeRegExp.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Times_And_Planes.dir/Read/Read_SchemeRegExp.cpp.i"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Works\Diplom\Magister_diplom\Times-And-Planes\Read\Read_SchemeRegExp.cpp > CMakeFiles\Times_And_Planes.dir\Read\Read_SchemeRegExp.cpp.i
+CMakeFiles/Times_And_Planes.dir/Read/Read_SchemesRegExp.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Times_And_Planes.dir/Read/Read_SchemesRegExp.cpp.i"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Works\Diplom\Magister_diplom\Times-And-Planes\Read\Read_SchemesRegExp.cpp > CMakeFiles\Times_And_Planes.dir\Read\Read_SchemesRegExp.cpp.i
 
-CMakeFiles/Times_And_Planes.dir/Read/Read_SchemeRegExp.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Times_And_Planes.dir/Read/Read_SchemeRegExp.cpp.s"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Works\Diplom\Magister_diplom\Times-And-Planes\Read\Read_SchemeRegExp.cpp -o CMakeFiles\Times_And_Planes.dir\Read\Read_SchemeRegExp.cpp.s
+CMakeFiles/Times_And_Planes.dir/Read/Read_SchemesRegExp.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Times_And_Planes.dir/Read/Read_SchemesRegExp.cpp.s"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Works\Diplom\Magister_diplom\Times-And-Planes\Read\Read_SchemesRegExp.cpp -o CMakeFiles\Times_And_Planes.dir\Read\Read_SchemesRegExp.cpp.s
 
-CMakeFiles/Times_And_Planes.dir/Functions/Fill-scheme.cpp.obj: CMakeFiles/Times_And_Planes.dir/flags.make
-CMakeFiles/Times_And_Planes.dir/Functions/Fill-scheme.cpp.obj: CMakeFiles/Times_And_Planes.dir/includes_CXX.rsp
-CMakeFiles/Times_And_Planes.dir/Functions/Fill-scheme.cpp.obj: ../Functions/Fill-scheme.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Works\Diplom\Magister_diplom\Times-And-Planes\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Times_And_Planes.dir/Functions/Fill-scheme.cpp.obj"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Times_And_Planes.dir\Functions\Fill-scheme.cpp.obj -c D:\Works\Diplom\Magister_diplom\Times-And-Planes\Functions\Fill-scheme.cpp
+CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Fill-scheme.cpp.obj: CMakeFiles/Times_And_Planes.dir/flags.make
+CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Fill-scheme.cpp.obj: CMakeFiles/Times_And_Planes.dir/includes_CXX.rsp
+CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Fill-scheme.cpp.obj: ../Functions/Assistant\ functions/Fill-scheme.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Works\Diplom\Magister_diplom\Times-And-Planes\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Fill-scheme.cpp.obj"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Times_And_Planes.dir\Functions\Assistant_functions\Fill-scheme.cpp.obj -c "D:\Works\Diplom\Magister_diplom\Times-And-Planes\Functions\Assistant functions\Fill-scheme.cpp"
 
-CMakeFiles/Times_And_Planes.dir/Functions/Fill-scheme.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Times_And_Planes.dir/Functions/Fill-scheme.cpp.i"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Works\Diplom\Magister_diplom\Times-And-Planes\Functions\Fill-scheme.cpp > CMakeFiles\Times_And_Planes.dir\Functions\Fill-scheme.cpp.i
+CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Fill-scheme.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Fill-scheme.cpp.i"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "D:\Works\Diplom\Magister_diplom\Times-And-Planes\Functions\Assistant functions\Fill-scheme.cpp" > CMakeFiles\Times_And_Planes.dir\Functions\Assistant_functions\Fill-scheme.cpp.i
 
-CMakeFiles/Times_And_Planes.dir/Functions/Fill-scheme.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Times_And_Planes.dir/Functions/Fill-scheme.cpp.s"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Works\Diplom\Magister_diplom\Times-And-Planes\Functions\Fill-scheme.cpp -o CMakeFiles\Times_And_Planes.dir\Functions\Fill-scheme.cpp.s
+CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Fill-scheme.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Fill-scheme.cpp.s"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:\Works\Diplom\Magister_diplom\Times-And-Planes\Functions\Assistant functions\Fill-scheme.cpp" -o CMakeFiles\Times_And_Planes.dir\Functions\Assistant_functions\Fill-scheme.cpp.s
 
 CMakeFiles/Times_And_Planes.dir/Build/Build_graph_of_Zone.cpp.obj: CMakeFiles/Times_And_Planes.dir/flags.make
 CMakeFiles/Times_And_Planes.dir/Build/Build_graph_of_Zone.cpp.obj: CMakeFiles/Times_And_Planes.dir/includes_CXX.rsp
@@ -300,41 +300,83 @@ CMakeFiles/Times_And_Planes.dir/Read/Read_CheckPointsRegExp.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Times_And_Planes.dir/Read/Read_CheckPointsRegExp.cpp.s"
 	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Works\Diplom\Magister_diplom\Times-And-Planes\Read\Read_CheckPointsRegExp.cpp -o CMakeFiles\Times_And_Planes.dir\Read\Read_CheckPointsRegExp.cpp.s
 
-CMakeFiles/Times_And_Planes.dir/Functions/Calculate_standard_scheme.cpp.obj: CMakeFiles/Times_And_Planes.dir/flags.make
-CMakeFiles/Times_And_Planes.dir/Functions/Calculate_standard_scheme.cpp.obj: CMakeFiles/Times_And_Planes.dir/includes_CXX.rsp
-CMakeFiles/Times_And_Planes.dir/Functions/Calculate_standard_scheme.cpp.obj: ../Functions/Calculate\ standard\ scheme.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Works\Diplom\Magister_diplom\Times-And-Planes\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/Times_And_Planes.dir/Functions/Calculate_standard_scheme.cpp.obj"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Times_And_Planes.dir\Functions\Calculate_standard_scheme.cpp.obj -c "D:\Works\Diplom\Magister_diplom\Times-And-Planes\Functions\Calculate standard scheme.cpp"
+CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Calculate_standard_scheme.cpp.obj: CMakeFiles/Times_And_Planes.dir/flags.make
+CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Calculate_standard_scheme.cpp.obj: CMakeFiles/Times_And_Planes.dir/includes_CXX.rsp
+CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Calculate_standard_scheme.cpp.obj: ../Functions/Assistant\ functions/Calculate\ standard\ scheme.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Works\Diplom\Magister_diplom\Times-And-Planes\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Calculate_standard_scheme.cpp.obj"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Times_And_Planes.dir\Functions\Assistant_functions\Calculate_standard_scheme.cpp.obj -c "D:\Works\Diplom\Magister_diplom\Times-And-Planes\Functions\Assistant functions\Calculate standard scheme.cpp"
 
-CMakeFiles/Times_And_Planes.dir/Functions/Calculate_standard_scheme.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Times_And_Planes.dir/Functions/Calculate_standard_scheme.cpp.i"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "D:\Works\Diplom\Magister_diplom\Times-And-Planes\Functions\Calculate standard scheme.cpp" > CMakeFiles\Times_And_Planes.dir\Functions\Calculate_standard_scheme.cpp.i
+CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Calculate_standard_scheme.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Calculate_standard_scheme.cpp.i"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "D:\Works\Diplom\Magister_diplom\Times-And-Planes\Functions\Assistant functions\Calculate standard scheme.cpp" > CMakeFiles\Times_And_Planes.dir\Functions\Assistant_functions\Calculate_standard_scheme.cpp.i
 
-CMakeFiles/Times_And_Planes.dir/Functions/Calculate_standard_scheme.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Times_And_Planes.dir/Functions/Calculate_standard_scheme.cpp.s"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:\Works\Diplom\Magister_diplom\Times-And-Planes\Functions\Calculate standard scheme.cpp" -o CMakeFiles\Times_And_Planes.dir\Functions\Calculate_standard_scheme.cpp.s
+CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Calculate_standard_scheme.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Calculate_standard_scheme.cpp.s"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:\Works\Diplom\Magister_diplom\Times-And-Planes\Functions\Assistant functions\Calculate standard scheme.cpp" -o CMakeFiles\Times_And_Planes.dir\Functions\Assistant_functions\Calculate_standard_scheme.cpp.s
 
-CMakeFiles/Times_And_Planes.dir/Read/Read_FlowRegExp.cpp.obj: CMakeFiles/Times_And_Planes.dir/flags.make
-CMakeFiles/Times_And_Planes.dir/Read/Read_FlowRegExp.cpp.obj: CMakeFiles/Times_And_Planes.dir/includes_CXX.rsp
-CMakeFiles/Times_And_Planes.dir/Read/Read_FlowRegExp.cpp.obj: ../Read/Read_FlowRegExp.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Works\Diplom\Magister_diplom\Times-And-Planes\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/Times_And_Planes.dir/Read/Read_FlowRegExp.cpp.obj"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Times_And_Planes.dir\Read\Read_FlowRegExp.cpp.obj -c D:\Works\Diplom\Magister_diplom\Times-And-Planes\Read\Read_FlowRegExp.cpp
+CMakeFiles/Times_And_Planes.dir/Read/Read_FlowsRegExp.cpp.obj: CMakeFiles/Times_And_Planes.dir/flags.make
+CMakeFiles/Times_And_Planes.dir/Read/Read_FlowsRegExp.cpp.obj: CMakeFiles/Times_And_Planes.dir/includes_CXX.rsp
+CMakeFiles/Times_And_Planes.dir/Read/Read_FlowsRegExp.cpp.obj: ../Read/Read_FlowsRegExp.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Works\Diplom\Magister_diplom\Times-And-Planes\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/Times_And_Planes.dir/Read/Read_FlowsRegExp.cpp.obj"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Times_And_Planes.dir\Read\Read_FlowsRegExp.cpp.obj -c D:\Works\Diplom\Magister_diplom\Times-And-Planes\Read\Read_FlowsRegExp.cpp
 
-CMakeFiles/Times_And_Planes.dir/Read/Read_FlowRegExp.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Times_And_Planes.dir/Read/Read_FlowRegExp.cpp.i"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Works\Diplom\Magister_diplom\Times-And-Planes\Read\Read_FlowRegExp.cpp > CMakeFiles\Times_And_Planes.dir\Read\Read_FlowRegExp.cpp.i
+CMakeFiles/Times_And_Planes.dir/Read/Read_FlowsRegExp.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Times_And_Planes.dir/Read/Read_FlowsRegExp.cpp.i"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\Works\Diplom\Magister_diplom\Times-And-Planes\Read\Read_FlowsRegExp.cpp > CMakeFiles\Times_And_Planes.dir\Read\Read_FlowsRegExp.cpp.i
 
-CMakeFiles/Times_And_Planes.dir/Read/Read_FlowRegExp.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Times_And_Planes.dir/Read/Read_FlowRegExp.cpp.s"
-	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Works\Diplom\Magister_diplom\Times-And-Planes\Read\Read_FlowRegExp.cpp -o CMakeFiles\Times_And_Planes.dir\Read\Read_FlowRegExp.cpp.s
+CMakeFiles/Times_And_Planes.dir/Read/Read_FlowsRegExp.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Times_And_Planes.dir/Read/Read_FlowsRegExp.cpp.s"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\Works\Diplom\Magister_diplom\Times-And-Planes\Read\Read_FlowsRegExp.cpp -o CMakeFiles\Times_And_Planes.dir\Read\Read_FlowsRegExp.cpp.s
+
+CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Nearest_point_from_the_center_to_.cpp.obj: CMakeFiles/Times_And_Planes.dir/flags.make
+CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Nearest_point_from_the_center_to_.cpp.obj: CMakeFiles/Times_And_Planes.dir/includes_CXX.rsp
+CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Nearest_point_from_the_center_to_.cpp.obj: ../Functions/Assistant\ functions/Nearest\ point\ from\ the\ center\ to\ .cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Works\Diplom\Magister_diplom\Times-And-Planes\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Nearest_point_from_the_center_to_.cpp.obj"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Times_And_Planes.dir\Functions\Assistant_functions\Nearest_point_from_the_center_to_.cpp.obj -c "D:\Works\Diplom\Magister_diplom\Times-And-Planes\Functions\Assistant functions\Nearest point from the center to .cpp"
+
+CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Nearest_point_from_the_center_to_.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Nearest_point_from_the_center_to_.cpp.i"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "D:\Works\Diplom\Magister_diplom\Times-And-Planes\Functions\Assistant functions\Nearest point from the center to .cpp" > CMakeFiles\Times_And_Planes.dir\Functions\Assistant_functions\Nearest_point_from_the_center_to_.cpp.i
+
+CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Nearest_point_from_the_center_to_.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Nearest_point_from_the_center_to_.cpp.s"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:\Works\Diplom\Magister_diplom\Times-And-Planes\Functions\Assistant functions\Nearest point from the center to .cpp" -o CMakeFiles\Times_And_Planes.dir\Functions\Assistant_functions\Nearest_point_from_the_center_to_.cpp.s
+
+CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Distance_between_two_Points.cpp.obj: CMakeFiles/Times_And_Planes.dir/flags.make
+CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Distance_between_two_Points.cpp.obj: CMakeFiles/Times_And_Planes.dir/includes_CXX.rsp
+CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Distance_between_two_Points.cpp.obj: ../Functions/Assistant\ functions/Distance\ between\ two\ Points.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Works\Diplom\Magister_diplom\Times-And-Planes\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Distance_between_two_Points.cpp.obj"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Times_And_Planes.dir\Functions\Assistant_functions\Distance_between_two_Points.cpp.obj -c "D:\Works\Diplom\Magister_diplom\Times-And-Planes\Functions\Assistant functions\Distance between two Points.cpp"
+
+CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Distance_between_two_Points.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Distance_between_two_Points.cpp.i"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "D:\Works\Diplom\Magister_diplom\Times-And-Planes\Functions\Assistant functions\Distance between two Points.cpp" > CMakeFiles\Times_And_Planes.dir\Functions\Assistant_functions\Distance_between_two_Points.cpp.i
+
+CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Distance_between_two_Points.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Distance_between_two_Points.cpp.s"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:\Works\Diplom\Magister_diplom\Times-And-Planes\Functions\Assistant functions\Distance between two Points.cpp" -o CMakeFiles\Times_And_Planes.dir\Functions\Assistant_functions\Distance_between_two_Points.cpp.s
+
+CMakeFiles/Times_And_Planes.dir/Functions/Calculate_times_new_plane.cpp.obj: CMakeFiles/Times_And_Planes.dir/flags.make
+CMakeFiles/Times_And_Planes.dir/Functions/Calculate_times_new_plane.cpp.obj: CMakeFiles/Times_And_Planes.dir/includes_CXX.rsp
+CMakeFiles/Times_And_Planes.dir/Functions/Calculate_times_new_plane.cpp.obj: ../Functions/Calculate\ times\ new\ plane.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=D:\Works\Diplom\Magister_diplom\Times-And-Planes\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/Times_And_Planes.dir/Functions/Calculate_times_new_plane.cpp.obj"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\Times_And_Planes.dir\Functions\Calculate_times_new_plane.cpp.obj -c "D:\Works\Diplom\Magister_diplom\Times-And-Planes\Functions\Calculate times new plane.cpp"
+
+CMakeFiles/Times_And_Planes.dir/Functions/Calculate_times_new_plane.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Times_And_Planes.dir/Functions/Calculate_times_new_plane.cpp.i"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "D:\Works\Diplom\Magister_diplom\Times-And-Planes\Functions\Calculate times new plane.cpp" > CMakeFiles\Times_And_Planes.dir\Functions\Calculate_times_new_plane.cpp.i
+
+CMakeFiles/Times_And_Planes.dir/Functions/Calculate_times_new_plane.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Times_And_Planes.dir/Functions/Calculate_times_new_plane.cpp.s"
+	C:\PROGRA~2\MINGW-~1\I686-8~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "D:\Works\Diplom\Magister_diplom\Times-And-Planes\Functions\Calculate times new plane.cpp" -o CMakeFiles\Times_And_Planes.dir\Functions\Calculate_times_new_plane.cpp.s
 
 # Object files for target Times_And_Planes
 Times_And_Planes_OBJECTS = \
 "CMakeFiles/Times_And_Planes.dir/main.cpp.obj" \
-"CMakeFiles/Times_And_Planes.dir/Functions/OpenFile.cpp.obj" \
+"CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/OpenFile.cpp.obj" \
 "CMakeFiles/Times_And_Planes.dir/Fields_of_Zone/Maps.cpp.obj" \
-"CMakeFiles/Times_And_Planes.dir/Read/Read_SchemeRegExp.cpp.obj" \
-"CMakeFiles/Times_And_Planes.dir/Functions/Fill-scheme.cpp.obj" \
+"CMakeFiles/Times_And_Planes.dir/Read/Read_SchemesRegExp.cpp.obj" \
+"CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Fill-scheme.cpp.obj" \
 "CMakeFiles/Times_And_Planes.dir/Build/Build_graph_of_Zone.cpp.obj" \
 "CMakeFiles/Times_And_Planes.dir/Functions/Topologic_Sort.cpp.obj" \
 "CMakeFiles/Times_And_Planes.dir/Zone.cpp.obj" \
@@ -346,17 +388,20 @@ Times_And_Planes_OBJECTS = \
 "CMakeFiles/Times_And_Planes.dir/Measure_units/Velocity.cpp.obj" \
 "CMakeFiles/Times_And_Planes.dir/Measure_units/Time.cpp.obj" \
 "CMakeFiles/Times_And_Planes.dir/Read/Read_CheckPointsRegExp.cpp.obj" \
-"CMakeFiles/Times_And_Planes.dir/Functions/Calculate_standard_scheme.cpp.obj" \
-"CMakeFiles/Times_And_Planes.dir/Read/Read_FlowRegExp.cpp.obj"
+"CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Calculate_standard_scheme.cpp.obj" \
+"CMakeFiles/Times_And_Planes.dir/Read/Read_FlowsRegExp.cpp.obj" \
+"CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Nearest_point_from_the_center_to_.cpp.obj" \
+"CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Distance_between_two_Points.cpp.obj" \
+"CMakeFiles/Times_And_Planes.dir/Functions/Calculate_times_new_plane.cpp.obj"
 
 # External object files for target Times_And_Planes
 Times_And_Planes_EXTERNAL_OBJECTS =
 
 Times_And_Planes.exe: CMakeFiles/Times_And_Planes.dir/main.cpp.obj
-Times_And_Planes.exe: CMakeFiles/Times_And_Planes.dir/Functions/OpenFile.cpp.obj
+Times_And_Planes.exe: CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/OpenFile.cpp.obj
 Times_And_Planes.exe: CMakeFiles/Times_And_Planes.dir/Fields_of_Zone/Maps.cpp.obj
-Times_And_Planes.exe: CMakeFiles/Times_And_Planes.dir/Read/Read_SchemeRegExp.cpp.obj
-Times_And_Planes.exe: CMakeFiles/Times_And_Planes.dir/Functions/Fill-scheme.cpp.obj
+Times_And_Planes.exe: CMakeFiles/Times_And_Planes.dir/Read/Read_SchemesRegExp.cpp.obj
+Times_And_Planes.exe: CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Fill-scheme.cpp.obj
 Times_And_Planes.exe: CMakeFiles/Times_And_Planes.dir/Build/Build_graph_of_Zone.cpp.obj
 Times_And_Planes.exe: CMakeFiles/Times_And_Planes.dir/Functions/Topologic_Sort.cpp.obj
 Times_And_Planes.exe: CMakeFiles/Times_And_Planes.dir/Zone.cpp.obj
@@ -368,13 +413,16 @@ Times_And_Planes.exe: CMakeFiles/Times_And_Planes.dir/Measure_units/Coordinate.c
 Times_And_Planes.exe: CMakeFiles/Times_And_Planes.dir/Measure_units/Velocity.cpp.obj
 Times_And_Planes.exe: CMakeFiles/Times_And_Planes.dir/Measure_units/Time.cpp.obj
 Times_And_Planes.exe: CMakeFiles/Times_And_Planes.dir/Read/Read_CheckPointsRegExp.cpp.obj
-Times_And_Planes.exe: CMakeFiles/Times_And_Planes.dir/Functions/Calculate_standard_scheme.cpp.obj
-Times_And_Planes.exe: CMakeFiles/Times_And_Planes.dir/Read/Read_FlowRegExp.cpp.obj
+Times_And_Planes.exe: CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Calculate_standard_scheme.cpp.obj
+Times_And_Planes.exe: CMakeFiles/Times_And_Planes.dir/Read/Read_FlowsRegExp.cpp.obj
+Times_And_Planes.exe: CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Nearest_point_from_the_center_to_.cpp.obj
+Times_And_Planes.exe: CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Distance_between_two_Points.cpp.obj
+Times_And_Planes.exe: CMakeFiles/Times_And_Planes.dir/Functions/Calculate_times_new_plane.cpp.obj
 Times_And_Planes.exe: CMakeFiles/Times_And_Planes.dir/build.make
 Times_And_Planes.exe: CMakeFiles/Times_And_Planes.dir/linklibs.rsp
 Times_And_Planes.exe: CMakeFiles/Times_And_Planes.dir/objects1.rsp
 Times_And_Planes.exe: CMakeFiles/Times_And_Planes.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=D:\Works\Diplom\Magister_diplom\Times-And-Planes\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Linking CXX executable Times_And_Planes.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=D:\Works\Diplom\Magister_diplom\Times-And-Planes\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Linking CXX executable Times_And_Planes.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\Times_And_Planes.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

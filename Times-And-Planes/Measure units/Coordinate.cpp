@@ -41,12 +41,12 @@ Coordinate Coordinate::createNMs(double nms)
 		return {nms * NMs2ms};
 	}
 
-Coordinate Coordinate::operator+()
+Coordinate Coordinate::operator+() const
 	{
 		return {coordinate_ms};
 	}
 
-Coordinate Coordinate::operator-()
+Coordinate Coordinate::operator-() const
 	{
 		return {-coordinate_ms};
 	}
@@ -90,3 +90,8 @@ Coordinate operator*(const double &a, const Coordinate &x)
 	{
 		return Coordinate::createMs(a * x.getMs());
 	}
+
+Coordinate operator*(const Coordinate &x, const Coordinate &y)
+    {
+        return Coordinate::createMs(x.getMs() * y.getMs());
+    }

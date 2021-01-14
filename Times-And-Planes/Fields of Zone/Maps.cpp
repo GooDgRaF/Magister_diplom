@@ -5,4 +5,5 @@
 #include "Maps.h"
 
 map<string, int> pointNameToID;
-map<int, int> startPointIDtoStSchemeID;
+map<string, int> flowNameToID;
+map<int, int> checkPointIDtoStSchemeID;

@@ -2,15 +2,15 @@
 // Created by Антон on 12.05.2020.
 //
 
-#include "Read_FlowRegExp.h"
+#include "Read_FlowsRegExp.h"
 #include <fstream>
 #include <iostream>
 #include <regex>
 #include "Fields of Zone/Flow.h"
-#include "Functions/OpenFile.h"
+#include "Functions/Assistant functions/OpenFile.h"
 #include "Fields of Zone/Maps.h"
 
-void Read_FlowRegExp(const string &name_of_file, vector<Flow> &flows)
+void Read_FlowsRegExp(const string &name_of_file, vector<Flow> &flows)
 	{
 		int i;
 		
@@ -73,9 +73,11 @@ void Read_FlowRegExp(const string &name_of_file, vector<Flow> &flows)
 				cerr << "Check in " << name_of_file << " amount of flows, it is low" << endl;
 				exit(-2);
 			}
-			
+
 			flows[i].name = string(res[1]);
-			
+
+			flowNameToID[flows[i].name] = i;
+
 			try
 			{
 				flows[i].start_point = pointNameToID.at(string(res[2]));

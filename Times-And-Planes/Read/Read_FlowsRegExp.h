@@ -9,6 +9,6 @@
 #include <vector>
 #include <Fields of Zone/Flow.h>
 
-void Read_FlowRegExp(const std::string &name_of_file, std::vector<Flow> &flows);
+void Read_FlowsRegExp(const std::string &name_of_file, std::vector<Flow> &flows);
 
 #endif //TIMES_AND_PLANES_READ_FLOWREGEXP_H

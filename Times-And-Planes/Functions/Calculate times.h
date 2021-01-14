@@ -7,7 +7,5 @@
 
 #include "Zone.h"
 
-using namespace std;
-
-void calculateTimes(Zone &zone, Flow &flow);
+void calculateTimes(Zone &zone, Flow &flow, int i = 0);
 #endif //TIMES_AND_PLANES_CALCULATE_TIMES_H

@@ -223,32 +223,140 @@ Fields_of_Zone/Maps.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Fields_of_Zone/Maps.cpp.s
 .PHONY : Fields_of_Zone/Maps.cpp.s
 
-Functions/Calculate_standard_scheme.obj: Functions/Calculate_standard_scheme.cpp.obj
+Functions/Assistant_functions/Calculate_standard_scheme.obj: Functions/Assistant_functions/Calculate_standard_scheme.cpp.obj
 
-.PHONY : Functions/Calculate_standard_scheme.obj
+.PHONY : Functions/Assistant_functions/Calculate_standard_scheme.obj
 
 # target to build an object file
-Functions/Calculate_standard_scheme.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Functions/Calculate_standard_scheme.cpp.obj
-.PHONY : Functions/Calculate_standard_scheme.cpp.obj
+Functions/Assistant_functions/Calculate_standard_scheme.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Calculate_standard_scheme.cpp.obj
+.PHONY : Functions/Assistant_functions/Calculate_standard_scheme.cpp.obj
 
-Functions/Calculate_standard_scheme.i: Functions/Calculate_standard_scheme.cpp.i
+Functions/Assistant_functions/Calculate_standard_scheme.i: Functions/Assistant_functions/Calculate_standard_scheme.cpp.i
 
-.PHONY : Functions/Calculate_standard_scheme.i
+.PHONY : Functions/Assistant_functions/Calculate_standard_scheme.i
 
 # target to preprocess a source file
-Functions/Calculate_standard_scheme.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Functions/Calculate_standard_scheme.cpp.i
-.PHONY : Functions/Calculate_standard_scheme.cpp.i
+Functions/Assistant_functions/Calculate_standard_scheme.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Calculate_standard_scheme.cpp.i
+.PHONY : Functions/Assistant_functions/Calculate_standard_scheme.cpp.i
 
-Functions/Calculate_standard_scheme.s: Functions/Calculate_standard_scheme.cpp.s
+Functions/Assistant_functions/Calculate_standard_scheme.s: Functions/Assistant_functions/Calculate_standard_scheme.cpp.s
 
-.PHONY : Functions/Calculate_standard_scheme.s
+.PHONY : Functions/Assistant_functions/Calculate_standard_scheme.s
 
 # target to generate assembly for a file
-Functions/Calculate_standard_scheme.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Functions/Calculate_standard_scheme.cpp.s
-.PHONY : Functions/Calculate_standard_scheme.cpp.s
+Functions/Assistant_functions/Calculate_standard_scheme.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Calculate_standard_scheme.cpp.s
+.PHONY : Functions/Assistant_functions/Calculate_standard_scheme.cpp.s
+
+Functions/Assistant_functions/Distance_between_two_Points.obj: Functions/Assistant_functions/Distance_between_two_Points.cpp.obj
+
+.PHONY : Functions/Assistant_functions/Distance_between_two_Points.obj
+
+# target to build an object file
+Functions/Assistant_functions/Distance_between_two_Points.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Distance_between_two_Points.cpp.obj
+.PHONY : Functions/Assistant_functions/Distance_between_two_Points.cpp.obj
+
+Functions/Assistant_functions/Distance_between_two_Points.i: Functions/Assistant_functions/Distance_between_two_Points.cpp.i
+
+.PHONY : Functions/Assistant_functions/Distance_between_two_Points.i
+
+# target to preprocess a source file
+Functions/Assistant_functions/Distance_between_two_Points.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Distance_between_two_Points.cpp.i
+.PHONY : Functions/Assistant_functions/Distance_between_two_Points.cpp.i
+
+Functions/Assistant_functions/Distance_between_two_Points.s: Functions/Assistant_functions/Distance_between_two_Points.cpp.s
+
+.PHONY : Functions/Assistant_functions/Distance_between_two_Points.s
+
+# target to generate assembly for a file
+Functions/Assistant_functions/Distance_between_two_Points.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Distance_between_two_Points.cpp.s
+.PHONY : Functions/Assistant_functions/Distance_between_two_Points.cpp.s
+
+Functions/Assistant_functions/Fill-scheme.obj: Functions/Assistant_functions/Fill-scheme.cpp.obj
+
+.PHONY : Functions/Assistant_functions/Fill-scheme.obj
+
+# target to build an object file
+Functions/Assistant_functions/Fill-scheme.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Fill-scheme.cpp.obj
+.PHONY : Functions/Assistant_functions/Fill-scheme.cpp.obj
+
+Functions/Assistant_functions/Fill-scheme.i: Functions/Assistant_functions/Fill-scheme.cpp.i
+
+.PHONY : Functions/Assistant_functions/Fill-scheme.i
+
+# target to preprocess a source file
+Functions/Assistant_functions/Fill-scheme.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Fill-scheme.cpp.i
+.PHONY : Functions/Assistant_functions/Fill-scheme.cpp.i
+
+Functions/Assistant_functions/Fill-scheme.s: Functions/Assistant_functions/Fill-scheme.cpp.s
+
+.PHONY : Functions/Assistant_functions/Fill-scheme.s
+
+# target to generate assembly for a file
+Functions/Assistant_functions/Fill-scheme.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Fill-scheme.cpp.s
+.PHONY : Functions/Assistant_functions/Fill-scheme.cpp.s
+
+Functions/Assistant_functions/Nearest_point_from_the_center_to_.obj: Functions/Assistant_functions/Nearest_point_from_the_center_to_.cpp.obj
+
+.PHONY : Functions/Assistant_functions/Nearest_point_from_the_center_to_.obj
+
+# target to build an object file
+Functions/Assistant_functions/Nearest_point_from_the_center_to_.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Nearest_point_from_the_center_to_.cpp.obj
+.PHONY : Functions/Assistant_functions/Nearest_point_from_the_center_to_.cpp.obj
+
+Functions/Assistant_functions/Nearest_point_from_the_center_to_.i: Functions/Assistant_functions/Nearest_point_from_the_center_to_.cpp.i
+
+.PHONY : Functions/Assistant_functions/Nearest_point_from_the_center_to_.i
+
+# target to preprocess a source file
+Functions/Assistant_functions/Nearest_point_from_the_center_to_.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Nearest_point_from_the_center_to_.cpp.i
+.PHONY : Functions/Assistant_functions/Nearest_point_from_the_center_to_.cpp.i
+
+Functions/Assistant_functions/Nearest_point_from_the_center_to_.s: Functions/Assistant_functions/Nearest_point_from_the_center_to_.cpp.s
+
+.PHONY : Functions/Assistant_functions/Nearest_point_from_the_center_to_.s
+
+# target to generate assembly for a file
+Functions/Assistant_functions/Nearest_point_from_the_center_to_.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/Nearest_point_from_the_center_to_.cpp.s
+.PHONY : Functions/Assistant_functions/Nearest_point_from_the_center_to_.cpp.s
+
+Functions/Assistant_functions/OpenFile.obj: Functions/Assistant_functions/OpenFile.cpp.obj
+
+.PHONY : Functions/Assistant_functions/OpenFile.obj
+
+# target to build an object file
+Functions/Assistant_functions/OpenFile.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/OpenFile.cpp.obj
+.PHONY : Functions/Assistant_functions/OpenFile.cpp.obj
+
+Functions/Assistant_functions/OpenFile.i: Functions/Assistant_functions/OpenFile.cpp.i
+
+.PHONY : Functions/Assistant_functions/OpenFile.i
+
+# target to preprocess a source file
+Functions/Assistant_functions/OpenFile.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/OpenFile.cpp.i
+.PHONY : Functions/Assistant_functions/OpenFile.cpp.i
+
+Functions/Assistant_functions/OpenFile.s: Functions/Assistant_functions/OpenFile.cpp.s
+
+.PHONY : Functions/Assistant_functions/OpenFile.s
+
+# target to generate assembly for a file
+Functions/Assistant_functions/OpenFile.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Functions/Assistant_functions/OpenFile.cpp.s
+.PHONY : Functions/Assistant_functions/OpenFile.cpp.s
 
 Functions/Calculate_times.obj: Functions/Calculate_times.cpp.obj
 
@@ -277,32 +385,32 @@ Functions/Calculate_times.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Functions/Calculate_times.cpp.s
 .PHONY : Functions/Calculate_times.cpp.s
 
-Functions/Fill-scheme.obj: Functions/Fill-scheme.cpp.obj
+Functions/Calculate_times_new_plane.obj: Functions/Calculate_times_new_plane.cpp.obj
 
-.PHONY : Functions/Fill-scheme.obj
+.PHONY : Functions/Calculate_times_new_plane.obj
 
 # target to build an object file
-Functions/Fill-scheme.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Functions/Fill-scheme.cpp.obj
-.PHONY : Functions/Fill-scheme.cpp.obj
+Functions/Calculate_times_new_plane.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Functions/Calculate_times_new_plane.cpp.obj
+.PHONY : Functions/Calculate_times_new_plane.cpp.obj
 
-Functions/Fill-scheme.i: Functions/Fill-scheme.cpp.i
+Functions/Calculate_times_new_plane.i: Functions/Calculate_times_new_plane.cpp.i
 
-.PHONY : Functions/Fill-scheme.i
+.PHONY : Functions/Calculate_times_new_plane.i
 
 # target to preprocess a source file
-Functions/Fill-scheme.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Functions/Fill-scheme.cpp.i
-.PHONY : Functions/Fill-scheme.cpp.i
+Functions/Calculate_times_new_plane.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Functions/Calculate_times_new_plane.cpp.i
+.PHONY : Functions/Calculate_times_new_plane.cpp.i
 
-Functions/Fill-scheme.s: Functions/Fill-scheme.cpp.s
+Functions/Calculate_times_new_plane.s: Functions/Calculate_times_new_plane.cpp.s
 
-.PHONY : Functions/Fill-scheme.s
+.PHONY : Functions/Calculate_times_new_plane.s
 
 # target to generate assembly for a file
-Functions/Fill-scheme.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Functions/Fill-scheme.cpp.s
-.PHONY : Functions/Fill-scheme.cpp.s
+Functions/Calculate_times_new_plane.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Functions/Calculate_times_new_plane.cpp.s
+.PHONY : Functions/Calculate_times_new_plane.cpp.s
 
 Functions/MergeTimes.obj: Functions/MergeTimes.cpp.obj
 
@@ -330,33 +438,6 @@ Functions/MergeTimes.s: Functions/MergeTimes.cpp.s
 Functions/MergeTimes.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Functions/MergeTimes.cpp.s
 .PHONY : Functions/MergeTimes.cpp.s
-
-Functions/OpenFile.obj: Functions/OpenFile.cpp.obj
-
-.PHONY : Functions/OpenFile.obj
-
-# target to build an object file
-Functions/OpenFile.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Functions/OpenFile.cpp.obj
-.PHONY : Functions/OpenFile.cpp.obj
-
-Functions/OpenFile.i: Functions/OpenFile.cpp.i
-
-.PHONY : Functions/OpenFile.i
-
-# target to preprocess a source file
-Functions/OpenFile.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Functions/OpenFile.cpp.i
-.PHONY : Functions/OpenFile.cpp.i
-
-Functions/OpenFile.s: Functions/OpenFile.cpp.s
-
-.PHONY : Functions/OpenFile.s
-
-# target to generate assembly for a file
-Functions/OpenFile.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Functions/OpenFile.cpp.s
-.PHONY : Functions/OpenFile.cpp.s
 
 Functions/Topologic_Sort.obj: Functions/Topologic_Sort.cpp.obj
 
@@ -493,59 +574,59 @@ Read/Read_CheckPointsRegExp.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Read/Read_CheckPointsRegExp.cpp.s
 .PHONY : Read/Read_CheckPointsRegExp.cpp.s
 
-Read/Read_FlowRegExp.obj: Read/Read_FlowRegExp.cpp.obj
+Read/Read_FlowsRegExp.obj: Read/Read_FlowsRegExp.cpp.obj
 
-.PHONY : Read/Read_FlowRegExp.obj
-
-# target to build an object file
-Read/Read_FlowRegExp.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Read/Read_FlowRegExp.cpp.obj
-.PHONY : Read/Read_FlowRegExp.cpp.obj
-
-Read/Read_FlowRegExp.i: Read/Read_FlowRegExp.cpp.i
-
-.PHONY : Read/Read_FlowRegExp.i
-
-# target to preprocess a source file
-Read/Read_FlowRegExp.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Read/Read_FlowRegExp.cpp.i
-.PHONY : Read/Read_FlowRegExp.cpp.i
-
-Read/Read_FlowRegExp.s: Read/Read_FlowRegExp.cpp.s
-
-.PHONY : Read/Read_FlowRegExp.s
-
-# target to generate assembly for a file
-Read/Read_FlowRegExp.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Read/Read_FlowRegExp.cpp.s
-.PHONY : Read/Read_FlowRegExp.cpp.s
-
-Read/Read_SchemeRegExp.obj: Read/Read_SchemeRegExp.cpp.obj
-
-.PHONY : Read/Read_SchemeRegExp.obj
+.PHONY : Read/Read_FlowsRegExp.obj
 
 # target to build an object file
-Read/Read_SchemeRegExp.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Read/Read_SchemeRegExp.cpp.obj
-.PHONY : Read/Read_SchemeRegExp.cpp.obj
+Read/Read_FlowsRegExp.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Read/Read_FlowsRegExp.cpp.obj
+.PHONY : Read/Read_FlowsRegExp.cpp.obj
 
-Read/Read_SchemeRegExp.i: Read/Read_SchemeRegExp.cpp.i
+Read/Read_FlowsRegExp.i: Read/Read_FlowsRegExp.cpp.i
 
-.PHONY : Read/Read_SchemeRegExp.i
+.PHONY : Read/Read_FlowsRegExp.i
 
 # target to preprocess a source file
-Read/Read_SchemeRegExp.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Read/Read_SchemeRegExp.cpp.i
-.PHONY : Read/Read_SchemeRegExp.cpp.i
+Read/Read_FlowsRegExp.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Read/Read_FlowsRegExp.cpp.i
+.PHONY : Read/Read_FlowsRegExp.cpp.i
 
-Read/Read_SchemeRegExp.s: Read/Read_SchemeRegExp.cpp.s
+Read/Read_FlowsRegExp.s: Read/Read_FlowsRegExp.cpp.s
 
-.PHONY : Read/Read_SchemeRegExp.s
+.PHONY : Read/Read_FlowsRegExp.s
 
 # target to generate assembly for a file
-Read/Read_SchemeRegExp.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Read/Read_SchemeRegExp.cpp.s
-.PHONY : Read/Read_SchemeRegExp.cpp.s
+Read/Read_FlowsRegExp.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Read/Read_FlowsRegExp.cpp.s
+.PHONY : Read/Read_FlowsRegExp.cpp.s
+
+Read/Read_SchemesRegExp.obj: Read/Read_SchemesRegExp.cpp.obj
+
+.PHONY : Read/Read_SchemesRegExp.obj
+
+# target to build an object file
+Read/Read_SchemesRegExp.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Read/Read_SchemesRegExp.cpp.obj
+.PHONY : Read/Read_SchemesRegExp.cpp.obj
+
+Read/Read_SchemesRegExp.i: Read/Read_SchemesRegExp.cpp.i
+
+.PHONY : Read/Read_SchemesRegExp.i
+
+# target to preprocess a source file
+Read/Read_SchemesRegExp.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Read/Read_SchemesRegExp.cpp.i
+.PHONY : Read/Read_SchemesRegExp.cpp.i
+
+Read/Read_SchemesRegExp.s: Read/Read_SchemesRegExp.cpp.s
+
+.PHONY : Read/Read_SchemesRegExp.s
+
+# target to generate assembly for a file
+Read/Read_SchemesRegExp.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Times_And_Planes.dir\build.make CMakeFiles/Times_And_Planes.dir/Read/Read_SchemesRegExp.cpp.s
+.PHONY : Read/Read_SchemesRegExp.cpp.s
 
 Stage_-1.obj: Stage_-1.cpp.obj
 
@@ -646,21 +727,30 @@ help:
 	@echo ... Fields_of_Zone/Maps.obj
 	@echo ... Fields_of_Zone/Maps.i
 	@echo ... Fields_of_Zone/Maps.s
-	@echo ... Functions/Calculate_standard_scheme.obj
-	@echo ... Functions/Calculate_standard_scheme.i
-	@echo ... Functions/Calculate_standard_scheme.s
+	@echo ... Functions/Assistant_functions/Calculate_standard_scheme.obj
+	@echo ... Functions/Assistant_functions/Calculate_standard_scheme.i
+	@echo ... Functions/Assistant_functions/Calculate_standard_scheme.s
+	@echo ... Functions/Assistant_functions/Distance_between_two_Points.obj
+	@echo ... Functions/Assistant_functions/Distance_between_two_Points.i
+	@echo ... Functions/Assistant_functions/Distance_between_two_Points.s
+	@echo ... Functions/Assistant_functions/Fill-scheme.obj
+	@echo ... Functions/Assistant_functions/Fill-scheme.i
+	@echo ... Functions/Assistant_functions/Fill-scheme.s
+	@echo ... Functions/Assistant_functions/Nearest_point_from_the_center_to_.obj
+	@echo ... Functions/Assistant_functions/Nearest_point_from_the_center_to_.i
+	@echo ... Functions/Assistant_functions/Nearest_point_from_the_center_to_.s
+	@echo ... Functions/Assistant_functions/OpenFile.obj
+	@echo ... Functions/Assistant_functions/OpenFile.i
+	@echo ... Functions/Assistant_functions/OpenFile.s
 	@echo ... Functions/Calculate_times.obj
 	@echo ... Functions/Calculate_times.i
 	@echo ... Functions/Calculate_times.s
-	@echo ... Functions/Fill-scheme.obj
-	@echo ... Functions/Fill-scheme.i
-	@echo ... Functions/Fill-scheme.s
+	@echo ... Functions/Calculate_times_new_plane.obj
+	@echo ... Functions/Calculate_times_new_plane.i
+	@echo ... Functions/Calculate_times_new_plane.s
 	@echo ... Functions/MergeTimes.obj
 	@echo ... Functions/MergeTimes.i
 	@echo ... Functions/MergeTimes.s
-	@echo ... Functions/OpenFile.obj
-	@echo ... Functions/OpenFile.i
-	@echo ... Functions/OpenFile.s
 	@echo ... Functions/Topologic_Sort.obj
 	@echo ... Functions/Topologic_Sort.i
 	@echo ... Functions/Topologic_Sort.s
@@ -676,12 +766,12 @@ help:
 	@echo ... Read/Read_CheckPointsRegExp.obj
 	@echo ... Read/Read_CheckPointsRegExp.i
 	@echo ... Read/Read_CheckPointsRegExp.s
-	@echo ... Read/Read_FlowRegExp.obj
-	@echo ... Read/Read_FlowRegExp.i
-	@echo ... Read/Read_FlowRegExp.s
-	@echo ... Read/Read_SchemeRegExp.obj
-	@echo ... Read/Read_SchemeRegExp.i
-	@echo ... Read/Read_SchemeRegExp.s
+	@echo ... Read/Read_FlowsRegExp.obj
+	@echo ... Read/Read_FlowsRegExp.i
+	@echo ... Read/Read_FlowsRegExp.s
+	@echo ... Read/Read_SchemesRegExp.obj
+	@echo ... Read/Read_SchemesRegExp.i
+	@echo ... Read/Read_SchemesRegExp.s
 	@echo ... Stage_-1.obj
 	@echo ... Stage_-1.i
 	@echo ... Stage_-1.s

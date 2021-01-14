@@ -42,6 +42,8 @@ Coordinate operator*(const double &a, const Coordinate &x);
 
 Coordinate operator*(const Coordinate &x, const double &a);
 
+Coordinate operator*(const Coordinate &x, const Coordinate &y);
+
 Coordinate pow(Coordinate x, int a);
 
 Coordinate sqrt(Coordinate x);

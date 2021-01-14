@@ -112,10 +112,43 @@
 		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Fields of Zone/StandardScheme.h">
 			<Option target="Times_And_Planes"/>
 		</Unit>
-		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/Calculate standard scheme.cpp">
+		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/Assistant functions/Calculate standard scheme.cpp">
 			<Option target="Times_And_Planes"/>
 		</Unit>
-		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/Calculate standard scheme.h">
+		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/Assistant functions/Calculate standard scheme.h">
+			<Option target="Times_And_Planes"/>
+		</Unit>
+		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/Assistant functions/Distance between two Points.cpp">
+			<Option target="Times_And_Planes"/>
+		</Unit>
+		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/Assistant functions/Distance between two Points.h">
+			<Option target="Times_And_Planes"/>
+		</Unit>
+		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/Assistant functions/Fill-scheme.cpp">
+			<Option target="Times_And_Planes"/>
+		</Unit>
+		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/Assistant functions/Fill-scheme.h">
+			<Option target="Times_And_Planes"/>
+		</Unit>
+		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/Assistant functions/Find-InVector.h">
+			<Option target="Times_And_Planes"/>
+		</Unit>
+		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/Assistant functions/Nearest point from the center to .cpp">
+			<Option target="Times_And_Planes"/>
+		</Unit>
+		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/Assistant functions/Nearest point from the center to .h">
+			<Option target="Times_And_Planes"/>
+		</Unit>
+		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/Assistant functions/OpenFile.cpp">
+			<Option target="Times_And_Planes"/>
+		</Unit>
+		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/Assistant functions/OpenFile.h">
+			<Option target="Times_And_Planes"/>
+		</Unit>
+		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/Calculate times new plane.cpp">
+			<Option target="Times_And_Planes"/>
+		</Unit>
+		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/Calculate times new plane.h">
 			<Option target="Times_And_Planes"/>
 		</Unit>
 		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/Calculate times.cpp">
@@ -124,25 +157,10 @@
 		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/Calculate times.h">
 			<Option target="Times_And_Planes"/>
 		</Unit>
-		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/Fill-scheme.cpp">
-			<Option target="Times_And_Planes"/>
-		</Unit>
-		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/Fill-scheme.h">
-			<Option target="Times_And_Planes"/>
-		</Unit>
-		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/Find-InVector.h">
-			<Option target="Times_And_Planes"/>
-		</Unit>
 		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/MergeTimes.cpp">
 			<Option target="Times_And_Planes"/>
 		</Unit>
 		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/MergeTimes.h">
-			<Option target="Times_And_Planes"/>
-		</Unit>
-		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/OpenFile.cpp">
-			<Option target="Times_And_Planes"/>
-		</Unit>
-		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/OpenFile.h">
 			<Option target="Times_And_Planes"/>
 		</Unit>
 		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/Topologic_Sort.cpp">
@@ -178,16 +196,16 @@
 		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Read/Read_CheckPointsRegExp.h">
 			<Option target="Times_And_Planes"/>
 		</Unit>
-		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Read/Read_FlowRegExp.cpp">
+		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Read/Read_FlowsRegExp.cpp">
 			<Option target="Times_And_Planes"/>
 		</Unit>
-		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Read/Read_FlowRegExp.h">
+		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Read/Read_FlowsRegExp.h">
 			<Option target="Times_And_Planes"/>
 		</Unit>
-		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Read/Read_SchemeRegExp.cpp">
+		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Read/Read_SchemesRegExp.cpp">
 			<Option target="Times_And_Planes"/>
 		</Unit>
-		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Read/Read_SchemeRegExp.h">
+		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Read/Read_SchemesRegExp.h">
 			<Option target="Times_And_Planes"/>
 		</Unit>
 		<Unit filename="D:/Works/Diplom/Magister_diplom/Times-And-Planes/Stage -1.cpp">

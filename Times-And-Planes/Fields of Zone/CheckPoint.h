@@ -9,17 +9,33 @@
 #include <vector>
 #include "Measure units/MeasureUnits.h"
 
-using namespace std;
-
-struct CheckPoint
+struct Point
 {
-	string name;
-	Coordinate x = Coordinate::createMs(0);
-	Coordinate y = Coordinate::createMs(0);
-	Coordinate z = Coordinate::createMs(0);
-	Velocity Vmin = Velocity::createVkm_h(0);
-	Velocity Vmax = Velocity::createVkm_h(0);
-	bool landing_flag = false;
+    Coordinate x = Coordinate::createMs(0);
+    Coordinate y = Coordinate::createMs(0);
+    Coordinate z = Coordinate::createMs(0);
+
+    Coordinate sq_abs() const
+        {
+            return x * x + y * y + z * z;
+        }
 };
+
+
+
+struct CheckPoint : Point
+{
+    std::string name;
+    Velocity Vmin = Velocity::createVkm_h(0);
+    Velocity Vmax = Velocity::createVkm_h(0);
+    bool landing_flag = false;
+};
+
+
+struct PlanePoint : Point
+{
+    Velocity V = Velocity::createVkm_h(0);
+};
+
 
 #endif //TIMES_AND_PLANES_CHECKPOINT_H

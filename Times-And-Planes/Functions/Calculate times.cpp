@@ -8,11 +8,31 @@
 #include <cmath>
 #include <iostream>
 
-void calculateTimes(Zone &zone, Flow &flow)
+void calculateTimes(Zone &zone, Flow &flow, int i)
     {
-        int i = 0;
+        if (i == 0)
+        {
+            flow.times[flow.start_point].push_back({Time::createTsec(0),
+                                                 Time::createTsec(0)}); //Выставляем начальной точке потока времена по нулям
+            flow.not_merged_times[flow.start_point].push_back({Time::createTsec(0),
+                                                            Time::createTsec(0)}); //Выставляем начальной точке потока времена по нулям
+        }
+
         while (i < flow.graph_of_descendants.size())
         {
+            /*for (int key : flow.keys)
+            {
+                cout << zone.checkPoints[key].name << " --> ";
+                for (auto &pair : flow.times[key])
+                {
+                    cout << "[" << pair.first << ", " << pair.second << "] ";
+                }
+                cout << endl;
+            }
+            cout << endl;*/
+
+
+
             int j = flow.keys[i]; //Изначальый ID точки
             try
             {
@@ -24,9 +44,9 @@ void calculateTimes(Zone &zone, Flow &flow)
                 exit(-4);
             }
 
-            if (startPointIDtoStSchemeID.count(j) != 0) //Если точка является началом стандартной схемы
+            if (checkPointIDtoStSchemeID.count(j) != 0) //Если точка является началом стандартной схемы
             {
-                int k, m, size = flow.times[j].size(), scheme_ind = startPointIDtoStSchemeID[j];
+                int k, m, size = flow.times[j].size(), scheme_ind = checkPointIDtoStSchemeID[j];
                 for (k = 0; k < size; k++)
                 {
                     pair<Time, Time> &time_segment = flow.times[j][k];
@@ -66,6 +86,7 @@ void calculateTimes(Zone &zone, Flow &flow)
                 tmax = 2 * S / (vmin0 + vmin1);
 
 
+                cout << flow.times[j][0].first;
                 for (auto &pair : flow.times[j])
                 {
                     flow.times[son].push_back({pair.first + tmin, pair.second + tmax});

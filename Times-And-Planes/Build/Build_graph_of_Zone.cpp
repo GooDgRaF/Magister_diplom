@@ -4,9 +4,9 @@
 
 #include <algorithm>
 #include <iostream>
-#include <Functions/Calculate standard scheme.h>
+#include <Functions/Assistant functions/Calculate standard scheme.h>
 #include "Build_graph_of_Zone.h"
-#include "Functions/Find-InVector.h"
+#include "Functions/Assistant functions/Find-InVector.h"
 
 void Build_graph_of_Zone(Zone &zone){
 		
