@@ -27,6 +27,7 @@ int main()
         plane1.V = Velocity::createVm_s(130);
 
         string flow_for_plane1 = "Flow 1";
+        int ID_from, ID_there;
 
         calc_new_plane(zone,plane1,flow_for_plane1);
 
