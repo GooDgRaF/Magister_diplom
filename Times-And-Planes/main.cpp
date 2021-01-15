@@ -21,7 +21,7 @@ int main()
         stage_minus_one(nameOfPointsFile, nameOfSchemeFile, nameOfFlowsFile, zone);
 
         PlanePoint plane1;
-        plane1.x = Coordinate::createKMs(-122);
+        plane1.x = Coordinate::createKMs(-322);
         plane1.y = Coordinate::createKMs(72);
         plane1.z = Coordinate::createMs(5700);
         plane1.V = Velocity::createVm_s(130);
@@ -30,7 +30,7 @@ int main()
 
         calc_new_plane(zone,plane1,flow_for_plane1);
 
-        //zone.print_times();
+        zone.print_times();
 
 
 

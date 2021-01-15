@@ -14,16 +14,6 @@ vector
 Measure units/MeasureUnits.h
 ../Fields of Zone/Measure units/MeasureUnits.h
 
-../Fields of Zone/Flow.h
-vector
--
-string
--
-map
--
-Measure units/MeasureUnits.h
-../Fields of Zone/Measure units/MeasureUnits.h
-
 ../Fields of Zone/Maps.h
 string
 -
@@ -48,33 +38,73 @@ vector
 Measure units/Time.h
 -
 
-../Functions/MergeTimes.h
-vector
+../Functions/Assistant functions/Distance between two Points.h
+Zone.h
 -
-Measure units/MeasureUnits.h
-../Functions/Measure units/MeasureUnits.h
 
-../Measure units/Coordinate.h
-Time.h
-../Measure units/Time.h
-
-../Measure units/MeasureUnits.h
-cmath
+../Functions/Calculate times new plane.h
+Zone.h
 -
-Coordinate.h
-../Measure units/Coordinate.h
-Time.h
-../Measure units/Time.h
-Velocity.h
-../Measure units/Velocity.h
 
 ../Measure units/Time.h
 iostream
 ../Measure units/iostream
 
-../Measure units/Velocity.h
+D:/Works/Diplom/Magister_diplom/Times-And-Planes/Fields of Zone/Flow.h
+vector
+-
+string
+-
+map
+-
+Measure units/MeasureUnits.h
+D:/Works/Diplom/Magister_diplom/Times-And-Planes/Fields of Zone/Measure units/MeasureUnits.h
 
-../Zone.h
+D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/Assistant functions/Nearest point from the center to .h
+Zone.h
+-
+
+D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/Calculate times.h
+Zone.h
+D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/Zone.h
+
+D:/Works/Diplom/Magister_diplom/Times-And-Planes/Measure units/Coordinate.h
+Time.h
+D:/Works/Diplom/Magister_diplom/Times-And-Planes/Measure units/Time.h
+
+D:/Works/Diplom/Magister_diplom/Times-And-Planes/Measure units/MeasureUnits.h
+cmath
+-
+Coordinate.h
+D:/Works/Diplom/Magister_diplom/Times-And-Planes/Measure units/Coordinate.h
+Time.h
+D:/Works/Diplom/Magister_diplom/Times-And-Planes/Measure units/Time.h
+Velocity.h
+D:/Works/Diplom/Magister_diplom/Times-And-Planes/Measure units/Velocity.h
+
+D:/Works/Diplom/Magister_diplom/Times-And-Planes/Measure units/Time.h
+iostream
+D:/Works/Diplom/Magister_diplom/Times-And-Planes/Measure units/iostream
+
+D:/Works/Diplom/Magister_diplom/Times-And-Planes/Measure units/Velocity.h
+
+D:/Works/Diplom/Magister_diplom/Times-And-Planes/Read/Read_SchemesRegExp.h
+string
+-
+vector
+-
+Fields of Zone/StandardScheme.h
+-
+Fields of Zone/CheckPoint.h
+D:/Works/Diplom/Magister_diplom/Times-And-Planes/Read/Fields of Zone/CheckPoint.h
+Fields of Zone/Scheme.h
+D:/Works/Diplom/Magister_diplom/Times-And-Planes/Read/Fields of Zone/Scheme.h
+
+D:/Works/Diplom/Magister_diplom/Times-And-Planes/Stage -1.h
+string
+-
+
+D:/Works/Diplom/Magister_diplom/Times-And-Planes/Zone.h
 vector
 -
 algorithm
@@ -82,27 +112,31 @@ algorithm
 Fields of Zone/StandardScheme.h
 -
 Fields of Zone/CheckPoint.h
-../Fields of Zone/CheckPoint.h
+D:/Works/Diplom/Magister_diplom/Times-And-Planes/Fields of Zone/CheckPoint.h
 Fields of Zone/Scheme.h
-../Fields of Zone/Scheme.h
+D:/Works/Diplom/Magister_diplom/Times-And-Planes/Fields of Zone/Scheme.h
 Fields of Zone/Flow.h
-../Fields of Zone/Flow.h
+D:/Works/Diplom/Magister_diplom/Times-And-Planes/Fields of Zone/Flow.h
 Measure units/MeasureUnits.h
-../Measure units/MeasureUnits.h
+D:/Works/Diplom/Magister_diplom/Times-And-Planes/Measure units/MeasureUnits.h
 
-D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/Calculate times.cpp
-Calculate times.h
-D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/Calculate times.h
-Functions/MergeTimes.h
-D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/Functions/MergeTimes.h
-Fields of Zone/Maps.h
-D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/Fields of Zone/Maps.h
-cmath
--
+D:/Works/Diplom/Magister_diplom/Times-And-Planes/main.cpp
 iostream
 -
-
-D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/Calculate times.h
+Fields of Zone/Maps.h
+-
+Functions/Assistant functions/Distance between two Points.h
+-
+Functions/Calculate times new plane.h
+-
+Read/Read_SchemesRegExp.h
+D:/Works/Diplom/Magister_diplom/Times-And-Planes/Read/Read_SchemesRegExp.h
 Zone.h
-D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/Zone.h
+D:/Works/Diplom/Magister_diplom/Times-And-Planes/Zone.h
+Stage -1.h
+D:/Works/Diplom/Magister_diplom/Times-And-Planes/Stage -1.h
+Functions/Assistant functions/Nearest point from the center to .h
+D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/Assistant functions/Nearest point from the center to .h
+Functions/Calculate times.h
+D:/Works/Diplom/Magister_diplom/Times-And-Planes/Functions/Calculate times.h
 

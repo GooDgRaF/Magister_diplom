@@ -8,31 +8,19 @@
 #include <cmath>
 #include <iostream>
 
+//По умолчанию, i = 0. То есть рассчёт происходит с самой первой точки потока с нулевым интервалом времени
 void calculateTimes(Zone &zone, Flow &flow, int i)
     {
         if (i == 0)
         {
             flow.times[flow.start_point].push_back({Time::createTsec(0),
-                                                 Time::createTsec(0)}); //Выставляем начальной точке потока времена по нулям
+                                                    Time::createTsec(0)}); //Выставляем начальной точке потока времена по нулям
             flow.not_merged_times[flow.start_point].push_back({Time::createTsec(0),
-                                                            Time::createTsec(0)}); //Выставляем начальной точке потока времена по нулям
+                                                               Time::createTsec(0)}); //Выставляем начальной точке потока времена по нулям
         }
 
         while (i < flow.graph_of_descendants.size())
         {
-            /*for (int key : flow.keys)
-            {
-                cout << zone.checkPoints[key].name << " --> ";
-                for (auto &pair : flow.times[key])
-                {
-                    cout << "[" << pair.first << ", " << pair.second << "] ";
-                }
-                cout << endl;
-            }
-            cout << endl;*/
-
-
-
             int j = flow.keys[i]; //Изначальый ID точки
             try
             {
@@ -55,7 +43,7 @@ void calculateTimes(Zone &zone, Flow &flow, int i)
                         Time a = time_segment.first + m * zone.standardSchemes[scheme_ind].Tmin;
                         Time b = time_segment.second + m * zone.standardSchemes[scheme_ind].Tmax;
                         flow.times[j].push_back({a, b});
-                        flow.not_merged_times[j].push_back({a,b});
+                        flow.not_merged_times[j].push_back({a, b});
                     }
                 }
             }
@@ -86,10 +74,9 @@ void calculateTimes(Zone &zone, Flow &flow, int i)
                 tmax = 2 * S / (vmin0 + vmin1);
 
 
-                cout << flow.times[j][0].first;
-                for (auto &pair : flow.times[j])
+                for (auto &time_segment : flow.times[j])
                 {
-                    flow.times[son].push_back({pair.first + tmin, pair.second + tmax});
+                    flow.times[son].push_back({time_segment.first + tmin, time_segment.second + tmax});
                 }
                 for (auto &pair : flow.not_merged_times[j])
                 {
@@ -97,6 +84,5 @@ void calculateTimes(Zone &zone, Flow &flow, int i)
                 }
             }
             i++;
-
         }
     }
