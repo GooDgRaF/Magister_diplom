@@ -1,3 +1,0 @@
-D:/Works/Diplom/Magister_diplom/Times-And-Planes/cmake-build-debug/CMakeFiles/Times_And_Planes.dir
-D:/Works/Diplom/Magister_diplom/Times-And-Planes/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/Works/Diplom/Magister_diplom/Times-And-Planes/cmake-build-debug/CMakeFiles/rebuild_cache.dir
