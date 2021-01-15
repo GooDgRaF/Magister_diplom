@@ -21,6 +21,8 @@ struct Flow
 	vector<int> keys; //Массив для значений вершин после топологической сортировки
 	map<int, vector<pair<Time, Time>>> times; //Отображение ID точки --> временные интервалы (Tmin, Tmax) без пересечений
     map<int, vector<pair<Time, Time>>> not_merged_times; //Отображение ID точки --> временные интервалы (Tmin, Tmax) возможно с пересечением
+
+    void print_times();
 };
 
 

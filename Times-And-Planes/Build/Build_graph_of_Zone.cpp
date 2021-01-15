@@ -6,7 +6,7 @@
 #include <iostream>
 #include <Functions/Assistant functions/Calculate standard scheme.h>
 #include "Build_graph_of_Zone.h"
-#include "Functions/Assistant functions/Find-InVector.h"
+#include "Functions/Assistant functions/Find-InVector-bool.h"
 
 void Build_graph_of_Zone(Zone &zone){
 		
@@ -31,8 +31,8 @@ void Build_graph_of_Zone(Zone &zone){
 				*а также можно проследовать по пути, чтобы не повторяться существует проверка
 				*/
 				
-				if ((findInVector(scheme.straighteningFrom, scheme.path[i])
-					 && (!findInVector(scheme.straighteningWhere, scheme.path[i + 1]))))
+				if ((findInVectorBool(scheme.straighteningFrom, scheme.path[i])
+                     && (!findInVectorBool(scheme.straighteningWhere, scheme.path[i + 1]))))
 				{
 					for (const auto &str : scheme.straighteningWhere) //Соединить текущую точку со всеми точками на которые возможно спрямление
 					{

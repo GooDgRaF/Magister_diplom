@@ -6,12 +6,9 @@
 #define TIMES_AND_PLANES_FIND_INVECTOR_H
 
 #include <algorithm>
-#include <vector>
-
-using namespace std;
 
 template<typename T>
-bool findInVector(const vector<T> &v, T value)
+bool findInVectorBool(const std::vector<T> &v, T value)
 	{
 		return find(v.begin(), v.end(), value) != v.end();
 	}

@@ -6,7 +6,7 @@
 #include <string>
 #include <regex>
 #include <fstream>
-#include <Functions/Assistant functions/Find-InVector.h>
+#include <Functions/Assistant functions/Find-InVector-bool.h>
 #include <Fields of Zone/StandardScheme.h>
 #include "Fields of Zone/Maps.h"
 #include "Fields of Zone/Scheme.h"

@@ -7,5 +7,6 @@
 
 #include <Zone.h>
 
-void calc_new_plane(Zone &zone, const PlanePoint &plane, string &flow_name);
+void
+calc_plane(Zone &zone, const PlanePoint &plane, string &flow_name, string &check_point_there, std::pair<string, string> &edge_plane);
 #endif //MAIN_CPP_CALCULATE_TIMES_NEW_PLANE_H

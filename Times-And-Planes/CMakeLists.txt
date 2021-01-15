@@ -15,7 +15,7 @@ add_executable(Times_And_Planes
         "Fields of Zone/Scheme.h"
         "Functions/Assistant functions/Fill-scheme.cpp" "Functions/Assistant functions/Fill-scheme.h"
         Build/Build_graph_of_Zone.cpp Build/Build_graph_of_Zone.h
-        "Functions/Assistant functions/Find-InVector.h"
+        "Functions/Assistant functions/Find-InVector-bool.h"
         Functions/Topologic_Sort.cpp            Functions/Topologic_Sort.h
         Zone.h        Zone.cpp
         Build/Build_Flow.cpp        Build/Build_Flow.h
@@ -29,4 +29,4 @@ add_executable(Times_And_Planes
         Read/Read_CheckPointsRegExp.cpp        Read/Read_CheckPointsRegExp.h
         "Fields of Zone/StandardScheme.h"
         "Functions/Assistant functions/Calculate standard scheme.cpp"        "Functions/Assistant functions/Calculate standard scheme.h"
-        Read/Read_FlowsRegExp.cpp Read/Read_FlowsRegExp.h "Functions/Assistant functions/Nearest point from the center to .cpp" "Functions/Assistant functions/Nearest point from the center to .h" "Functions/Assistant functions/Distance between two Points.cpp" "Functions/Assistant functions/Distance between two Points.h" "Functions/Calculate times new plane.cpp" "Functions/Calculate times new plane.h")
+        Read/Read_FlowsRegExp.cpp Read/Read_FlowsRegExp.h "Functions/Assistant functions/Nearest point from the center to .cpp" "Functions/Assistant functions/Nearest point from the center to .h" "Functions/Assistant functions/Distance between two Points.cpp" "Functions/Assistant functions/Distance between two Points.h" "Functions/Calculate times new plane.cpp" "Functions/Calculate times new plane.h" "Fields of Zone/Flow.cpp")

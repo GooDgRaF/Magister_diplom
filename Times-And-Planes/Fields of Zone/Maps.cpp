@@ -4,6 +4,7 @@
 
 #include "Maps.h"
 
-map<string, int> pointNameToID;
-map<string, int> flowNameToID;
-map<int, int> checkPointIDtoStSchemeID;
+std::map<std::string, int> pointNameToID;
+std::map<std::string, int> flowNameToID;
+std::map<int, int> checkPointIDtoStSchemeID;
+std::map<std::pair<int, int>, std::vector<int>> edgeTo_end_str_ID;

@@ -1,3 +1,0 @@
-2
-Name1(a)(e): a Str(d) a b /Str c e
-Name2(d)(e): d e

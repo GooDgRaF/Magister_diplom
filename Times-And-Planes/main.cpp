@@ -21,17 +21,18 @@ int main()
         stage_minus_one(nameOfPointsFile, nameOfSchemeFile, nameOfFlowsFile, zone);
 
         PlanePoint plane1;
-        plane1.x = Coordinate::createKMs(-322);
-        plane1.y = Coordinate::createKMs(72);
+        plane1.x = Coordinate::createMs(-162500);
+        plane1.y = Coordinate::createMs(62900);
         plane1.z = Coordinate::createMs(5700);
         plane1.V = Velocity::createVm_s(130);
 
-        string flow_for_plane1 = "Flow 1";
-        int ID_from, ID_there;
+        string flow_for_plane1 = "Flow 1", there = "TUNED";
+        pair<string,string> edge_plane = {"RALUB","TUNED"};
 
-        calc_new_plane(zone,plane1,flow_for_plane1);
+        calc_plane(zone, plane1, flow_for_plane1, there, edge_plane);
 
-        zone.print_times();
+        zone.flows[0].print_times();
+
 
 
 
