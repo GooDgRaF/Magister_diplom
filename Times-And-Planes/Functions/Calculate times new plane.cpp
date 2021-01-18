@@ -14,7 +14,7 @@ std::pair<Time, Time> initialTime(const PlanePoint &plane, const CheckPoint &poi
         Time T_initial_min = 2 * d / (plane.V + point_there.Vmax);
         Time T_initial_max = 2 * d / (plane.V + point_there.Vmin);
 
-        return {T_initial_min,T_initial_max};
+        return {T_initial_min, T_initial_max};
     }
 
 /*
@@ -25,7 +25,7 @@ std::pair<Time, Time> initialTime(const PlanePoint &plane, const CheckPoint &poi
 
 
 void calc_plane(Zone &zone, const PlanePoint &plane, string &flow_name,
-           string &check_point_there, std::pair<string, string> &edge_plane)
+                string &check_point_there, std::pair<string, string> &edge_plane)
     {
         pair<int, int> edge_ID_ID = {pointNameToID[edge_plane.first], pointNameToID[edge_plane.second]};
         int ID_there = pointNameToID[check_point_there];
@@ -34,14 +34,13 @@ void calc_plane(Zone &zone, const PlanePoint &plane, string &flow_name,
         Flow &flow = zone.flows[flowNameToID[flow_name]];
         flow.times[ID_there].push_back(initialTime(plane, point_there));
 
-        bool allowed_str = false;
-        if (allowed_str)//TODO Понять, можно ли спрямляться с данного ребра.
+
+        if (edgeTo_ends_str_ID.find(edge_ID_ID) != edgeTo_ends_str_ID.end())//Если с ребра возможно спрямление
         {
-            vector<int> ID_end_str_points;
+            vector<int> ID_end_str_points = edgeTo_ends_str_ID[edge_ID_ID];
             for (auto ID_end_str_point : ID_end_str_points)
             {
                 flow.times[ID_end_str_point].push_back(initialTime(plane, zone.checkPoints[ID_end_str_point]));
-
             }
         }
 

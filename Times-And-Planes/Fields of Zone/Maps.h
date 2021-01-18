@@ -13,6 +13,6 @@
 extern std::map<std::string, int> pointNameToID;
 extern std::map<std::string, int> flowNameToID;
 extern std::map<int, int> checkPointIDtoStSchemeID;
-extern std::map<std::pair<int,int>,std::vector<int>> edgeTo_end_str_ID;
+extern std::map<std::pair<int, int>, std::vector<int>> edgeTo_ends_str_ID;
 
 #endif //TIMES_AND_PLANES_MAPS_H
