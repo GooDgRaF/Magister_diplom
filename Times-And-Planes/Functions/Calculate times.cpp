@@ -8,15 +8,17 @@
 #include <cmath>
 #include <iostream>
 
-//По умолчанию, i = 0. То есть рассчёт происходит с самой первой точки потока с нулевым интервалом времени
+//По умолчанию, i = -1. Во избежания результата, когда вызвали фуекцию с i = 0,
+//То есть рассчёт происходит с самой первой точки потока с нулевым интервалом времени
 void calculateTimes(Zone &zone, Flow &flow, int i)
     {
-        if (i == 0)
+        if (i == -1)
         {
             flow.times[flow.start_point].push_back({Time::createTsec(0),
                                                     Time::createTsec(0)}); //Выставляем начальной точке потока времена по нулям
             flow.not_merged_times[flow.start_point].push_back({Time::createTsec(0),
                                                                Time::createTsec(0)}); //Выставляем начальной точке потока времена по нулям
+        i++;
         }
 
         while (i < flow.graph_of_descendants.size())
