@@ -14,27 +14,35 @@ int main()
     {
         Zone zone;
 
-        string nameOfPointsFile = "../Source information/Points/KoltsovoStScheme.txt";//Test.txt
-        string nameOfSchemeFile = "../Source information/Schemes/KoltsovoStScheme.txt";//Test.txt
-        string nameOfFlowsFile = "../Source information/Flows/Koltsovo.txt";//
+        string nameOfPointsFile = "../Source information/Points/Test.txt";//KoltsovoStScheme.txt
+        string nameOfSchemeFile = "../Source information/Schemes/Test.txt";//KoltsovoStScheme.txt
+        string nameOfFlowsFile = "../Source information/Flows/Test.txt";//Koltsovo
 
         stage_minus_one(nameOfPointsFile, nameOfSchemeFile, nameOfFlowsFile, zone);
 
         PlanePoint plane1;
-        plane1.x = Coordinate::createMs(-162500);
-        plane1.y = Coordinate::createMs(62900);
-        plane1.z = Coordinate::createMs(5700);
-        plane1.V = Velocity::createVm_s(130);
+        plane1.x = Coordinate::createKms(-1);
+        plane1.y = Coordinate::createKms(0.5);
+        plane1.z = Coordinate::createKms(0);
+        plane1.V = Velocity::createVkm_h(13);
 
-        string flow_for_plane1 = "Flow 1", there = "TUNED";
-        pair<string,string> edge_plane = {"RALUB","TUNED"};
+        string flow_for_plane1 = "Flow 1", there = "A1";
+        pair<string,string> edge_plane = {"A0","A1"};
+
+        PlanePoint plane2;
+        plane2.x = Coordinate::createKms(-0.5);
+        plane2.y = Coordinate::createKms(1);
+        plane2.z = Coordinate::createKms(0);
+        plane2.V = Velocity::createVkm_h(13);
+
+        string flow_for_plane2 = "Flow 1", there2 = "A2";
+        pair<string,string> edge_plane2 = {"A1","A2"};
 
         calc_plane(zone, plane1, flow_for_plane1, there, edge_plane);
-
         zone.flows[0].print_times();
 
-
-
+//        calc_plane(zone, plane2, flow_for_plane2, there2, edge_plane2);
+//        zone.flows[0].print_times();
 
 
 
