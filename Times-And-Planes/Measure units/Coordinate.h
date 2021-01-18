@@ -27,7 +27,7 @@ public:
 	
 	static Coordinate createMs(double ms);
 	
-	static Coordinate createKMs(double kms);
+	static Coordinate createKms(double kms);
 	
 	static Coordinate createNMs(double nms);
 	

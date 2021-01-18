@@ -31,7 +31,7 @@ Coordinate::Coordinate(double d)
 		coordinate_ms = d;
 	}
 
-Coordinate Coordinate::createKMs(double kms)
+Coordinate Coordinate::createKms(double kms)
 	{
 		return {kms * Km2ms};
 	}

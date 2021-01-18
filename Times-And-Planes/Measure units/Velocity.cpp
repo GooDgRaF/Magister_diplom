@@ -37,7 +37,7 @@ Velocity Velocity::createVkm_h(double km_h)
 		return {km_h / m_s2km_h};
 	}
 
-Velocity Velocity::createVnm_h(double nm_h)
+Velocity Velocity::createVNM_h(double nm_h)
 	{
 		return {nm_h / m_s2nm_h};
 	}
