@@ -24,27 +24,26 @@ std::pair<Time, Time> initialTime(const PlanePoint &plane, const CheckPoint &poi
 */
 
 
-int calc_plane(Zone &zone, const PlanePoint &plane, const string &flow_name,
-               const string &check_point_there, const pair<string, string> &edge_plane_point)
+int calc_plane(Zone &zone, const PlanePoint &plane)
     {
         try
         {
-            pointNameToID.at(check_point_there);
-            pointNameToID.at(edge_plane_point.first);
-            pointNameToID.at(edge_plane_point.second);
+            pointNameToID.at(plane.destination);
+            pointNameToID.at(plane.on_edge.first);
+            pointNameToID.at(plane.on_edge.second);
         }
         catch (const out_of_range &ex) //Ловим ошибку о не обнаружении точки среди точек из checkPoints
         {
             cerr << "Can't find '"
-                 << check_point_there << "' or '"
-                 << edge_plane_point.first << "' or '"
-                 << edge_plane_point.second << "' among points from Points file" << endl;
+                 << plane.destination << "' or '"
+                 << plane.on_edge.first << "' or '"
+                 << plane.on_edge.second << "' among points from Points file" << endl;
             return -1;
         }
 
-        Flow &flow = zone.flows[flowNameToID[flow_name]];
-        const pair<int, int> edge_ID_ID = {pointNameToID[edge_plane_point.first],
-                                           pointNameToID[edge_plane_point.second]};
+        Flow &flow = zone.flows[flowNameToID[plane.flow_for_plane]];
+        const pair<int, int> edge_ID_ID = {pointNameToID[plane.on_edge.first],
+                                           pointNameToID[plane.on_edge.second]};
         if (edgeTo_ends_str_ID.find(edge_ID_ID) != edgeTo_ends_str_ID.end())//Если с ребра возможно спрямление
         {
             const vector<int> ID_end_str_points = edgeTo_ends_str_ID[edge_ID_ID];
@@ -55,7 +54,7 @@ int calc_plane(Zone &zone, const PlanePoint &plane, const string &flow_name,
         }
 
 
-        const int ID_there = pointNameToID[check_point_there];//Записываем начальное значение времени для точки "куда"
+        const int ID_there = pointNameToID[plane.destination];//Записываем начальное значение времени для точки "куда"
         if (ID_there == edge_ID_ID.second)//Если не совпал, то этот временной интервал уже записан ранее
         {
             const CheckPoint &point_there = zone.checkPoints[ID_there];
@@ -69,5 +68,7 @@ int calc_plane(Zone &zone, const PlanePoint &plane, const string &flow_name,
 
 
         calculateTimes(zone, flow, top_ID_there);//Рассчитываем все времена, которые "ниже по течению"
+        zone.flows[0].print_times();
+        flow.times.clear();
         return 0;
     }

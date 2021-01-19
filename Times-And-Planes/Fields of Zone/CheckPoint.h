@@ -35,6 +35,9 @@ struct CheckPoint : Point
 struct PlanePoint : Point
 {
     Velocity V = Velocity::createVkm_h(0);
+    std::string flow_for_plane;
+    std::string destination;
+    std::pair<std::string,std::string> on_edge;
 };
 
 
