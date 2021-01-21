@@ -7,7 +7,7 @@
 
 #include <vector>
 #include <Zone.h>
-#include "Fields of Zone/CheckPoint.h"
+#include "Fields of Zone/Point.h"
 #include "Fields of Zone/Scheme.h"
 
 using namespace std;

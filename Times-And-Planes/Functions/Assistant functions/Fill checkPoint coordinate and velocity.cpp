@@ -19,15 +19,15 @@ enum MeasureUnits_Velocity
 };
 
 
-void fill_checkPoint_coordinate(Coordinate &coordinate_field, const int measure_unit, const double value)
+void fill_checkPoint_coordinate(Distance &coordinate_field, const int measure_unit, const double value)
     {
         switch (measure_unit)
         {
-            case meters: coordinate_field = Coordinate::createMs(value);
+            case meters: coordinate_field = Distance::createMs(value);
                 break;
-            case kilometers: coordinate_field = Coordinate::createKms(value);
+            case kilometers: coordinate_field = Distance::createKms(value);
                 break;
-            case naval_miles: coordinate_field = Coordinate::createNMs(value);
+            case naval_miles: coordinate_field = Distance::createNMs(value);
                 break;
             default: std::cerr << "Error! Wrong unit of coordinate measurement." << std::endl;
                 exit(-3);

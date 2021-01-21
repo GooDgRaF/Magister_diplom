@@ -11,11 +11,11 @@
 
 struct Point
 {
-    Coordinate x = Coordinate::createMs(0);
-    Coordinate y = Coordinate::createMs(0);
-    Coordinate z = Coordinate::createMs(0);
+    Distance x = Distance::createMs(0);
+    Distance y = Distance::createMs(0);
+    Distance z = Distance::createMs(0);
 
-    Coordinate sq_abs() const
+    Distance sq_abs() const
         {
             return x * x + y * y + z * z;
         }

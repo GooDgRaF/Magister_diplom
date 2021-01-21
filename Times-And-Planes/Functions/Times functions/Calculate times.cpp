@@ -3,14 +3,15 @@
 //
 
 #include "Calculate times.h"
-#include "Functions/MergeTimes.h"
+#include "MergeTimes.h"
 #include "Fields of Zone/Maps.h"
 #include <cmath>
 #include <iostream>
 
 //По умолчанию, i = -1. Во избежания результата, когда вызвали фуекцию с i = 0,
 //То есть рассчёт происходит с самой первой точки потока с нулевым интервалом времени
-void calculateTimes(Zone &zone, Flow &flow, int i)
+void
+calculateTimes(Flow &flow, const vector<CheckPoint> &checkPoints, const vector<StandardScheme> &standardSchemes, int i)
     {
         if (i == -1)
         {
@@ -30,7 +31,7 @@ void calculateTimes(Zone &zone, Flow &flow, int i)
             }
             catch (runtime_error &er)
             {
-                cerr << er.what() << " on " << zone.checkPoints[j].name << endl;
+                cerr << er.what() << " on " << checkPoints[j].name << endl;
                 exit(-4);
             }
 
@@ -40,34 +41,34 @@ void calculateTimes(Zone &zone, Flow &flow, int i)
                 for (k = 0; k < size; k++)
                 {
                     pair<Time, Time> &time_segment = flow.times[j][k];
-                    for (m = 1; m <= zone.standardSchemes[scheme_ind].repeat; m++)
+                    for (m = 1; m <= standardSchemes[scheme_ind].repeat; m++)
                     {
-                        Time a = time_segment.first + m * zone.standardSchemes[scheme_ind].Tmin;
-                        Time b = time_segment.second + m * zone.standardSchemes[scheme_ind].Tmax;
+                        Time a = time_segment.first + m * standardSchemes[scheme_ind].Tmin;
+                        Time b = time_segment.second + m * standardSchemes[scheme_ind].Tmax;
                         flow.times[j].push_back({a, b});
                         flow.not_merged_times[j].push_back({a, b});
                     }
                 }
             }
 
-            Coordinate x0 = zone.checkPoints[j].x;
-            Coordinate y0 = zone.checkPoints[j].y;
-            Coordinate z0 = zone.checkPoints[j].z;
-            Velocity vmin0 = zone.checkPoints[j].Vmin;
-            Velocity vmax0 = zone.checkPoints[j].Vmax;
+            Distance x0 = checkPoints[j].x;
+            Distance y0 = checkPoints[j].y;
+            Distance z0 = checkPoints[j].z;
+            Velocity vmin0 = checkPoints[j].Vmin;
+            Velocity vmax0 = checkPoints[j].Vmax;
 
 
             for (auto son : flow.graph_of_descendants[j])
             {
 
-                Coordinate x1 = zone.checkPoints[son].x;
-                Coordinate y1 = zone.checkPoints[son].y;
-                Coordinate z1 = zone.checkPoints[son].z;
-                Velocity vmin1 = zone.checkPoints[son].Vmin;
-                Velocity vmax1 = zone.checkPoints[son].Vmax;
+                Distance x1 = checkPoints[son].x;
+                Distance y1 = checkPoints[son].y;
+                Distance z1 = checkPoints[son].z;
+                Velocity vmin1 = checkPoints[son].Vmin;
+                Velocity vmax1 = checkPoints[son].Vmax;
 
 
-                Coordinate S = sqrt(pow(x1 - x0, 2) + pow(y1 - y0, 2) + pow(z1 - z0, 2));  //sqt((x1-x0)^2+...)
+                Distance S = sqrt(pow(x1 - x0, 2) + pow(y1 - y0, 2) + pow(z1 - z0, 2));  //sqt((x1-x0)^2+...)
                 Time tmin = Time::createTsec(0);
                 Time tmax = Time::createTsec(0);
 

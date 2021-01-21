@@ -7,6 +7,6 @@
 
 #include <Zone.h>
 
-Coordinate distancePoint(const Point &p1, const Point &p2);
+Distance distancePoint(const Point &p1, const Point &p2);
 
 #endif //MAIN_CPP_DISTANCE_BETWEEN_TWO_POINTS_H

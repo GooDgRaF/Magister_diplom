@@ -9,18 +9,22 @@
 #include <string>
 #include <vector>
 #include <Measure units/Time.h>
+#include "Point.h"
 
 using namespace std;
 
 struct StandardScheme
 {
-	string name;
-	int start; //ID точки начала и конца стандартной схемы
-	int second; //ID точки начала обратного плеча стандартной схемы
-	int third; //ID точки конца обратного плеча стандартной схемы
-	int repeat; //Количество повторений стандартной схемы
-	Time Tmin = Time::createTsec(0);
-	Time Tmax = Time::createTsec(0);
+    string name;
+    int start_ID; //ID точки начала и конца стандартной схемы
+    int second_ID; //ID точки начала обратного плеча стандартной схемы
+    int third_ID; //ID точки конца обратного плеча стандартной схемы
+    int repeat; //Количество повторений стандартной схемы
+    CheckPoint start;//
+    CheckPoint second;// Точки стандартной схемы
+    CheckPoint third;//
+    Time Tmin = Time::createTsec(0); //Минимальное время прохода по стандартной схеме
+    Time Tmax = Time::createTsec(0); //Максимальное время прохода по стандартной схеме
 };
 
 

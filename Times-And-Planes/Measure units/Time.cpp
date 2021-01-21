@@ -4,7 +4,7 @@
 
 #include <cmath>
 #include "Time.h"
-#include "Coordinate.h"
+#include "Distance.h"
 #include "Velocity.h"
 
 
@@ -61,7 +61,7 @@ std::ostream &operator<<(std::ostream &out, const Time &t)
 		return out;
 	}
 
-Time operator/(const Coordinate &x, const Velocity &v)
+Time operator/(const Distance &x, const Velocity &v)
 	{
 		return Time::createTsec(x.getMs() / v.getVm_s());
 	}
@@ -85,3 +85,8 @@ Time operator*(const Time &t, const double &a)
 	{
 		return Time::createTsec(t.getTsec() * a);
 	}
+
+std::pair<Time, Time> operator+(const std::pair<Time, Time> &x, const std::pair<Time, Time> &y)
+    {
+        return {x.first + y.first,x.second + y.second};
+    }

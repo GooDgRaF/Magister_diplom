@@ -3,7 +3,7 @@
 //
 
 #include "Velocity.h"
-#include "Coordinate.h"
+#include "Distance.h"
 #include "MeasureUnits.h"
 
 
@@ -42,7 +42,7 @@ Velocity Velocity::createVNM_h(double nm_h)
 		return {nm_h / m_s2nm_h};
 	}
 
-Velocity operator/(const Coordinate &x, const Time &t)
+Velocity operator/(const Distance &x, const Time &t)
 	{
 		return Velocity::createVm_s(x.getMs() / t.getTsec());
 	}

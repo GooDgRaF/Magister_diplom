@@ -8,11 +8,11 @@
 
 #include "Time.h"
 
-class Coordinate
+class Distance
 {
 	double coordinate_ms; //В метрах
 	
-	Coordinate(double d);
+	Distance(double d);
 
 public:
 	static constexpr double Km2ms = 1000;
@@ -25,16 +25,15 @@ public:
 	
 	double getNMs() const;
 	
-	static Coordinate createMs(double ms);
+	static Distance createMs(double m);
 	
-	static Coordinate createKms(double kms);
+	static Distance createKms(double km);
 	
-	static Coordinate createNMs(double nms);
+	static Distance createNMs(double nm);
 	
-	Coordinate operator+() const;
+	Distance operator+() const;
 	
-	Coordinate operator-() const;
-	
+	Distance operator-() const;
 };
 
 

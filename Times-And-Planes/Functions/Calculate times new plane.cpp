@@ -3,19 +3,14 @@
 //
 
 #include <Fields of Zone/Maps.h>
-#include <Functions/Assistant functions/Nearest point from the center to .h>
-#include <Functions/Assistant functions/Distance between two Points.h>
+#include <Functions/Geometric functions/Nearest point from the center to .h>
 #include "Calculate times new plane.h"
-#include "Calculate times.h"
+#include "Functions/Times functions/Calculate times.h"
+#include <Functions/Geometric functions/Arc length.h>
+#include <Functions/Times functions/Initialization of time segments.h>
+#include <Functions/Times functions/Arc time.h>
+#include <Functions/Times functions/Time segment from point to checkPoint.h>
 
-std::pair<Time, Time> initialTime(const PlanePoint &plane, const CheckPoint &point_there)
-    {
-        Coordinate d = distancePoint(plane, point_there);
-        Time T_initial_min = 2 * d / (plane.V + point_there.Vmax);
-        Time T_initial_max = 2 * d / (plane.V + point_there.Vmin);
-
-        return {T_initial_min, T_initial_max};
-    }
 
 /*
  Функция принимает на вход Зону, структуру типа (x,y,z,v), имя потока,
@@ -44,31 +39,69 @@ int calc_plane(Zone &zone, const PlanePoint &plane)
         Flow &flow = zone.flows[flowNameToID[plane.flow_for_plane]];
         const pair<int, int> edge_ID_ID = {pointNameToID[plane.on_edge.first],
                                            pointNameToID[plane.on_edge.second]};
-        if (edgeTo_ends_str_ID.find(edge_ID_ID) != edgeTo_ends_str_ID.end())//Если с ребра возможно спрямление
-        {
-            const vector<int> ID_end_str_points = edgeTo_ends_str_ID[edge_ID_ID];
-            for (auto ID_end_str_point : ID_end_str_points)
-            {
-                flow.times[ID_end_str_point].push_back(initialTime(plane, zone.checkPoints[ID_end_str_point]));
-            }
-        }
-
-
         const int ID_there = pointNameToID[plane.destination];//Записываем начальное значение времени для точки "куда"
-        if (ID_there == edge_ID_ID.second)//Если не совпал, то этот временной интервал уже записан ранее
+
+        if (edgeTo_stScheme_nextChPointID_ordinal.find(edge_ID_ID) !=
+            edgeTo_stScheme_nextChPointID_ordinal.end())//Если ВС на стандартной схеме
         {
-            const CheckPoint &point_there = zone.checkPoints[ID_there];
-            flow.times[ID_there].push_back(initialTime(plane, point_there));
+            switch (edgeTo_stScheme_nextChPointID_ordinal[edge_ID_ID].second)
+            { //ts - time segment
+                case 1: //ВС на первом участке ст. схемы. Считаем для второй, третьей и первой точек временные интервалы
+
+                    const pair<Time, Time> second_point_ts = //Время за дугу окружности
+                            plane_arc_Time(zone.checkPoints[edge_ID_ID.first],
+                                           zone.checkPoints[edge_ID_ID.second], plane);
+
+
+                    const pair<Time, Time> &line =
+                            checkPoint_checkPoint_Time(zone.checkPoints[edge_ID_ID.second],
+                                                       zone.checkPoints[edgeTo_stScheme_nextChPointID_ordinal[edge_ID_ID].first]);
+
+
+                    const pair<Time, Time> third_point_ts = //Время за дугу + прямая
+                            second_point_ts + //Дуга
+                            line;//Прямая
+
+
+                    const pair<Time, Time> semicircle_T = semicircle_Time(zone.checkPoints[edge_ID_ID.second], //Время для полуокружности
+                                                                          zone.checkPoints[edge_ID_ID.first]);
+
+
+                    const pair<Time, Time> first_point_ts = //Мин: дуга + дуга, Макс: дуга + линия + дуга + линия
+                            {second_point_ts.first //Мин времени по первой дуге
+                             + semicircle_T.first //Мин времени по обратной дуге
+                                    ,
+                             third_point_ts.second //Макс до третьей точки
+                             + semicircle_T.second //Макс по дуге
+                             + line.second //Макс по прямой
+                            };
+
+                    //TODO перегрузить << для pair<Times, Times>
+                    cout << zone.checkPoints[edge_ID_ID.second].name << " --> " << second_point_ts << endl;
+
+
+                         //TODO доделать согласно картинке.
+
+                         Time
+                    A, B, C;
+
+
+                    break;
+            }
+
         }
+        else
+        {
+            initialTimes(flow, zone.checkPoints, plane, edge_ID_ID, ID_there);//Записали временные интервалы
+
+            //Ищем номер вершины "куда" в топологичеком порядке потока
+            auto it_index_there = find(flow.keys.begin(), flow.keys.end(), ID_there);
+            const int top_ID_there = it_index_there - flow.keys.begin();
 
 
-//Ищем номер вершины "куда" в топологичеком порядке потока
-        auto it_index_there = find(flow.keys.begin(), flow.keys.end(), ID_there);
-        const int top_ID_there = it_index_there - flow.keys.begin();
-
-
-        calculateTimes(zone, flow, top_ID_there);//Рассчитываем все времена, которые "ниже по течению"
-        zone.flows[0].print_times();
-        flow.times.clear();
-        return 0;
+            calculateTimes(flow, zone.checkPoints, zone.standardSchemes, top_ID_there);//Рассчитываем все времена, которые "ниже по течению"
+            zone.flows[0].print_times();//Сливаем куда-то
+            flow.times.clear();
+            return 0;
+        }
     }

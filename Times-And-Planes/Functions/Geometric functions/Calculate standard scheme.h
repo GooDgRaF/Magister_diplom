@@ -5,7 +5,7 @@
 #ifndef TIMES_AND_PLANES_CALCULATE_STANDARD_SCHEME_H
 #define TIMES_AND_PLANES_CALCULATE_STANDARD_SCHEME_H
 
-#include <Fields of Zone/CheckPoint.h>
+#include <Fields of Zone/Point.h>
 #include <vector>
 #include <Fields of Zone/StandardScheme.h>
 

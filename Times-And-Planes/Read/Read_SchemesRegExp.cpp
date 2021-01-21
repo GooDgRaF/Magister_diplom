@@ -179,10 +179,19 @@ Read_SchemesRegExp(const string &name_of_file, vector<CheckPoint> &checkPoints, 
                         exit(-3);
                     }
 
-                    standardSchemes[k].start = path[0];
-                    standardSchemes[k].second = path[1];
-                    standardSchemes[k].third = path[2];
+                    standardSchemes[k].start_ID = path[0];
+                    standardSchemes[k].second_ID = path[1];
+                    standardSchemes[k].third_ID = path[2];
 
+                    edgeTo_stScheme_nextChPointID_ordinal[{standardSchemes[k].start_ID,
+                                                           standardSchemes[k].second_ID}] = {
+                            standardSchemes[k].third_ID, 1};
+                    edgeTo_stScheme_nextChPointID_ordinal[{standardSchemes[k].second_ID,
+                                                           standardSchemes[k].third_ID}] = {standardSchemes[k].start_ID,
+                                                                                            2};
+                    edgeTo_stScheme_nextChPointID_ordinal[{standardSchemes[k].third_ID,
+                                                           standardSchemes[k].start_ID}] = {standardSchemes[k].start_ID,
+                                                                                            3};
                 }
                 catch (const runtime_error &ex) //Ловим ошибку о не обнаружении точки из стандартной схемы среди точек из checkPoints
                 {
@@ -197,7 +206,7 @@ Read_SchemesRegExp(const string &name_of_file, vector<CheckPoint> &checkPoints, 
                     exit(-2);
                 }
 
-                checkPointIDtoStSchemeID[standardSchemes[k].start] = k;
+                checkPointIDtoStSchemeID[standardSchemes[k].start_ID] = k;
 
                 k++;
 

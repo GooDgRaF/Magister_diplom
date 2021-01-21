@@ -7,7 +7,7 @@
 
 #include <string>
 #include <vector>
-#include "CheckPoint.h"
+#include "Point.h"
 
 using namespace std;
 
