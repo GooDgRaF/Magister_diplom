@@ -12,7 +12,7 @@ void Build_graph_of_Zone(Zone &zone){
 		
 		for (auto &stScheme : zone.standardSchemes)
 		{
-			calcStScheme(zone.checkPoints, stScheme);
+            fill_StScheme(zone.checkPoints, stScheme);
 		}
 		
 		for (const auto &scheme : zone.schemes) //Строим граф списками Следующий

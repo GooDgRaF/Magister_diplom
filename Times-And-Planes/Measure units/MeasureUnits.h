@@ -52,6 +52,9 @@ Distance sqrt(Distance x);
 
 std::pair<Time, Time> operator+(const std::pair<Time, Time> &x, const std::pair<Time, Time> &y);
 
+std::ostream& operator<<(std::ostream &out, const std::pair<Time, Time> &pair);
+
+
 struct compLess
 {
     bool operator()(const Time &t0, const Time &t1)

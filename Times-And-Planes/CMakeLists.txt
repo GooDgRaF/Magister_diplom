@@ -19,7 +19,7 @@ add_executable(Times_And_Planes
         "Functions/Assistant functions/Topologic_Sort.cpp" "Functions/Assistant functions/Topologic_Sort.h"
         Zone.h        Zone.cpp
         Build/Build_Flow.cpp        Build/Build_Flow.h
-        "Stage -1.cpp"        "Stage -1.h"
+        "Functions/Stage -1.cpp"        "Functions/Stage -1.h"
         "Functions/Times functions/Calculate times.cpp"        "Functions/Times functions/Calculate times.h"
         "Functions/Times functions/MergeTimes.cpp" "Functions/Times functions/MergeTimes.h"
         "Measure units/Distance.cpp"        "Measure units/Distance.h"

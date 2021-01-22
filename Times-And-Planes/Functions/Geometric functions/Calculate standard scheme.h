@@ -9,6 +9,6 @@
 #include <vector>
 #include <Fields of Zone/StandardScheme.h>
 
-void calcStScheme(std::vector<CheckPoint> &checkPoints, StandardScheme &stScheme);
+void fill_StScheme(std::vector<CheckPoint> &checkPoints, StandardScheme &stScheme);
 
 #endif //TIMES_AND_PLANES_CALCULATE_STANDARD_SCHEME_H

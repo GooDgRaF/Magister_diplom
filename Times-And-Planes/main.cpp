@@ -4,7 +4,7 @@
 #include <Functions/Calculate times new plane.h>
 #include "Read/Read_SchemesRegExp.h"
 #include "Zone.h"
-#include "Stage -1.h"
+#include "Functions/Stage -1.h"
 #include "Functions/Geometric functions/Nearest point from the center to .h"
 #include "Functions/Times functions/Calculate times.h"
 
@@ -30,18 +30,19 @@ int main()
 //        plane1.on_edge = {"RALUB", "TUNED"};
 //
         PlanePoint plane2;
-        plane2.x = Distance::createKms(-1);
-        plane2.y = Distance::createKms(0.5);
+        plane2.x = Distance::createKms(0.25);
+        plane2.y = Distance::createKms(1.25);
         plane2.z = Distance::createKms(0);
         plane2.V = Velocity::createVkm_h(10);
         plane2.flow_for_plane = "Flow 1";
-        plane2.destination = "A1";
-        plane2.on_edge = {"A0", "A1"};
+        plane2.destination = "St2";
+        plane2.on_edge = {"A2", "St2"};
 
 
 
 
-       // calc_plane(zone, plane2);
+
+        calc_plane(zone, plane2);
 
 
 
