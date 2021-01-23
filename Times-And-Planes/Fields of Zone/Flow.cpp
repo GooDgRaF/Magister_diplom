@@ -3,15 +3,16 @@
 //
 #include "Fields of Zone/Flow.h"
 
+using namespace std;
 
 void Flow::print_times()
     {
         for (int key : keys)
         {
             cout << key << " --> ";
-            for (auto &pair : times[key])
+            for (const auto &time_segment : times[key])
             {
-                cout << "[" << pair.first << ", " << pair.second << "] ";
+                cout << time_segment;
             }
             cout << endl;
         }
