@@ -9,6 +9,7 @@
 #include <Functions/Times functions/Initialization of time segments.h>
 #include <Functions/Times functions/Calc time segments for StScheme.h>
 
+using namespace std;
 
 int topID(Flow &flow, const int point_ID);
 

@@ -7,8 +7,8 @@
 
 #include <string>
 
-using namespace std;
-
-void stage_minus_one(string &path_checkPointsFile, string &path_SchemesFile, string &path_FlowsFile, Zone &zone);
+void stage_minus_one(std::string &path_checkPointsFile,
+                     std::string &path_SchemesFile,
+                     std::string &path_FlowsFile, Zone &zone);
 
 #endif //TIMES_AND_PLANES_STAGE_1_H

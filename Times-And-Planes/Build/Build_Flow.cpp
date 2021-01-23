@@ -6,6 +6,7 @@
 #include <iostream>
 #include "Zone.h"
 
+using namespace std;
 
 void Build_Flow(Zone &zone, Flow &flow)
 	{

@@ -11,10 +11,8 @@
 #include "Fields of Zone/Point.h"
 #include "Fields of Zone/Scheme.h"
 
-using namespace std;
-
-
 void
-Read_SchemesRegExp(const string &name_of_file, vector<CheckPoint> &checkPoints, vector<Scheme> &schemes, vector<StandardScheme> &standardSchemes);
+Read_SchemesRegExp(const std::string &name_of_file, std::vector<CheckPoint> &checkPoints,
+                   std::vector<Scheme> &schemes, std::vector<StandardScheme> &standardSchemes);
 
 #endif

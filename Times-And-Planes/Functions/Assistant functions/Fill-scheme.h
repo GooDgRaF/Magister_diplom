@@ -9,8 +9,6 @@
 #include <vector>
 #include <map>
 
-using namespace std;
-
-void fillScheme(const string &str, vector<int> &field);
+void fillScheme(const std::string &str, std::vector<int> &field);
 
 #endif //TIMES_AND_PLANES_FILL_SCHEME_H

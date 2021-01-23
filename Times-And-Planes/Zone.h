@@ -13,16 +13,13 @@
 #include "Fields of Zone/Flow.h"
 #include "Measure units/MeasureUnits.h"
 
-
-using namespace std;
-
 struct Zone
 {
-	vector<vector<int>> graph_of_descendants; //Граф зоны задан списками Следующий
-	vector<CheckPoint> checkPoints;
-	vector<Scheme> schemes;
-	vector<Flow> flows;
-	vector<StandardScheme> standardSchemes;
+    std::vector<std::vector<int>> graph_of_descendants; //Граф зоны задан списками Следующий
+    std::vector<CheckPoint> checkPoints;
+    std::vector<Scheme> schemes;
+    std::vector<Flow> flows;
+    std::vector<StandardScheme> standardSchemes;
 	
 	void print_flows_keys();
 	

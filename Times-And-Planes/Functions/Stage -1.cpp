@@ -9,6 +9,8 @@
 #include "Read/Read_FlowsRegExp.h"
 #include "Functions/Assistant functions/Topologic_Sort.h"
 
+using namespace std;
+
 void stage_minus_one(string &path_checkPointsFile, string &path_SchemesFile, string &path_FlowsFile, Zone &zone)
 	{
 		Read_CheckPointsRegExp(path_checkPointsFile, zone.checkPoints);

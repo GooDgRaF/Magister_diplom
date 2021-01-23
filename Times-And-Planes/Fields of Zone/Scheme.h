@@ -9,17 +9,14 @@
 #include <vector>
 #include "Point.h"
 
-using namespace std;
-
 struct Scheme
 {
-    string name;
+    std::string name;
     int start;
-    vector<int> end;
-    vector<int> path;
-    vector<int> straighteningFrom;
-    vector<int> straighteningWhere;
-    
+    std::vector<int> end;
+    std::vector<int> path;
+    std::vector<int> straighteningFrom;
+    std::vector<int> straighteningWhere;
 };
 
 #endif //TIMES_AND_PLANES_SCHEME_H

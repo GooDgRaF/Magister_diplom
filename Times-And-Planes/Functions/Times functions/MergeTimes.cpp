@@ -3,9 +3,9 @@
 //
 
 #include "MergeTimes.h"
-
 #include <map>
-#include <iostream>
+
+using namespace std;
 
 void mergeTimes(vector<pair<Time, Time>> &times)
 	{
