@@ -171,10 +171,10 @@ Read_SchemesRegExp(const string &name_of_file, vector<CheckPoint> &checkPoints, 
                     fillScheme(string(res[4]), path);
                     fillScheme(string(res[7]), path); //Если нет пробела после последней точки, то нужно добавить эту точку
 
-                    if (path.size() != 3) //Стандартная схема описывается тремя точками
+                    if (path.size() != 4) //Стандартная схема описывается четырьмя точками
                     {
                         cerr << "Warning! Line '" << i + k + 3 << "' in " << name_of_file
-                             << " doesn't follow the input format: the standard scheme should have three points"
+                             << " doesn't follow the input format: the standard scheme should have four points"
                              << endl;
                         exit(-3);
                     }
@@ -182,7 +182,7 @@ Read_SchemesRegExp(const string &name_of_file, vector<CheckPoint> &checkPoints, 
                     standardSchemes[k].start_ID = path[0];
                     standardSchemes[k].second_ID = path[1];
                     standardSchemes[k].third_ID = path[2];
-
+                    standardSchemes[k].end_ID = path[3];
                 }
                 catch (const runtime_error &ex) //Ловим ошибку о не обнаружении точки из стандартной схемы среди точек из checkPoints
                 {
