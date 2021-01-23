@@ -6,6 +6,8 @@
 #include "Initialization of time segments.h"
 #include "Time segment from point to checkPoint.h"
 
+using namespace std;
+
 void
 initialTimes(Flow &flow, const vector<CheckPoint> &checkPoints, const PlanePoint &plane, const pair<int, int> &edge_ID_ID, const int ID_there)
     {
