@@ -14,6 +14,7 @@ void fill_StScheme(vector<CheckPoint> &checkPoints, StandardScheme &stScheme)
         stScheme.start = checkPoints[stScheme.start_ID];
         stScheme.second = checkPoints[stScheme.second_ID];
         stScheme.third = checkPoints[stScheme.third_ID];
+        stScheme.end = checkPoints[stScheme.end_ID];
 
         Distance semicircle = arc_length(stScheme.start, stScheme.second, stScheme.start);
         stScheme.semicircle_length = semicircle;
@@ -31,5 +32,5 @@ void fill_StScheme(vector<CheckPoint> &checkPoints, StandardScheme &stScheme)
 
         edgeTo_stScheme_part[{stScheme.start_ID, stScheme.second_ID}] = {stScheme, 1};
         edgeTo_stScheme_part[{stScheme.second_ID, stScheme.third_ID}] = {stScheme, 2};
-        edgeTo_stScheme_part[{stScheme.third_ID, stScheme.start_ID}] = {stScheme, 3};
+        edgeTo_stScheme_part[{stScheme.third_ID, stScheme.end_ID}] = {stScheme, 3};
     }
