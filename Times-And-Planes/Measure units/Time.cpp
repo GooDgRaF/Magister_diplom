@@ -93,5 +93,5 @@ std::pair<Time, Time> operator+(const std::pair<Time, Time> &x, const std::pair<
 
 std::ostream &operator<<(std::ostream &out, const std::pair<Time, Time> &pair)
     {
-       return std::cout << "[" << pair.first << ", " << pair.second << "]";
+       return std::cout << "[" << pair.first << ", " << pair.second << "] ";
     }
