@@ -144,7 +144,7 @@ Read_SchemesRegExp(const string &name_of_file, vector<CheckPoint> &checkPoints, 
                 }
                 catch (const runtime_error &ex) //Ловим ошибку о не обнаружении точки из схемы среди точек из checkPoints
                 {
-                    cerr << "Can't find '" << ex.what() << "' in line '" << i + k + 3
+                    cerr << "Can't find '" << ex.what() << "' in line_back '" << i + k + 3
                          << "' among points from Points file"
                          << endl;
                     exit(-2);
@@ -186,7 +186,7 @@ Read_SchemesRegExp(const string &name_of_file, vector<CheckPoint> &checkPoints, 
                 }
                 catch (const runtime_error &ex) //Ловим ошибку о не обнаружении точки из стандартной схемы среди точек из checkPoints
                 {
-                    cerr << "Can't find '" << ex.what() << "' in line '" << i + k + 3
+                    cerr << "Can't find '" << ex.what() << "' in line_back '" << i + k + 3
                          << "' among points from Points file"
                          << endl;
                     exit(-2);
