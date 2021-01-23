@@ -139,7 +139,7 @@ void Read_CheckPointsRegExp(const std::string &name_of_file, std::vector<CheckPo
             if (v_min > v_max) //Проверка корректности введённых скоростей
             {
                 cerr << "Attention! v_min = " << v_min << " > v_max = " << v_max << " in file: " << name_of_file
-                     << " in line: " << i + 2 << endl;
+                     << " in line_back: " << i + 2 << endl;
                 exit(-3);
             }
 
