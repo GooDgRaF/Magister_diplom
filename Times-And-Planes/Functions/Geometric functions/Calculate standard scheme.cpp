@@ -9,6 +9,8 @@
 #include <Functions/Times functions/Time segment from point to checkPoint.h>
 #include <Fields of Zone/Maps.h>
 
+using namespace std;
+
 void fill_StScheme(vector<CheckPoint> &checkPoints, StandardScheme &stScheme)
     {
         stScheme.start = checkPoints[stScheme.start_ID];
@@ -16,18 +18,28 @@ void fill_StScheme(vector<CheckPoint> &checkPoints, StandardScheme &stScheme)
         stScheme.third = checkPoints[stScheme.third_ID];
         stScheme.end = checkPoints[stScheme.end_ID];
 
-        Distance semicircle = arc_length(stScheme.start, stScheme.second, stScheme.start);
-        stScheme.semicircle_length = semicircle;
+        //Первая полуокружность и обратная прямая
+        Distance semicircle_first = arc_length(stScheme.start, stScheme.second, stScheme.start);
+        stScheme.first_semicircle_length = semicircle_first;
+        stScheme.first_semicircle_T = semicircle_Time(stScheme.start, stScheme.second);
+        Distance line_back = distancePoint(stScheme.second, stScheme.third);
+        stScheme.line_back = line_back;
+        stScheme.line_back_T = checkPoint_checkPoint_Time(stScheme.second, stScheme.third);
 
-        stScheme.semicircle_T = semicircle_Time(stScheme.start, stScheme.second);
+        //Вторая полуокружность и прямая
+        Distance semicircle_second = arc_length(stScheme.third, stScheme.end, stScheme.third);
+        stScheme.second_semicircle_length = semicircle_second;
+        stScheme.second_semicircle_T = semicircle_Time(stScheme.third, stScheme.end);
+        Distance line_forward = distancePoint(stScheme.end, stScheme.start);
+        stScheme.line_forward = line_forward;
+        stScheme.line_forward_T = checkPoint_checkPoint_Time(stScheme.end, stScheme.start);
 
-        Distance line = distancePoint(stScheme.second, stScheme.third);
-        stScheme.line = line;
 
-        stScheme.line_T = checkPoint_checkPoint_Time(stScheme.second, stScheme.third);
-
-        stScheme.Tmin = 2 * semicircle / stScheme.start.Vmax;
-        stScheme.Tmax = 2 * (semicircle + line) / stScheme.start.Vmin;
+        stScheme.Tmin = 2 * 2 * semicircle_first /
+                        (stScheme.start.Vmax + stScheme.second.Vmax); //Длина окружности на скорость
+        stScheme.Tmax = 4 * (semicircle_first + line_back
+                         + semicircle_second + line_forward)
+                        / (stScheme.start.Vmin + stScheme.second.Vmin + stScheme.third.Vmin + stScheme.end.Vmin);
 
 
         edgeTo_stScheme_part[{stScheme.start_ID, stScheme.second_ID}] = {stScheme, 1};
