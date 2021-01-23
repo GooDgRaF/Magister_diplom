@@ -10,17 +10,15 @@
 #include <map>
 #include "Measure units/MeasureUnits.h"
 
-using namespace std;
-
 struct Flow
 {
-	string name;
-	int start_point;
-	map<int, vector<int>> graph_of_descendants; //Подграф графа Zone, заданный списками Следующий
-	map<int, vector<int>> graph_of_ancestors; //Подграф графа Zone, заданный списками Предшествующий
-	vector<int> keys; //Массив для значений вершин после топологической сортировки
-	map<int, vector<pair<Time, Time>>> times; //Отображение ID точки --> временные интервалы (Tmin, Tmax) без пересечений
-    map<int, vector<pair<Time, Time>>> not_merged_times; //Отображение ID точки --> временные интервалы (Tmin, Tmax) возможно с пересечением
+    std::string name;
+    int start_point;
+    std::map<int, std::vector<int>> graph_of_descendants; //Подграф графа Zone, заданный списками Следующий
+    std::map<int, std::vector<int>> graph_of_ancestors; //Подграф графа Zone, заданный списками Предшествующий
+    std::vector<int> keys; //Массив для значений вершин после топологической сортировки
+    std::map<int, std::vector<std::pair<Time, Time>>> times; //Отображение ID точки --> временные интервалы (Tmin, Tmax) без пересечений
+    std::map<int, std::vector<std::pair<Time, Time>>> not_merged_times; //Отображение ID точки --> временные интервалы (Tmin, Tmax) возможно с пересечением
 
     void print_times();
 };
