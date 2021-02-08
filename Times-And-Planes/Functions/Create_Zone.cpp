@@ -4,15 +4,17 @@
 #include <Build/Build_graph_of_Zone.h>
 #include <Build/Build_Flow.h>
 #include <Read/Read_CheckPointsRegExp.h>
-#include "Stage -1.h"
+#include "Create_Zone.h"
 #include "Read/Read_SchemesRegExp.h"
 #include "Read/Read_FlowsRegExp.h"
 #include "Functions/Assistant functions/Topologic_Sort.h"
 
 using namespace std;
 
-void stage_minus_one(string &path_checkPointsFile, string &path_SchemesFile, string &path_FlowsFile, Zone &zone)
+Zone create_zone(std::string &path_checkPointsFile, std::string &path_SchemesFile, std::string &path_FlowsFile)
 	{
+	    Zone zone;
+
 		Read_CheckPointsRegExp(path_checkPointsFile, zone.checkPoints);
 		zone.graph_of_descendants.resize(zone.checkPoints.size());
 
@@ -31,6 +33,8 @@ void stage_minus_one(string &path_checkPointsFile, string &path_SchemesFile, str
 		{
 			topologicalSort_of_flow(flow);
 		}
+
+        return zone;
 	}
 
 
