@@ -15,14 +15,15 @@ int topID(Flow &flow, const int point_ID);
 
 
 /*
- Функция принимает на вход Зону, структуру типа (x,y,z,v), имя потока,
-к которому отнесли данное ВС, контрольную точу куда оно летит и ещё две КТ,
-образующие рербро на котором в данный моент находится ВС.
+ Функция принимает на вход Зону, объект типа самолёт и вектор ID точек.
+ Возвращает возможные временные промежутки прибытия ВС на эти точки.
 */
 
 
-int calc_plane(Zone &zone, const PlanePoint &plane)
+map<int, vector<pair<double, double>>>
+calc_plane(Zone &zone, const PlanePoint &plane, const std::vector<int> &ID_points_to_calculate)
     {
+        map<int, vector<pair<double, double>>> ID_to_TS_sec;//Возвращаем отображение ID точки --> набор временных сегментов в секундах
         try
         {
             pointNameToID.at(plane.destination);
@@ -35,7 +36,7 @@ int calc_plane(Zone &zone, const PlanePoint &plane)
                  << plane.destination << "' or '"
                  << plane.on_edge.first << "' or '"
                  << plane.on_edge.second << "' among points from Points file" << endl;
-            return -1;
+            exit(-1);
         }
 
         Flow &flow = zone.flows[flowNameToID[plane.flow_for_plane]];
@@ -49,18 +50,44 @@ int calc_plane(Zone &zone, const PlanePoint &plane)
             calculateTimes(flow, //Рассчитываем все времена, которые "ниже по течению" начала ст. схемы
                            zone.checkPoints, zone.standardSchemes,
                            topID(flow, edgeTo_stScheme_part[edge_ID_ID].first.start_ID));
-            zone.flows[0].print_times();//Сливаем куда-то
+            for (const auto &elem : flow.times)
+            {
+                int ID = elem.first;
+                vector<pair<double, double>> v_ts;//Вектор временных сегментов
+
+                for (const auto &ts : elem.second)
+                {
+                    v_ts.emplace_back(ts.first.getTsec(), ts.second.getTsec());
+                }
+
+                ID_to_TS_sec[ID] = v_ts;
+
+                v_ts.clear();
+            }
             flow.times.clear();
-            return 0;
+            return ID_to_TS_sec;
         }
         else
         {
             const int ID_there = pointNameToID[plane.destination];//Записываем ID точки "куда"
             initialTimes(flow, zone.checkPoints, plane, edge_ID_ID, ID_there);//Записали временные интервалы          
             calculateTimes(flow, zone.checkPoints, zone.standardSchemes, topID(flow, ID_there));//Рассчитываем все времена, которые "ниже по течению"
-            zone.flows[0].print_times();//Сливаем куда-то
+            for (const auto &elem : flow.times)
+            {
+                int ID = elem.first;
+                vector<pair<double, double>> v_ts;//Вектор временных сегментов
+
+                for (const auto &ts : elem.second)
+                {
+                    v_ts.emplace_back(ts.first.getTsec(), ts.second.getTsec());
+                }
+
+                ID_to_TS_sec[ID] = v_ts;
+
+                v_ts.clear();
+            }
             flow.times.clear();
-            return 0;
+            return ID_to_TS_sec;
         }
     }
 
