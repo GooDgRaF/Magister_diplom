@@ -23,11 +23,11 @@ void fill_checkPoint_coordinate(Distance &coordinate_field, const int measure_un
     {
         switch (measure_unit)
         {
-            case meters: coordinate_field = Distance::createMs(value);
+            case meters: coordinate_field = Distance::createM(value);
                 break;
-            case kilometers: coordinate_field = Distance::createKms(value);
+            case kilometers: coordinate_field = Distance::createKm(value);
                 break;
-            case naval_miles: coordinate_field = Distance::createNMs(value);
+            case naval_miles: coordinate_field = Distance::createNM(value);
                 break;
             default: std::cerr << "Error! Wrong unit of coordinate measurement." << std::endl;
                 exit(-3);

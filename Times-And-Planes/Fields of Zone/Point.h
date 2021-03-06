@@ -11,9 +11,9 @@
 
 struct Point
 {
-    Distance x = Distance::createMs(0);
-    Distance y = Distance::createMs(0);
-    Distance z = Distance::createMs(0);
+    Distance x = Distance::createM(0);
+    Distance y = Distance::createM(0);
+    Distance z = Distance::createM(0);
 
     Distance sq_abs() const
         {

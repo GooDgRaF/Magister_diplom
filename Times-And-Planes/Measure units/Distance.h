@@ -25,11 +25,11 @@ public:
 	
 	double getNMs() const;
 	
-	static Distance createMs(double m);
+	static Distance createM(double m);
 	
-	static Distance createKms(double km);
+	static Distance createKm(double km);
 	
-	static Distance createNMs(double nm);
+	static Distance createNM(double nm);
 	
 	Distance operator+() const;
 	

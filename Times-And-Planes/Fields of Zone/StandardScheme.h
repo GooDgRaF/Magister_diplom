@@ -28,14 +28,14 @@ struct StandardScheme
     CheckPoint third;//
     CheckPoint end; //
 
-    Distance first_semicircle_length = Distance::createMs(0);//Длина дуги первой полуокружности
+    Distance first_semicircle_length = Distance::createM(0);//Длина дуги первой полуокружности
     std::pair<Time,Time> first_semicircle_T = {Time::createTsec(0), Time::createTsec(0)};//Временной интервал, описывающий прохождение по первой полуокружности
-    Distance line_back = Distance::createMs(0);//Длина обратного плеча
+    Distance line_back = Distance::createM(0);//Длина обратного плеча
     std::pair<Time,Time> line_back_T = {Time::createTsec(0), Time::createTsec(0)};//Временной интервал, описывающий прохождение обратного плеча
 
-    Distance second_semicircle_length = Distance::createMs(0);//Длина дуги первой полуокружности
+    Distance second_semicircle_length = Distance::createM(0);//Длина дуги первой полуокружности
     std::pair<Time,Time> second_semicircle_T = {Time::createTsec(0), Time::createTsec(0)};//Временной интервал, описывающий прохождение по первой полуокружности
-    Distance line_forward = Distance::createMs(0);//Длина обратного плеча
+    Distance line_forward = Distance::createM(0);//Длина обратного плеча
     std::pair<Time,Time> line_forward_T = {Time::createTsec(0), Time::createTsec(0)};//Временной интервал, описывающий прохождение обратного плеча
 
 

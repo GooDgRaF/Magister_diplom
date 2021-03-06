@@ -21,7 +21,7 @@ double Distance::getNMs() const
 		return coordinate_ms / NMs2ms;
 	}
 
-Distance Distance::createMs(double m)
+Distance Distance::createM(double m)
 	{
 		return {m};
 	}
@@ -31,12 +31,12 @@ Distance::Distance(double d)
 		coordinate_ms = d;
 	}
 
-Distance Distance::createKms(double km)
+Distance Distance::createKm(double km)
 	{
 		return {km * Km2ms};
 	}
 
-Distance Distance::createNMs(double nm)
+Distance Distance::createNM(double nm)
 	{
 		return {nm * NMs2ms};
 	}
@@ -53,17 +53,17 @@ Distance Distance::operator-() const
 
 Distance operator+(const Distance &a, const Distance &b)
 	{
-		return Distance::createMs(a.getMs() + b.getMs());
+		return Distance::createM(a.getMs() + b.getMs());
 	}
 
 Distance operator-(const Distance &a, const Distance &b)
 	{
-		return Distance::createMs(a.getMs() - b.getMs());
+		return Distance::createM(a.getMs() - b.getMs());
 	}
 
 Distance operator*(const Time &t, const Velocity &v)
 	{
-		return Distance::createMs(t.getTsec() * v.getVm_s());
+		return Distance::createM(t.getTsec() * v.getVm_s());
 	}
 
 Distance operator*(const Velocity &v, const Time &t)
@@ -73,30 +73,30 @@ Distance operator*(const Velocity &v, const Time &t)
 
 Distance pow(Distance x, int a)
 	{
-		return Distance::createMs(std::pow(x.getMs(), a));
+		return Distance::createM(std::pow(x.getMs(), a));
 	}
 
 Distance sqrt(Distance x)
 	{
-		return Distance::createMs(std::sqrt(x.getMs()));
+		return Distance::createM(std::sqrt(x.getMs()));
 	}
 
 Distance operator*(const Distance &x, const double &a)
 	{
-		return Distance::createMs(x.getMs() * a);
+		return Distance::createM(x.getMs() * a);
 	}
 
 Distance operator*(const double &a, const Distance &x)
 	{
-		return Distance::createMs(a * x.getMs());
+		return Distance::createM(a * x.getMs());
 	}
 
 Distance operator*(const Distance &x, const Distance &y)
     {
-        return Distance::createMs(x.getMs() * y.getMs());
+        return Distance::createM(x.getMs() * y.getMs());
     }
 
 Distance operator/(const Distance &x, const Distance &y)
     {
-        return Distance::createMs(x.getMs() / y.getMs());
+        return Distance::createM(x.getMs() / y.getMs());
     }
