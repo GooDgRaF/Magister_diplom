@@ -8,6 +8,6 @@
 #include <Zone.h>
 
 std::map<int, std::vector<std::pair<double, double>>>
-calc_plane(Zone &zone, const PlanePoint &plane, const std::vector<int> &ID_points_to_calculate);
+calc_plane(Zone &zone, const PlanePoint &plane, const std::vector<int> &ID_points_to_calculate = {});
 
 #endif //MAIN_CPP_CALCULATE_TIMES_NEW_PLANE_H
