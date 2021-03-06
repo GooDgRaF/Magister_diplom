@@ -55,7 +55,7 @@ Time Time::operator-()
 
 std::ostream &operator<<(std::ostream &out, const Time &t)
     {
-        out << t.getTsec(100) << " sec";
+        out << t.getTsec(1);
         //out << t.getTmin(100) << " min";
         //out << t.getTsec(100)/3600 << " hours";
         return out;

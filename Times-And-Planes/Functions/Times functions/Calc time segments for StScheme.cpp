@@ -48,10 +48,9 @@ calc_and_initStScheme(Flow &flow, const std::vector<CheckPoint> &checkPoints, co
                         };
 
 
-                cout << checkPoints[second_ID].name << " --> " << second_point_ts << endl;
-                cout << checkPoints[third_ID].name << " --> " << third_point_ts << endl;
-                cout << checkPoints[end_ID].name << " --> " << end_point_ts << endl;
-                cout << checkPoints[start_ID].name << " --> " << start_point_ts << endl;
+                cout << checkPoints[second_ID].name << ": " << second_point_ts << endl;
+                cout << checkPoints[third_ID].name << ": " << third_point_ts << endl;
+                cout << checkPoints[end_ID].name << ": " << end_point_ts << endl;
 
                 flow.times[start_ID].push_back(start_point_ts);//Временной интервал точки конца ст. схемы проинициализировали
                 break;
@@ -74,9 +73,8 @@ calc_and_initStScheme(Flow &flow, const std::vector<CheckPoint> &checkPoints, co
                          + stScheme.line_forward_T.second //Макс по прямой
                         };
 
-                cout << checkPoints[third_ID].name << " --> " << third_point_ts << endl;
-                cout << checkPoints[end_ID].name << " --> " << end_point_ts << endl;
-                cout << checkPoints[start_ID].name << " --> " << start_point_ts << endl;
+                cout << checkPoints[third_ID].name << ": " << third_point_ts << endl;
+                cout << checkPoints[end_ID].name << ": " << end_point_ts << endl;
 
                 flow.times[start_ID].push_back(start_point_ts);//Временной интервал точки конца ст. схемы проинициализировали
                 break;
@@ -93,8 +91,7 @@ calc_and_initStScheme(Flow &flow, const std::vector<CheckPoint> &checkPoints, co
                          stScheme.line_back_T.second //Макс по прямой
                         };
 
-                cout << checkPoints[end_ID].name << " --> " << end_point_ts << endl;
-                cout << checkPoints[start_ID].name << " --> " << start_point_ts << endl;
+                cout << checkPoints[end_ID].name << ": " << end_point_ts << endl;
 
                 flow.times[start_ID].push_back(start_point_ts);//Временной интервал точки конца ст. схемы проинициализировали
                 break;
