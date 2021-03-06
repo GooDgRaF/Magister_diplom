@@ -16,22 +16,22 @@ int main()
 
 
         PlanePoint plane1;
-        plane1.x = Distance::createKm(-100);
-        plane1.y = Distance::createKm(0);
+        plane1.x = Distance::createKm(-40);
+        plane1.y = Distance::createKm(35);
         plane1.z = Distance::createKm(2);
         plane1.V = Velocity::createVkm_h(400);
         plane1.flow_for_plane = "Flow 1";
-        plane1.destination = "St4";
+        plane1.destination = "P2";
         plane1.on_edge = {"P1", "St4"};
 
         PlanePoint plane2;
-        plane2.x = Distance::createKm(4);
-        plane2.y = Distance::createKm(103);
+        plane2.x = Distance::createKm(-55);
+        plane2.y = Distance::createKm(121);
         plane2.z = Distance::createKm(2);
         plane2.V = Velocity::createVkm_h(400);
         plane2.flow_for_plane = "Flow 1";
-        plane2.destination = "St2";
-        plane2.on_edge = {"St1", "St2"};
+        plane2.destination = "St3";
+        plane2.on_edge = {"St2", "St3"};
 //        plane2.destination = "A2";
 //        plane2.on_edge = {"A2", "St2"};
 
@@ -39,16 +39,16 @@ int main()
         map<int, vector<pair<double, double>>> res;
         map<int, vector<pair<double, double>>> not_merged_res;
 
-        calc_plane(zone, plane1, res, not_merged_res, ID_points_to_calculate);
+        calc_plane(zone, plane2, res, not_merged_res, ID_points_to_calculate);
 
         for (auto &el : res)
         {
             cout << zone.checkPoints[el.first].name << ": ";
             for (auto &ts : el.second)
             {
-                cout << "[" << ts.first << "s, " << ts.second << "s] ";
+                cout << "[" << round(ts.first) << ", " << round(ts.second) << "] ";
             }
-            cout << endl;
+            cout << "\\\\" << endl;
         }
 
         cout << endl << "NOT MERGED:" << endl;
@@ -58,9 +58,9 @@ int main()
             cout << zone.checkPoints[el.first].name << ": ";
             for (auto &ts : el.second)
             {
-                cout << "[" << ts.first << "s, " << ts.second << "s] ";
+                cout << "[" << round(ts.first) << ", " << round(ts.second) << "] ";
             }
-            cout << endl;
+            cout << "\\\\" << endl;
         }
         return 0;
     }
