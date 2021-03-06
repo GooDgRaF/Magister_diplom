@@ -10,12 +10,12 @@
 using namespace std;
 
 void Build_graph_of_Zone(Zone &zone){
-		
+
 		for (auto &stScheme : zone.standardSchemes)
 		{
             fill_StScheme(zone.checkPoints, stScheme);
 		}
-		
+
 		for (const auto &scheme : zone.schemes) //Строим граф списками Следующий
 		{
 			/*Идём до size - 1, так как мы соединяем дугами со следующими точками,
@@ -25,24 +25,10 @@ void Build_graph_of_Zone(Zone &zone){
 			for (int i = 0; i < scheme.path.size() - 1; i++)
 			{
 				zone.graph_of_descendants[scheme.path[i]].push_back(scheme.path[i +	1]); //Соединить текущую точку со следующей
-				
-				/*
-				*Если с текущей точки возможно спрямление и следующая точка не является конечной точкой спрямления
-				*Пояснение ко второй части if : Пример схема типа веер. Из её предпоследней точки можно спрямиться на центральную,
-				*а также можно проследовать по пути, чтобы не повторяться существует проверка
-				*/
-				
-				if ((findInVectorBool(scheme.straighteningFrom, scheme.path[i])
-                     && (!findInVectorBool(scheme.straighteningWhere, scheme.path[i + 1]))))
-				{
-					for (const auto &str : scheme.straighteningWhere) //Соединить текущую точку со всеми точками на которые возможно спрямление
-					{
-						zone.graph_of_descendants[scheme.path[i]].push_back(str);
-					}
-				}
+
 			}
-			
+
 		}
-		
+
 		cout << "Build graph of zone successes!" << endl;
 	}

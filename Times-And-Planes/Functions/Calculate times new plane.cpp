@@ -22,8 +22,11 @@ part_of_times(map<int, vector<pair<Time, Time>>> &times, const vector<int> &ID_f
 */
 
 
-map<int, vector<pair<double, double>>>
-calc_plane(Zone &zone, const PlanePoint &plane, const vector<int> &ID_points_to_calculate)
+void
+calc_plane(Zone &zone, const PlanePoint &plane,
+           map<int, vector<pair<double, double>>> &result,
+           map<int, vector<pair<double, double>>> &not_merged_result,
+           const vector<int> &ID_points_to_calculate)
     {
         try
         {
@@ -40,28 +43,18 @@ calc_plane(Zone &zone, const PlanePoint &plane, const vector<int> &ID_points_to_
             exit(-1);
         }
 
+
         Flow &flow = zone.flows[flowNameToID[plane.flow_for_plane]];
         const pair<int, int> edge_ID_ID = {pointNameToID[plane.on_edge.first],
                                            pointNameToID[plane.on_edge.second]};
 
-        if (edgeTo_stScheme_part.find(edge_ID_ID) !=
-            edgeTo_stScheme_part.end())//Если ВС на стандартной схеме
-        {
-            calc_and_initStScheme(flow, zone.checkPoints, plane, edge_ID_ID);//Обработка ст. схемы
-            calculateTimes(flow, //Рассчитываем все времена, которые "ниже по течению" начала ст. схемы
-                           zone.checkPoints, zone.standardSchemes,
-                           topID(flow, edgeTo_stScheme_part[edge_ID_ID].first.start_ID));
 
-            return part_of_times(flow.times, ID_points_to_calculate);
-        }
-        else
-        {
-            const int ID_there = pointNameToID[plane.destination];//Записываем ID точки "куда"
-            initialTimes(flow, zone.checkPoints, plane, edge_ID_ID, ID_there);//Записали временные интервалы          
-            calculateTimes(flow, zone.checkPoints, zone.standardSchemes, topID(flow, ID_there));//Рассчитываем все времена, которые "ниже по течению"
+        initialTimes(flow, zone.checkPoints, plane, edge_ID_ID); // Инициировали ближайшие точки и ст схему, если имеется
+        int &there_ID = pointNameToID[plane.destination];//ID точки "куда"
+        calculateTimes(flow, zone.checkPoints, zone.standardSchemes, topID(flow, there_ID));//Рассчитываем все времена, которые "ниже по течению"
+        not_merged_result = part_of_times(flow.not_merged_times, ID_points_to_calculate);
+        result = part_of_times(flow.times, ID_points_to_calculate);
 
-            return part_of_times(flow.times, ID_points_to_calculate);
-        }
     }
 
 map<int, vector<pair<double, double>>>

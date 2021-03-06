@@ -11,13 +11,15 @@
 using namespace std;
 
 void
-calc_and_initStScheme(Flow &flow, const vector<CheckPoint> &checkPoints, const PlanePoint &plane, const pair<int, int> &edge_ID_ID)
+calc_and_initStScheme(Flow &flow, const std::vector<CheckPoint> &checkPoints, const PlanePoint &plane, const std::pair<int, int> &edge_ID_ID, int &there_ID)
     {
         StandardScheme stScheme = edgeTo_stScheme_part[edge_ID_ID].first;
         const int start_ID = stScheme.start_ID;
         const int second_ID = stScheme.second_ID;
         const int third_ID = stScheme.third_ID;
         const int end_ID = stScheme.end_ID;
+
+        there_ID = start_ID;
 
         //TODO ВНИМАТЕЛЬНО посмотреть, где нужна четвёртая точка из stScheme
 
