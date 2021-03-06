@@ -30,15 +30,7 @@ calculateTimes(Flow &flow, const vector<CheckPoint> &checkPoints, const vector<S
         while (i < flow.graph_of_descendants.size()) // до конца графа
         {
             int j = flow.keys[i]; //Изначальый ID точки
-            try
-            {
-                mergeTimes(flow.times[j]);
-            }
-            catch (runtime_error &er)
-            {
-                cerr << er.what() << " on " << checkPoints[j].name << endl;
-                exit(-4);
-            }
+
 
             if (checkPointIDtoStSchemeID.count(j) != 0) //Если точка является началом стандартной схемы
             {
@@ -86,6 +78,16 @@ calculateTimes(Flow &flow, const vector<CheckPoint> &checkPoints, const vector<S
                     flow.not_merged_times[son].push_back({time_segment.first + son_time.first, time_segment.second + son_time.second});
                 }
             }
+            try
+            {
+                mergeTimes(flow.times[j]);
+            }
+            catch (runtime_error &er)
+            {
+                cerr << er.what() << " on " << checkPoints[j].name << endl;
+                exit(-4);
+            }
+
             i++;
         }
     }
