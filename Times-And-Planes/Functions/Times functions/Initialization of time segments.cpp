@@ -28,15 +28,23 @@ initialTimes(Flow &flow, const std::vector<CheckPoint> &checkPoints, const Plane
         {
             int non_str_point = edge_ID_ID.second;
             pair<Time, Time> non_str_point_time = plane_checkPoint_Time(plane, checkPoints[non_str_point]);
-            flow.times[non_str_point].push_back(non_str_point_time); // добавили время для точки по path
-
-            for (auto const &str_point : edgeTo_ends_str_ID[edge_ID_ID]) // для всех точек спрямления
+            if (there_ID != edge_ID_ID.second)
+            {//TODO Возможно нужно лучше обрабатывать когда много точек на которые можно спрямляться
+                flow.times[there_ID].push_back({plane_checkPoint_Time(plane, checkPoints[there_ID])});
+            }
+            else
             {
-                flow.times[str_point].push_back(
-                        {plane_checkPoint_Time(plane, checkPoints[str_point]).first //мин время - по кратчайшей наибыстрейше
-                                , //макс время - через точку из path самым медленным способом
-                         non_str_point_time.second + checkPoint_checkPoint_Time(checkPoints[non_str_point], checkPoints[str_point]).second}
-                );
+                flow.times[non_str_point].push_back(non_str_point_time); // добавили время для точки по path
+
+                for (auto const &str_point : edgeTo_ends_str_ID[edge_ID_ID]) // для всех точек спрямления
+                {
+                    flow.times[str_point].push_back(
+                            {plane_checkPoint_Time(plane, checkPoints[str_point]).first //мин время - по кратчайшей наибыстрейше
+                                    , //макс время - через точку из path самым медленным способом
+                             non_str_point_time.second +
+                             checkPoint_checkPoint_Time(checkPoints[non_str_point], checkPoints[str_point]).second}
+                    );
+                }
             }
         }
     }
