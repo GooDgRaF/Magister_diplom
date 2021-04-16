@@ -8,83 +8,96 @@
 #include "Time segment from point to checkPoint.h"
 #include <cmath>
 #include <iostream>
+#include "Plane enum.h"
 
 using namespace std;
 
 //По умолчанию, i = -1. Во избежания коллизии, когда вызвали функцию с i = 0,
 //То есть рассчёт происходит с самой первой точки потока с нулевым интервалом времени
 void
-calculateTimes(Flow &flow, const vector<CheckPoint> &checkPoints, const vector<StandardScheme> &standardSchemes, int i)
+calc_ts(Flow &flow, const vector<CheckPoint> &checkPoints, const vector<StandardScheme> &standardSchemes, int i)
     {
-        flow.not_merged_times = flow.times; // инициализировали не слитые промежутки
-
         if (i == -1) //Рассчёт происходит с самой первой точки потока с нулевым интервалом времени
         {
             flow.times[flow.start_point].push_back({Time::createTsec(0),
                                                     Time::createTsec(0)}); //Выставляем начальной точке потока времена по нулям
-            flow.not_merged_times[flow.start_point].push_back({Time::createTsec(0),
-                                                               Time::createTsec(0)}); //Выставляем начальной точке потока времена по нулям
+            flow.not_merged_times[flow.start_point].push_back({{Time::createTsec(0),
+                                                                Time::createTsec(0)}, NO_PARENT});
             i++;
         }
 
         while (i < flow.graph_of_descendants.size()) // до конца графа
         {
-            int j = flow.keys[i]; //Изначальый ID точки
+            int current_point = flow.keys[i]; //Изначальый ID точки
 
 
-            if (checkPointIDtoStSchemeID.count(j) != 0) //Если точка является началом стандартной схемы
+            if (checkPointIDtoStSchemeID.count(current_point) != 0) //Если точка является началом стандартной схемы
             {
-                int k, m, size = flow.times[j].size(), scheme_ind = checkPointIDtoStSchemeID[j];
-                for (k = 0; k < size; k++)
+                int scheme_ID = checkPointIDtoStSchemeID[current_point];
+
+                for (auto const &time_segment : flow.times[current_point])
                 {
-                    pair<Time, Time> &time_segment = flow.times[j][k];
-                    for (m = 1; m <= standardSchemes[scheme_ind].repeat; m++)
+                    for (int m = 1; m <= standardSchemes[scheme_ID].repeat; m++)
                     {
-                        Time a = time_segment.first + m * standardSchemes[scheme_ind].Tmin;
-                        Time b = time_segment.second + m * standardSchemes[scheme_ind].Tmax;
-                        flow.times[j].push_back({a, b});
-                        flow.not_merged_times[j].push_back({a, b});
+                        pair<Time, Time> ts_m = {time_segment + m * standardSchemes[scheme_ID].ts};
+                        flow.times[current_point].push_back(ts_m);
+                    }
+                }
+                for (auto const &pair_ts_parent : flow.not_merged_times[current_point])
+                {
+                    for (int m = 1; m <= standardSchemes[scheme_ID].repeat; ++m)
+                    {
+                        pair<Time, Time> ts_m = {pair_ts_parent.first + m * standardSchemes[scheme_ID].ts};
+                        flow.not_merged_times[current_point].push_back({ts_m, pair_ts_parent.second});
                     }
                 }
             }
 
-
-            for (auto const son : flow.graph_of_descendants[j]) //Заполняем времена линейных участков
+//TODO протестировать calc_ts!!!
+            for (auto const son : flow.graph_of_descendants[current_point]) //Заполняем времена линейных участков
             {
-                pair<Time, Time> son_time = checkPoint_checkPoint_Time(checkPoints[j], checkPoints[son]);
-                pair<int, int> edge_ID_ID = {j, son};
+                pair<Time, Time> son_time = checkPoint_checkPoint_Time(checkPoints[current_point], checkPoints[son]);
+                pair<int, int> edge_ID_ID = {current_point, son};
                 if (edgeTo_ends_str_ID.find(edge_ID_ID) != edgeTo_ends_str_ID.end()) // участок спрямления
                 {
                     for (auto const &str_point : edgeTo_ends_str_ID[edge_ID_ID]) // для всех точек спрямления
                     {
                         pair<Time, Time> str_time = {
-                                checkPoint_checkPoint_Time(checkPoints[j], checkPoints[str_point]).first //мин время - по кратчайшей наибыстрейше
+                                checkPoint_checkPoint_Time(checkPoints[current_point], checkPoints[str_point]).first //мин время - по кратчайшей наибыстрейше
                                 , //макс время - через точку из path самым медленным способом
                                 son_time.second +
                                 checkPoint_checkPoint_Time(checkPoints[son], checkPoints[str_point]).second};
-                        flow.times[str_point].push_back(str_time);
-                        flow.not_merged_times[str_point].push_back(str_time);
+
+                        for (auto const &time_segment : flow.times[current_point])
+                        {
+                            flow.times[str_point].push_back({time_segment + str_time});
+                        }
+                        for (auto const &pair_ts_parent : flow.not_merged_times[current_point])
+                        {
+                            flow.not_merged_times[str_point].push_back({pair_ts_parent.first + str_time,
+                                                                        current_point});
+                        }
+
                     }
                 }
 
 
-                for (auto const &time_segment : flow.times[j])
+                for (auto const &time_segment : flow.times[current_point])
                 {
-                    flow.times[son].push_back({time_segment.first + son_time.first,
-                                               time_segment.second + son_time.second});
+                    flow.times[son].push_back(time_segment + son_time);
                 }
-                for (auto const &time_segment : flow.not_merged_times[j])
+                for (auto const &pair_ts_parent : flow.not_merged_times[current_point])
                 {
-                    flow.not_merged_times[son].push_back({time_segment.first + son_time.first, time_segment.second + son_time.second});
+                    flow.not_merged_times[son].push_back({pair_ts_parent.first + son_time, current_point});
                 }
             }
             try
             {
-                mergeTimes(flow.times[j]);
+                mergeTimes(flow.times[current_point]);
             }
             catch (runtime_error &er)
             {
-                cerr << er.what() << " on " << checkPoints[j].name << endl;
+                cerr << er.what() << " on " << checkPoints[current_point].name << endl;
                 exit(-4);
             }
 
