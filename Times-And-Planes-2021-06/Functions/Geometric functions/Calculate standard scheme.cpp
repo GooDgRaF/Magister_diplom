@@ -41,6 +41,8 @@ void fill_StScheme(vector<CheckPoint> &checkPoints, StandardScheme &stScheme)
                          + semicircle_second + line_forward)
                         / (stScheme.start.Vmin + stScheme.second.Vmin + stScheme.third.Vmin + stScheme.end.Vmin);
 
+        stScheme.ts = {stScheme.Tmin, stScheme.Tmax};
+
 
         edgeTo_stScheme_part[{stScheme.start_ID, stScheme.second_ID}] = {stScheme, 1};
         edgeTo_stScheme_part[{stScheme.second_ID, stScheme.third_ID}] = {stScheme, 2};

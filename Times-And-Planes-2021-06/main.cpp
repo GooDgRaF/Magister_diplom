@@ -37,7 +37,7 @@ int main()
 
         vector<int> ID_points_to_calculate = {};
         map<int, vector<pair<double, double>>> res;
-        map<int, vector<pair<double, double>>> not_merged_res;
+        map<int, vector<pair<pair<double, double>, int>>> not_merged_res;//Вершина --> { ([t1,t2], parent) ... ([tn-1,tn], parent) }
 
         calc_plane(zone, plane2, res, not_merged_res, ID_points_to_calculate);
 

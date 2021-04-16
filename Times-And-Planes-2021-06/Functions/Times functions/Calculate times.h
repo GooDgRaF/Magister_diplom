@@ -8,8 +8,8 @@
 #include "Zone.h"
 
 void
-calculateTimes(Flow &flow,
-               const std::vector<CheckPoint> &checkPoints,
-               const std::vector<StandardScheme> &standardSchemes, int i = -1);
+calc_ts(Flow &flow,
+        const std::vector<CheckPoint> &checkPoints,
+        const std::vector<StandardScheme> &standardSchemes, int i = -1);
 
 #endif //TIMES_AND_PLANES_CALCULATE_TIMES_H

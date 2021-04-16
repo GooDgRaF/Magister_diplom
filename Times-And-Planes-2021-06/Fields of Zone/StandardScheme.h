@@ -41,6 +41,7 @@ struct StandardScheme
 
     Time Tmin = Time::createTsec(0); //Минимальное время прохода по стандартной схеме
     Time Tmax = Time::createTsec(0); //Максимальное время прохода по стандартной схеме
+    std::pair<Time, Time> ts = {Time::createTsec(0), Time::createTsec(0)};
 
 };
 

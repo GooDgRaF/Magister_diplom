@@ -7,6 +7,7 @@
 #include "Calc time segments for StScheme.h"
 #include "Arc time.h"
 #include "Time segment from point to checkPoint.h"
+#include "Plane enum.h"
 
 using namespace std;
 
@@ -53,6 +54,7 @@ calc_and_initStScheme(Flow &flow, const std::vector<CheckPoint> &checkPoints, co
                 cout << checkPoints[end_ID].name << ": " << end_point_ts << endl;
 
                 flow.times[start_ID].push_back(start_point_ts);//Временной интервал точки конца ст. схемы проинициализировали
+                flow.not_merged_times[start_ID].push_back({start_point_ts, PLANE});
                 break;
             }
 
@@ -77,6 +79,7 @@ calc_and_initStScheme(Flow &flow, const std::vector<CheckPoint> &checkPoints, co
                 cout << checkPoints[end_ID].name << ": " << end_point_ts << endl;
 
                 flow.times[start_ID].push_back(start_point_ts);//Временной интервал точки конца ст. схемы проинициализировали
+                flow.not_merged_times[start_ID].push_back({start_point_ts, PLANE});
                 break;
             }
 
@@ -94,6 +97,7 @@ calc_and_initStScheme(Flow &flow, const std::vector<CheckPoint> &checkPoints, co
                 cout << checkPoints[end_ID].name << ": " << end_point_ts << endl;
 
                 flow.times[start_ID].push_back(start_point_ts);//Временной интервал точки конца ст. схемы проинициализировали
+                flow.not_merged_times[start_ID].push_back({start_point_ts, PLANE});
                 break;
             }
             default: cerr << "Foreign object in 'edgeTo_stScheme_part.second'" << endl;

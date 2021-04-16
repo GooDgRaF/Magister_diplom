@@ -91,7 +91,19 @@ std::pair<Time, Time> operator+(const std::pair<Time, Time> &x, const std::pair<
         return {x.first + y.first, x.second + y.second};
     }
 
+
+std::pair<Time, Time> operator*(const double &a, const std::pair<Time, Time> &ts)
+    {
+        return {a * ts.first, a * ts.second};
+    }
+
+std::pair<Time, Time> operator*(const std::pair<Time, Time> &ts, const double &a)
+    {
+        return a * ts;
+    }
+
+
 std::ostream &operator<<(std::ostream &out, const std::pair<Time, Time> &pair)
     {
-       return std::cout << "[" << pair.first << ", " << pair.second << "] ";
+        return std::cout << "[" << pair.first << ", " << pair.second << "] ";
     }

@@ -16,17 +16,34 @@ int topID(Flow &flow, const int point_ID);
 map<int, vector<pair<double, double>>>
 part_of_times(map<int, vector<pair<Time, Time>>> &times, const vector<int> &ID_for_return);
 
-/*
+void checkError(const PlanePoint &plane);
+
+/**
  Функция принимает на вход Зону, объект типа самолёт и вектор ID точек.
  Возвращает возможные временные промежутки прибытия ВС на эти точки.
 */
-
-
 void
 calc_plane(Zone &zone, const PlanePoint &plane,
            map<int, vector<pair<double, double>>> &result,
-           map<int, vector<pair<double, double>>> &not_merged_result,
+           map<int, vector<pair<pair<double, double>, int>>> &not_merged_result,
            const vector<int> &ID_points_to_calculate)
+    {
+        checkError(plane);
+
+        Flow &flow = zone.flows[flowNameToID[plane.flow_for_plane]];
+        const pair<int, int> edge_ID_ID = {pointNameToID[plane.on_edge.first],
+                                           pointNameToID[plane.on_edge.second]};
+
+
+        initialTimes(flow, zone.checkPoints, plane, edge_ID_ID); // Инициировали ближайшие точки и ст схему, если имеется
+        int &there_ID = pointNameToID[plane.destination];//ID точки "куда"
+        calc_ts(flow, zone.checkPoints, zone.standardSchemes, topID(flow, there_ID));//Рассчитываем все времена, которые "ниже по течению"
+        not_merged_result = part_of_times(flow.not_merged_times, ID_points_to_calculate);
+        result = part_of_times(flow.times, ID_points_to_calculate);
+
+    }
+
+void checkError(const PlanePoint &plane)
     {
         try
         {
@@ -42,19 +59,6 @@ calc_plane(Zone &zone, const PlanePoint &plane,
                  << plane.on_edge.second << "' among points from Points file" << endl;
             exit(-1);
         }
-
-
-        Flow &flow = zone.flows[flowNameToID[plane.flow_for_plane]];
-        const pair<int, int> edge_ID_ID = {pointNameToID[plane.on_edge.first],
-                                           pointNameToID[plane.on_edge.second]};
-
-
-        initialTimes(flow, zone.checkPoints, plane, edge_ID_ID); // Инициировали ближайшие точки и ст схему, если имеется
-        int &there_ID = pointNameToID[plane.destination];//ID точки "куда"
-        calculateTimes(flow, zone.checkPoints, zone.standardSchemes, topID(flow, there_ID));//Рассчитываем все времена, которые "ниже по течению"
-        not_merged_result = part_of_times(flow.not_merged_times, ID_points_to_calculate);
-        result = part_of_times(flow.times, ID_points_to_calculate);
-
     }
 
 map<int, vector<pair<double, double>>>
