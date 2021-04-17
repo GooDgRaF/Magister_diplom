@@ -2,7 +2,7 @@
 // Created by Антон on 14.04.2020.
 //
 
-#include "Calculate times.h"
+#include "Calculate_times.h"
 #include "MergeTimes.h"
 #include "Fields of Zone/Maps.h"
 #include "Time segment from point to checkPoint.h"
@@ -15,7 +15,7 @@ using namespace std;
 //По умолчанию, i = -1. Во избежания коллизии, когда вызвали функцию с i = 0,
 //То есть рассчёт происходит с самой первой точки потока с нулевым интервалом времени
 void
-calc_ts(Flow &flow, const vector<CheckPoint> &checkPoints, const vector<StandardScheme> &standardSchemes, int i)
+calc_TimeSegments(Flow &flow, const vector<CheckPoint> &checkPoints, const vector<StandardScheme> &standardSchemes, int i)
     {
         if (i == -1) //Рассчёт происходит с самой первой точки потока с нулевым интервалом времени
         {
@@ -33,17 +33,17 @@ calc_ts(Flow &flow, const vector<CheckPoint> &checkPoints, const vector<Standard
 
             if (checkPointIDtoStSchemeID.count(current_point) != 0) //Если точка является началом стандартной схемы
             {
-                int scheme_ID = checkPointIDtoStSchemeID[current_point];
+                int scheme_ID = checkPointIDtoStSchemeID.at(current_point);
 
-                for (auto const &time_segment : flow.times[current_point])
+                for (auto const &time_segment : flow.times.at(current_point))
                 {
-                    for (int m = 1; m <= standardSchemes[scheme_ID].repeat; m++)
+                    for (int m = 1; m <= standardSchemes.at(scheme_ID).repeat; m++)
                     {
                         pair<Time, Time> ts_m = {time_segment + m * standardSchemes[scheme_ID].ts};
                         flow.times[current_point].push_back(ts_m);
                     }
                 }
-                for (auto const &pair_ts_parent : flow.not_merged_times[current_point])
+                for (auto const &pair_ts_parent : flow.not_merged_times.at(current_point))
                 {
                     for (int m = 1; m <= standardSchemes[scheme_ID].repeat; ++m)
                     {
@@ -53,7 +53,7 @@ calc_ts(Flow &flow, const vector<CheckPoint> &checkPoints, const vector<Standard
                 }
             }
 
-//TODO протестировать calc_ts!!!
+//TODO протестировать calc_TimeSegments!!!
             for (auto const son : flow.graph_of_descendants[current_point]) //Заполняем времена линейных участков
             {
                 pair<Time, Time> son_time = checkPoint_checkPoint_Time(checkPoints[current_point], checkPoints[son]);

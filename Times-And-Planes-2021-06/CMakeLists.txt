@@ -20,7 +20,7 @@ add_executable(Times-And-Planes-2021-06
         Zone.h        Zone.cpp
         Build/Build_Flow.cpp        Build/Build_Flow.h
         "Functions/Create_Zone.cpp"        "Functions/Create_Zone.h"
-        "Functions/Times functions/Calculate times.cpp"        "Functions/Times functions/Calculate times.h"
+        "Functions/Times functions/Calculate_times.cpp"        "Functions/Times functions/Calculate_times.h"
         "Functions/Times functions/MergeTimes.cpp" "Functions/Times functions/MergeTimes.h"
         "Measure units/Distance.cpp"        "Measure units/Distance.h"
         "Measure units/Velocity.cpp"        "Measure units/Velocity.h"

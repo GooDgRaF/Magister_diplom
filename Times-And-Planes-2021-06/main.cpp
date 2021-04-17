@@ -1,6 +1,7 @@
 #include <Fields of Zone/Maps.h>
 #include <Functions/Geometric functions/Distance between two Points.h>
 #include <Functions/Calculate times new plane.h>
+#include <Functions/Times functions/Calculate_times.h>
 #include "Functions/Create_Zone.h"
 
 using namespace std;
@@ -35,32 +36,15 @@ int main()
 //        plane2.destination = "A2";
 //        plane2.on_edge = {"A2", "St2"};
 
-        vector<int> ID_points_to_calculate = {};
-        map<int, vector<pair<double, double>>> res;
-        map<int, vector<pair<pair<double, double>, int>>> not_merged_res;//Вершина --> { ([t1,t2], parent) ... ([tn-1,tn], parent) }
+//        vector<int> ID_points_to_calculate = {};
+//        map<int, vector<pair<double, double>>> res;
+//        map<int, vector<pair<pair<double, double>, int>>> not_merged_res;//Вершина --> { ([t1,t2], parent) ... ([tn-1,tn], parent) }
+//
+//        calc_plane(zone, plane2, res, not_merged_res, ID_points_to_calculate);
 
-        calc_plane(zone, plane2, res, not_merged_res, ID_points_to_calculate);
+calc_TimeSegments(zone.flows[0],zone.checkPoints, zone.standardSchemes);
+zone.print_times();
+zone.print_not_merged_times();
 
-        for (auto &el : res)
-        {
-            cout << zone.checkPoints[el.first].name << ": ";
-            for (auto &ts : el.second)
-            {
-                cout << "[" << round(ts.first) << ", " << round(ts.second) << "] ";
-            }
-            cout << "\\\\" << endl;
-        }
-
-        cout << endl << "NOT MERGED:" << endl;
-
-        for (auto &el : not_merged_res)
-        {
-            cout << zone.checkPoints[el.first].name << ": ";
-            for (auto &ts : el.second)
-            {
-                cout << "[" << round(ts.first) << ", " << round(ts.second) << "] ";
-            }
-            cout << "\\\\" << endl;
-        }
         return 0;
     }

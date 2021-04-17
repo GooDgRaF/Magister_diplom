@@ -5,7 +5,7 @@
 #include <Fields of Zone/Maps.h>
 #include <Functions/Geometric functions/Nearest point from the center to .h>
 #include "Calculate times new plane.h"
-#include "Functions/Times functions/Calculate times.h"
+#include "Functions/Times functions/Calculate_times.h"
 #include <Functions/Times functions/Initialization of time segments.h>
 #include <Functions/Times functions/Calc time segments for StScheme.h>
 
@@ -37,8 +37,8 @@ calc_plane(Zone &zone, const PlanePoint &plane,
 
         initialTimes(flow, zone.checkPoints, plane, edge_ID_ID); // Инициировали ближайшие точки и ст схему, если имеется
         int &there_ID = pointNameToID[plane.destination];//ID точки "куда"
-        calc_ts(flow, zone.checkPoints, zone.standardSchemes, topID(flow, there_ID));//Рассчитываем все времена, которые "ниже по течению"
-        not_merged_result = part_of_times(flow.not_merged_times, ID_points_to_calculate);
+        calc_TimeSegments(flow, zone.checkPoints, zone.standardSchemes, topID(flow, there_ID));//Рассчитываем все времена, которые "ниже по течению"
+//        not_merged_result = part_of_times(flow.not_merged_times, ID_points_to_calculate);
         result = part_of_times(flow.times, ID_points_to_calculate);
 
     }
