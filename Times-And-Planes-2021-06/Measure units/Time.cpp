@@ -97,7 +97,16 @@ std::pair<Time, Time> operator*(const double &a, const std::pair<Time, Time> &ts
         return {a * ts.first, a * ts.second};
     }
 
+std::pair<Time, Time> operator*(const int &a, const std::pair<Time, Time> &ts)
+    {
+        return {a * ts.first, a * ts.second};
+    }
+
 std::pair<Time, Time> operator*(const std::pair<Time, Time> &ts, const double &a)
+    {
+        return a * ts;
+    }
+std::pair<Time, Time> operator*(const std::pair<Time, Time> &ts, const int &a)
     {
         return a * ts;
     }
