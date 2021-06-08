@@ -25,21 +25,21 @@ calc_TimeSegments(Flow &flow, const vector<CheckPoint> &checkPoints, const vecto
                                                                 Time::createTsec(0)}, NO_PARENT});
             i++;
         }
-
+        
         while (i < flow.graph_of_descendants.size()) // до конца графа
         {
             int current_point = flow.keys[i]; //Изначальый ID точки
-
-
+            
+            
             if (checkPointIDtoStSchemeID.count(current_point) != 0) //Если точка является началом стандартной схемы
             {
                 int scheme_ID = checkPointIDtoStSchemeID.at(current_point);
-
+                
                 for (auto const &time_segment : flow.times.at(current_point))
                 {
                     for (int m = 1; m <= standardSchemes.at(scheme_ID).repeat; m++)
                     {
-                        pair<Time, Time> ts_m = {time_segment + m * standardSchemes[scheme_ID].ts};
+                        pair<Time, Time> ts_m = {time_segment + m*standardSchemes[scheme_ID].ts};
                         flow.times[current_point].push_back(ts_m);
                     }
                 }
@@ -47,13 +47,12 @@ calc_TimeSegments(Flow &flow, const vector<CheckPoint> &checkPoints, const vecto
                 {
                     for (int m = 1; m <= standardSchemes[scheme_ID].repeat; ++m)
                     {
-                        pair<Time, Time> ts_m = {pair_ts_parent.first + m * standardSchemes[scheme_ID].ts};
+                        pair<Time, Time> ts_m = {pair_ts_parent.first + m*standardSchemes[scheme_ID].ts};
                         flow.not_merged_times[current_point].push_back({ts_m, pair_ts_parent.second});
                     }
                 }
             }
-
-//TODO протестировать calc_TimeSegments!!!
+            
             for (auto const son : flow.graph_of_descendants[current_point]) //Заполняем времена линейных участков
             {
                 pair<Time, Time> son_time = checkPoint_checkPoint_Time(checkPoints[current_point], checkPoints[son]);
@@ -67,7 +66,7 @@ calc_TimeSegments(Flow &flow, const vector<CheckPoint> &checkPoints, const vecto
                                 , //макс время - через точку из path самым медленным способом
                                 son_time.second +
                                 checkPoint_checkPoint_Time(checkPoints[son], checkPoints[str_point]).second};
-
+                        
                         for (auto const &time_segment : flow.times[current_point])
                         {
                             flow.times[str_point].push_back({time_segment + str_time});
@@ -77,11 +76,11 @@ calc_TimeSegments(Flow &flow, const vector<CheckPoint> &checkPoints, const vecto
                             flow.not_merged_times[str_point].push_back({pair_ts_parent.first + str_time,
                                                                         current_point});
                         }
-
+                        
                     }
                 }
-
-
+                
+                
                 for (auto const &time_segment : flow.times[current_point])
                 {
                     flow.times[son].push_back(time_segment + son_time);
@@ -100,7 +99,6 @@ calc_TimeSegments(Flow &flow, const vector<CheckPoint> &checkPoints, const vecto
                 cerr << er.what() << " on " << checkPoints[current_point].name << endl;
                 exit(-4);
             }
-
             i++;
         }
     }

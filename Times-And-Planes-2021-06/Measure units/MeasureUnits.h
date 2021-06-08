@@ -66,7 +66,7 @@ std::ostream &operator<<(std::ostream &out, const std::pair<Time, Time> &pair);
 
 struct compLess
 {
-    bool operator()(const Time &t0, const Time &t1)
+    bool operator()(const Time &t0, const Time &t1) const
         {
             return (std::abs(t0.getTsec() - t1.getTsec()) >= Time::epsilon) && (t0.getTsec() < t1.getTsec());
         }
@@ -74,7 +74,7 @@ struct compLess
 
 struct compGreater
 {
-    bool operator()(const Time &t0, const Time &t1)
+    bool operator()(const Time &t0, const Time &t1) const
         {
             return (std::abs(t0.getTsec() - t1.getTsec()) >= Time::epsilon) && (t0.getTsec() > t1.getTsec());
         }

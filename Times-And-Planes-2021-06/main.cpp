@@ -9,9 +9,9 @@ using namespace std;
 int main()
     {
 
-        string nameOfPointsFile = "../Source information/Points/Test.txt";//KoltsovoStScheme
-        string nameOfSchemeFile = "../Source information/Schemes/Test.txt";//KoltsovoStScheme
-        string nameOfFlowsFile = "../Source information/Flows/Test.txt";//Koltsovo
+        string nameOfPointsFile = "../Source information/Points/KoltsovoStScheme.txt";//Test
+        string nameOfSchemeFile = "../Source information/Schemes/Koltsovo.txt";//Test
+        string nameOfFlowsFile = "../Source information/Flows/Koltsovo.txt";//Test
 
         Zone zone = create_zone(nameOfPointsFile, nameOfSchemeFile, nameOfFlowsFile);
 
@@ -41,10 +41,15 @@ int main()
 //        map<int, vector<pair<pair<double, double>, int>>> not_merged_res;//Вершина --> { ([t1,t2], parent) ... ([tn-1,tn], parent) }
 //
 //        calc_plane(zone, plane2, res, not_merged_res, ID_points_to_calculate);
+        
+        for (auto &el :zone.flows)
+        {
+            calc_TimeSegments(el,zone.checkPoints, zone.standardSchemes);
+           // zone.print_times();
+          
+        }
+        zone.print_not_merged_times();
 
-calc_TimeSegments(zone.flows[0],zone.checkPoints, zone.standardSchemes);
-zone.print_times();
-zone.print_not_merged_times();
 
         return 0;
     }

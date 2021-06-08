@@ -29,6 +29,4 @@ void Build_graph_of_Zone(Zone &zone){
 			}
 
 		}
-
-		cout << "Build graph of zone successes!" << endl;
 	}

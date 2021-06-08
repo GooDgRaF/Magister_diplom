@@ -50,9 +50,5 @@ void topologicalSort_of_flow(Flow &flow)
 				{ st.push(son); }
 			}
 		}
-		
-		
-		cout << flow.name << " successfully sorted!" << endl;
-		
 	}
 

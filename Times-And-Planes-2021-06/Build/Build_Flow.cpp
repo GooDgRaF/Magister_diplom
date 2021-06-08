@@ -38,6 +38,4 @@ void Build_Flow(Zone &zone, Flow &flow)
 			for (auto el : pair.second)
 				flow.graph_of_ancestors[el].push_back(pair.first);
 		}
-		
-		cout << "Build " << flow.name << " successes!" << endl;
 	}
