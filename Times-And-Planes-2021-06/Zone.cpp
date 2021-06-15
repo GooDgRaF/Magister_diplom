@@ -14,7 +14,7 @@ void Zone::print_flows_keys()
         for (auto &flow : flows)
         {
             cout << flow.name << ": ";
-            for (auto item : flow.keys)
+            for (auto item : flow.path)
             {
                 cout << item << "  ";
             }
@@ -26,7 +26,7 @@ void Zone::print_flows_keys()
 
 void Zone::print_key_of_flow(int number_of_flow)
     {
-        for (auto item : flows[number_of_flow].keys)
+        for (auto item : flows[number_of_flow].path)
         {
             cout << item << "  ";
         }
@@ -77,10 +77,10 @@ void Zone::print_flows_as_string_des(bool sort)
             for (auto &flow : flows)
             {
                 cout << flow.name << ": " << endl;
-                for (int key : flow.keys)
+                for (int point_ID : flow.path)
                 {
-                    cout << checkPoints[key].name << " --> ";
-                    for (auto &el : flow.graph_of_descendants[key])
+                    cout << checkPoints[point_ID].name << " --> ";
+                    for (auto &el : flow.graph_of_descendants[point_ID])
                     {
                         cout << checkPoints[el].name << " ";
                     }
@@ -121,10 +121,10 @@ void Zone::print_times()
         for (auto &flow : flows)
         {
             cout << flow.name << ": " << endl;
-            for (int key : flow.keys)
+            for (int point_ID : flow.path)
             {
-                cout << checkPoints[key].name << " --> ";
-                for (auto &pair : flow.times[key])
+                cout << checkPoints[point_ID].name << " --> ";
+                for (auto &pair : flow.times[point_ID])
                 {
                     cout << "[" << pair.first << ", " << pair.second << "] ";
                 }
@@ -140,10 +140,10 @@ void Zone::print_not_merged_times()
         for (auto &flow : flows)
         {
             cout << flow.name << ": " << endl;
-            for (int key : flow.keys)
+            for (int point_ID : flow.path)
             {
-                cout << checkPoints[key].name << " --> ";
-                for (auto &pair : flow.not_merged_times[key])
+                cout << checkPoints[point_ID].name << " --> ";
+                for (auto &pair : flow.not_merged_times[point_ID])
                 {
                     cout << "[" << pair.first << ", " << pair.second << "] ";
                 }

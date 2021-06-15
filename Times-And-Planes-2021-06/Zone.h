@@ -15,7 +15,8 @@
 
 struct Zone
 {
-    std::vector<std::vector<int>> graph_of_descendants; //Граф зоны задан списками Следующий
+    std::vector<std::vector<int>> graph_of_descendants; //Граф зоны. Задан списками Следующий
+    std::map<int, std::vector<int>> constricted_graph_of_parents; //Сжатый граф зоны. Задан списками предшественников
     std::vector<CheckPoint> checkPoints;
     std::vector<Scheme> schemes;
     std::vector<Flow> flows;

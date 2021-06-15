@@ -90,7 +90,7 @@ part_of_times(map<int, vector<pair<Time, Time>>> &times, const vector<int> &ID_f
 
 int topID(Flow &flow, const int point_ID)
     {
-        auto it_index_there = find(flow.keys.begin(), flow.keys.end(), point_ID);
-        const int top_ID_there = it_index_there - flow.keys.begin();
+        auto it_index_there = find(flow.path.begin(), flow.path.end(), point_ID);
+        const int top_ID_there = it_index_there - flow.path.begin();
         return top_ID_there;
     }

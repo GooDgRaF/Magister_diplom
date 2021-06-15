@@ -28,7 +28,7 @@ calc_TimeSegments(Flow &flow, const vector<CheckPoint> &checkPoints, const vecto
         
         while (i < flow.graph_of_descendants.size()) // до конца графа
         {
-            int current_point = flow.keys[i]; //Изначальый ID точки
+            int current_point = flow.path[i]; //Изначальый ID точки
             
             
             if (checkPointIDtoStSchemeID.count(current_point) != 0) //Если точка является началом стандартной схемы

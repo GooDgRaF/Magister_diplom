@@ -7,7 +7,7 @@ using namespace std;
 
 void Flow::print_times()
     {
-        for (int key : keys)
+        for (int key : path)
         {
             cout << key << " --> ";
             for (const auto &time_segment : times[key])

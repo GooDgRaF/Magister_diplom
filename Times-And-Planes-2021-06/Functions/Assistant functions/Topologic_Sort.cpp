@@ -9,7 +9,7 @@ using namespace std;
 
 void topologicalSort_of_flow(Flow &flow)
 	{
-		flow.keys.resize(flow.graph_of_descendants.size() + 1);
+		flow.path.resize(flow.graph_of_descendants.size() + 1);
 		int number = 0;
 		
 		map<int, int> DegIn;
@@ -41,7 +41,7 @@ void topologicalSort_of_flow(Flow &flow)
 			int v;
 			v = st.top();
 			st.pop();
-			flow.keys[number] = v;
+			flow.path[number] = v;
 			number++;
 			for (int son : flow.graph_of_descendants[v])
 			{

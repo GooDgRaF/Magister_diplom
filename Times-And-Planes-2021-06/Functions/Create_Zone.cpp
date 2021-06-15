@@ -8,6 +8,7 @@
 #include "Read/Read_SchemesRegExp.h"
 #include "Read/Read_FlowsRegExp.h"
 #include "Functions/Assistant functions/Topologic_Sort.h"
+#include "Build/Build_constricted_Zone.h"
 
 using namespace std;
 
@@ -33,6 +34,8 @@ Zone create_zone(std::string &path_checkPointsFile, std::string &path_SchemesFil
 		{
 			topologicalSort_of_flow(flow);
 		}
+        
+        build_constricted_Zone(zone);
 
         return zone;
 	}

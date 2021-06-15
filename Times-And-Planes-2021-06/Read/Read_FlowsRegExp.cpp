@@ -78,6 +78,8 @@ void Read_FlowsRegExp(const string &name_of_file, vector<Flow> &flows)
             flows[i].name = string(res[1]);
 
             flowNameToID[flows[i].name] = i;
+            
+            flows[i].ID = i;
 
             try
             {
