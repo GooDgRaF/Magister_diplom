@@ -1,4 +1,4 @@
 3
-Flow1 P0
-Flow2 P2
-Flow3 St4
+Flow_P P0
+Flow_K K0
+Flow_C C0

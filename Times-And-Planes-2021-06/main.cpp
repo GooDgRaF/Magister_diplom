@@ -9,12 +9,12 @@ using namespace std;
 int main()
     {
 
-        string nameOfPointsFile = "../Source information/Points/KoltsovoStScheme.txt";//Test
-        string nameOfSchemeFile = "../Source information/Schemes/Koltsovo.txt";//Test
-        string nameOfFlowsFile = "../Source information/Flows/Koltsovo.txt";//Test
+        string nameOfPointsFile = "../Source information/Points/KoltsovoStScheme.txt";//TestKoltsovoStScheme
+        string nameOfSchemeFile = "../Source information/Schemes/Koltsovo.txt";//TestKoltsovo
+        string nameOfFlowsFile = "../Source information/Flows/Koltsovo.txt";//TestKoltsovo
 
         Zone zone = create_zone(nameOfPointsFile, nameOfSchemeFile, nameOfFlowsFile);
-
+        zone.print_constricted_graph_of_parents();
 
         PlanePoint plane1;
         plane1.x = Distance::createKm(-40);

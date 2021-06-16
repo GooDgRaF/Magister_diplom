@@ -154,4 +154,19 @@ void Zone::print_not_merged_times()
         cout << endl;
     }
 
+void Zone::print_constricted_graph_of_parents()
+    {
+        cout << "Constricted zone: " << endl;
+        for (const auto &item : constricted_graph_of_parents)
+        {
+            cout << checkPoints[item.first].name << ":";
+            for (const auto &el : item.second)
+            {
+                cout << ' ' << checkPoints[el].name;
+            }
+            cout << endl;
+        }
+        
+    }
+
 

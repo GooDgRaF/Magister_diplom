@@ -16,29 +16,32 @@ void build_constricted_Zone(Zone &zone)
         }
         
         
-        vector<bool> is_merged{}; //Сливался ли i-ый поток
-        is_merged.resize(zone.flows.size(), false);
+        vector<bool> is_merged_flows{}; //Сливался ли i-ый поток
+        is_merged_flows.resize(zone.flows.size(), false);
         
         map<int, vector<int>> constricted_zone{};// ID точки --> стартовые точки потоков, которые слились в данной точке
+        set<int> met_before{};//Точки в которых уже слились какие-то потоки
         
         
-        while ((count(is_merged.begin(), is_merged.end(), false)) >= 2)
+        while ((count(is_merged_flows.begin(), is_merged_flows.end(), false)) >= 2)
         {
             for (const auto &flow : zone.flows)
             {
-                intersection(flow, zone.flows, constricted_zone, flows_start_point);// Собираем точки в которых сливаются потоки
+                if (!(is_merged_flows[flow.ID]))
+                {
+                    intersection(flow, zone.flows, constricted_zone, flows_start_point, is_merged_flows);// Собираем точки в которых сливаются потоки
+                }
             }
             
-            set<int> met_before{};
             for (int i = 0; i < flows_start_point.size(); ++i)
             {
-                if (met_before.find(flows_start_point[i]) != met_before.end())
+                if (met_before.find(flows_start_point[i]) == met_before.end())
                 {
                     met_before.insert(flows_start_point[i]);
                 }
                 else
                 {
-                    is_merged[i] = true;
+                    is_merged_flows[i] = true;
                 }
             }
         }
@@ -49,39 +52,58 @@ void build_constricted_Zone(Zone &zone)
     }
 
 void
-intersection(const Flow &given_flow, const std::vector<Flow> &flows,
-             std::map<int, std::vector<int>> &pointID_to_mergedFlows, std::vector<int> &flows_start_point)
+intersection(const Flow &given_flow, const std::vector<Flow> &flows, std::map<int, std::vector<int>> &pointID_to_mergedFlows, std::vector<int> &flows_start_point, const vector<bool> &mask)
     {
         bool is_merged = false;
         
         vector<set<int>> points_in_flows{};
         for (const auto &flow : flows)
         {
-            set<int> temp{};
-            for (const auto &point : flow.path)
+            if (!(mask[flow.ID]))//Рассматриваем только по одному представителю от слитых потоков
             {
-                temp.insert(point);
-            }
-            points_in_flows.push_back(temp);
-        }
-        
-        for (const auto &point : given_flow.path)
-        {
-            if (is_merged)
-            {
-                break;
+                set<int> temp{};
+                auto it_start = find(flow.path.begin(), flow.path.end(), flows_start_point[flow.ID]);
+                for (auto it = it_start; it != flow.path.end(); it++)
+                {
+                    temp.insert(*it);
+                }
+                points_in_flows.push_back(temp);
             }
             else
             {
-                for (const auto &flow : flows)
+                points_in_flows.emplace_back();
+            }
+        }
+        
+        for (auto it_point = find(given_flow.path.begin(), given_flow.path.end(), flows_start_point[given_flow.ID]);
+             it_point != given_flow.path.end(); it_point++)
+        {
+            if (is_merged)//Идём до первого слияния данного потока с любым другим
+            {
+                break;
+            }
+            for (const auto &flow : flows)
+            {
+                if (is_merged)//Идём до первого слияния данного потока с любым другим
+                {
+                    break;
+                }
+                if (!(mask[flow.ID]))
                 {
                     if ((given_flow.ID != flow.ID) //Потоки разные
                         &&
-                        (points_in_flows[flow.ID].find(point) != points_in_flows[flow.ID].end())) //Точка есть в потоке
+                        (points_in_flows[flow.ID].find(*it_point) !=
+                         points_in_flows[flow.ID].end())) //Точка есть в потоке
                     {
-                        pointID_to_mergedFlows[point].push_back(flows_start_point[flow.ID]); //Записали к точке родителя
-                        flows_start_point[given_flow.ID] = point;// Передвинули родителя
-                        is_merged = true;
+                        if ((*it_point ==
+                             flows_start_point[given_flow.ID])) //Если точка совпала с началом, то данный поток содержится в текущем и в обработка не нужна
+                        { is_merged = true; }
+                        else
+                        {
+                            pointID_to_mergedFlows[*it_point].push_back(flows_start_point[given_flow.ID]); //Записали к точке родителя
+                            flows_start_point[given_flow.ID] = *it_point;// Передвинули родителя
+                            is_merged = true;
+                        }
                     }
                 }
             }

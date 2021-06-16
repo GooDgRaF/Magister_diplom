@@ -6,6 +6,7 @@
 #define TIMES_AND_PLANES_ZONE_H
 
 #include <vector>
+#include <set>
 #include <algorithm>
 #include <Fields of Zone/StandardScheme.h>
 #include "Fields of Zone/Point.h"
@@ -37,6 +38,8 @@ struct Zone
 	void print_times();
 
 	void print_not_merged_times();
+	
+	void print_constricted_graph_of_parents();
 };
 
 
