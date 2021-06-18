@@ -15,12 +15,10 @@ void build_constricted_Zone(Zone &zone)
             flows_start_point.push_back(flow.start_point);
         }
         
-        
         vector<bool> is_merged_flows{}; //Сливался ли i-ый поток
         is_merged_flows.resize(zone.flows.size(), false);
         
         map<int, vector<int>> constricted_zone{};// ID точки --> стартовые точки потоков, которые слились в данной точке
-        set<int> met_before{};//Точки в которых уже слились какие-то потоки
         
         
         while ((count(is_merged_flows.begin(), is_merged_flows.end(), false)) >= 2)
@@ -32,23 +30,24 @@ void build_constricted_Zone(Zone &zone)
                     intersection(flow, zone.flows, constricted_zone, flows_start_point, is_merged_flows);// Собираем точки в которых сливаются потоки
                 }
             }
-            
+            set<int> met_before{};//Точки в которых уже слились какие-то потоки на данном шаге
             for (int i = 0; i < flows_start_point.size(); ++i)
             {
-                if (met_before.find(flows_start_point[i]) == met_before.end())
+                if (!(is_merged_flows[i]))//Если поток активный (неслитый)
                 {
-                    met_before.insert(flows_start_point[i]);
-                }
-                else
-                {
-                    is_merged_flows[i] = true;
+                    if (met_before.find(flows_start_point[i]) == met_before.end())
+                    {
+                        met_before.insert(flows_start_point[i]);
+                    }
+                    else
+                    {
+                        is_merged_flows[i] = true;
+                    }
                 }
             }
         }
         
         zone.constricted_graph_of_parents = constricted_zone;
-        
-        
     }
 
 void
