@@ -5,9 +5,9 @@
 #include "Calculate standard scheme.h"
 #include "Arc length.h"
 #include "Distance between two Points.h"
-#include <Functions/Times functions/Arc time.h>
 #include <Functions/Times functions/Time segment from point to checkPoint.h>
 #include <Fields of Zone/Maps.h>
+#include <Functions/Times functions/Calculate_times.h>
 
 using namespace std;
 

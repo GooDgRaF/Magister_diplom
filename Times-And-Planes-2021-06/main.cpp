@@ -2,31 +2,37 @@
 #include <Functions/Geometric functions/Distance between two Points.h>
 #include <Functions/Calculate times new plane.h>
 #include <Functions/Times functions/Calculate_times.h>
-#include "Functions/Create_Zone.h"
+#include <Functions/Output functions/Constricted zone.h>
+#include "Build/Create_Zone.h"
 
 using namespace std;
 
 int main()
     {
-        string nameOfPointsFile = "../Source information/Points/Test.txt";
-        string nameOfSchemeFile = "../Source information/Schemes/Test.txt";
-        string nameOfFlowsFile = "../Source information/Flows/Test.txt";
+//        string nameOfPointsFile = "../Source information/Points/Test.txt";
+//        string nameOfSchemeFile = "../Source information/Schemes/Test.txt";
+//        string nameOfFlowsFile = "../Source information/Flows/Test.txt";
 
-//        string nameOfPointsFile = "../Source information/Points/KoltsovoStScheme.txt";
-//        string nameOfSchemeFile = "../Source information/Schemes/Koltsovo.txt";
-//        string nameOfFlowsFile = "../Source information/Flows/Koltsovo.txt";
-
+        string nameOfPointsFile = "../Source information/Points/KoltsovoStScheme.txt";
+        string nameOfSchemeFile = "../Source information/Schemes/Koltsovo.txt";
+        string nameOfFlowsFile = "../Source information/Flows/Koltsovo.txt";
+        
         Zone zone = create_zone(nameOfPointsFile, nameOfSchemeFile, nameOfFlowsFile);
-        zone.print_constricted_graph_of_parents();
         
-        for (auto &el :zone.flows)
-        {
-            calc_TimeSegments(el,zone.checkPoints, zone.standardSchemes, el.path[1]);
-        }
+        
+        
+//        zone.print_constricted_graph_of_parents();
+//        zone.print_constricted_TS();
+        
+        out_constricted_zone(zone);
+//        for (auto &el :zone.flows)
+//        {
+//            calc_TimeSegments(el,zone.checkPoints, zone.standardSchemes, el.path[1]);
+//        }
 //         zone.print_times();
-        zone.print_not_merged_times();
-        
-        
+//        zone.print_not_merged_times();
+
+
 
 //
 //        PlanePoint plane1;

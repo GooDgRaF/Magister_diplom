@@ -4,11 +4,13 @@
 #include <Build/Build_graph_of_Zone.h>
 #include <Build/Build_Flow.h>
 #include <Read/Read_CheckPointsRegExp.h>
+#include <Functions/Times functions/Calculate_times.h>
 #include "Create_Zone.h"
 #include "Read/Read_SchemesRegExp.h"
 #include "Read/Read_FlowsRegExp.h"
 #include "Functions/Assistant functions/Topologic_Sort.h"
 #include "Build/Build_constricted_Zone.h"
+
 
 using namespace std;
 
@@ -36,6 +38,8 @@ Zone create_zone(std::string &path_checkPointsFile, std::string &path_SchemesFil
 		}
         
         build_constricted_Zone(zone);
+        
+        calc_TS_edges_of_constricted_zone(zone);
 
         return zone;
 	}

@@ -4,11 +4,19 @@
 
 #include "Build_constricted_Zone.h"
 #include <set>
-
+#include "Fields of Zone/Maps.h"
 using namespace std;
 
 void build_constricted_Zone(Zone &zone)
     {
+        for (const auto &checkPoint : zone.checkPoints) //Запишем ВПП
+        {
+            if (checkPoint.landing_flag == true)
+            {
+                zone.final_point = checkPoint.ID;
+            }
+        }
+        
         vector<int> flows_start_point{};
         for (const auto &flow : zone.flows)
         {
@@ -47,7 +55,7 @@ void build_constricted_Zone(Zone &zone)
             }
         }
         
-        zone.constricted_graph_of_parents = constricted_zone;
+        zone.constricted_graph_of_ancestors = constricted_zone;
     }
 
 void

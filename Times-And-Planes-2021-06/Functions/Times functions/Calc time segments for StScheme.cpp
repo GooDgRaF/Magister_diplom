@@ -5,9 +5,9 @@
 #include <Fields of Zone/StandardScheme.h>
 #include <Fields of Zone/Maps.h>
 #include "Calc time segments for StScheme.h"
-#include "Arc time.h"
 #include "Time segment from point to checkPoint.h"
 #include "Plane enum.h"
+#include "Calculate_times.h"
 
 using namespace std;
 
@@ -21,9 +21,7 @@ calc_and_initStScheme(Flow &flow, const std::vector<CheckPoint> &checkPoints, co
         const int end_ID = stScheme.end_ID;
 
         there_ID = start_ID;
-
-        //TODO ВНИМАТЕЛЬНО посмотреть, где нужна четвёртая точка из stScheme
-
+        
         switch (edgeTo_stScheme_part[edge_ID_ID].second)//Номер части, где находится ВС на ст. схеме
         { //ts - time segment
             case 1: //ВС на первом участке ст. схемы. Считаем для второй, третьей, конечной и первой точек временные интервалы

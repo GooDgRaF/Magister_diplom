@@ -15,7 +15,7 @@ void mergeTimes(vector<pair<Time, Time>> &times)
 		{
 			if (compGr(pair.first, pair.second))
 			{
-				throw runtime_error("Warning: first element of pair is bigger than second");
+				throw runtime_error("Error: first element of pair is bigger than second");
 			}
 			
 			valueAction[pair.first]++;

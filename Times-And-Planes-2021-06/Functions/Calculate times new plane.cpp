@@ -36,7 +36,7 @@ calc_plane(Zone &zone, const PlanePoint &plane,
 
         initialTimes(flow, zone.checkPoints, plane, edge_ID_ID); // Инициировали ближайшие точки и ст схему, если имеется
         int &there_ID = pointNameToID[plane.destination];//ID точки "куда"
-        calc_TimeSegments(flow, zone.checkPoints, zone.standardSchemes, there_ID, 0);//Рассчитываем все времена, которые "ниже по течению"
+        calc_TimeSegments(flow, zone.checkPoints, zone.standardSchemes, there_ID);//Рассчитываем все времена, которые "ниже по течению"
 //        not_merged_result = part_of_times(flow.not_merged_times, ID_points_to_calculate);
         result = part_of_times(flow.times, ID_points_to_calculate);
 

@@ -38,4 +38,13 @@ void Build_Flow(Zone &zone, Flow &flow)
 			for (auto el : pair.second)
 				flow.graph_of_ancestors[el].push_back(pair.first);
 		}
+		
+		flow.points.insert(flow.start_point); //Собираем точки потока
+		for (const auto &id_v: flow.graph_of_descendants)
+        {
+		    for (const auto son : id_v.second)
+            {
+		        flow.points.insert(son);
+            }
+        }
 	}

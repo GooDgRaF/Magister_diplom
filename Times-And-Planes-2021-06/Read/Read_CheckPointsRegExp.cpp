@@ -134,6 +134,7 @@ void Read_CheckPointsRegExp(const std::string &name_of_file, std::vector<CheckPo
 
 
             pointNameToID[checkPoints[i].name] = i;
+            checkPoints[i].ID = i;
 
 
             if (v_min > v_max) //Проверка корректности введённых скоростей

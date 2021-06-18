@@ -2,6 +2,7 @@
 // Created by Антон on 14.04.2020.
 //
 
+#include <Functions/Geometric functions/Arc length.h>
 #include "Calculate_times.h"
 #include "MergeTimes.h"
 #include "Fields of Zone/Maps.h"
@@ -12,6 +13,8 @@
 #include "cassert"
 
 using namespace std;
+
+
 
 //По умолчанию, start_point = -1, то есть рассчёт происходит с самой первой точки потока с нулевым интервалом времени
 //По умолчанию, end_point = -1, то есть рассчёт происходит до точки с флагом LAND
@@ -115,15 +118,47 @@ calc_TimeSegments(Flow &flow, const std::vector<CheckPoint> &checkPoints, const 
             }
             try
             {
-                mergeTimes(flow.times[*it_current_point]);
+                mergeTimes(flow.times.at(*it_current_point));
             }
             catch (runtime_error &er)
             {
                 cerr << er.what() << " on " << checkPoints[*it_current_point].name << endl;
                 exit(-4);
             }
+            catch (out_of_range &er)
+            {
+                cerr << "No key: " << *it_current_point << " in flow.times" << endl;
+            }
             it_current_point++;
         }
+    }
+
+
+int find_flowID(const vector<Flow> &flows, int point)
+    {
+        for (const auto &flow : flows)
+        {
+            if (flow.points.find(point) != flow.points.end())
+                return flow.ID;
+        }
+        return -1;
+    }
+
+void calc_TS_edges_of_constricted_zone(Zone &zone)
+    {
+        for (const auto &son_parent : zone.constricted_graph_of_ancestors)
+        {
+            for (const auto &parent : son_parent.second)
+            {
+                int flowID = find_flowID(zone.flows, parent);
+                calc_TimeSegments(zone.flows[flowID],
+                                  zone.checkPoints, zone.standardSchemes, parent, son_parent.first);
+                zone.constricted_ts.emplace(make_pair(parent, son_parent.first),zone.flows[flowID].times[son_parent.first].at(0)); //TODO А почему у точки слияния один интервал времени?
+                zone.flows[flowID].times.clear();
+                zone.flows[flowID].not_merged_times.clear();
+            }
+        }
+        
     }
 
 
@@ -132,4 +167,24 @@ int topID(Flow &flow, const int point_ID)
         auto it_index_there = find(flow.path.begin(), flow.path.end(), point_ID);
         const int top_ID_there = it_index_there - flow.path.begin();
         return top_ID_there;
+    }
+
+TS plane_arc_Time(const CheckPoint &start, const CheckPoint &second, const PlanePoint &plane)
+    {
+        Distance arc = arc_length(start, second, plane);
+
+        Time T_initial_min = 2 * arc / (plane.V + second.Vmax);
+        Time T_initial_max = 2 * arc / (plane.V + second.Vmin);
+
+        return {T_initial_min, T_initial_max};
+    }
+
+TS semicircle_Time(const CheckPoint &start, const CheckPoint &second)
+    {
+        Distance semicircle = arc_length(start, second, start);
+        Time T_min = 2 * semicircle / (start.Vmax + second.Vmax);
+        Time T_max = 2 * semicircle / (start.Vmin + second.Vmin);
+
+
+        return {T_min, T_max};
     }

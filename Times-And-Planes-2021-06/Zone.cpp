@@ -31,7 +31,7 @@ void Zone::print_key_of_flow(int number_of_flow)
             cout << item << "  ";
         }
         cout << endl << endl;
-
+        
     }
 
 
@@ -66,7 +66,7 @@ void Zone::print_flows_as_string_des()
             cout << endl;
         }
         cout << endl;
-
+        
     }
 
 void Zone::print_flows_as_string_des(bool sort)
@@ -113,7 +113,7 @@ void Zone::print_flows_as_string_anc()
             cout << endl;
         }
         cout << endl;
-
+        
     }
 
 void Zone::print_times()
@@ -157,7 +157,7 @@ void Zone::print_not_merged_times()
 void Zone::print_constricted_graph_of_parents()
     {
         cout << "Constricted zone: " << endl;
-        for (const auto &item : constricted_graph_of_parents)
+        for (const auto &item : constricted_graph_of_ancestors)
         {
             cout << checkPoints[item.first].name << ":";
             for (const auto &el : item.second)
@@ -165,6 +165,17 @@ void Zone::print_constricted_graph_of_parents()
                 cout << ' ' << checkPoints[el].name;
             }
             cout << endl;
+        }
+        cout << endl;
+    }
+
+void Zone::print_constricted_TS()
+    {
+        cout << "Constricted: edges --> TS" << endl;
+        for (const auto &el : constricted_ts)
+        {
+            cout << checkPoints[el.first.first].name << " --> " << checkPoints[el.first.second].name <<
+                 " : " << el.second << endl;
         }
         cout << endl;
     }

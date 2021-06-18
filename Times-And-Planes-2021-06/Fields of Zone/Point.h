@@ -25,6 +25,7 @@ struct Point
 
 struct CheckPoint : Point
 {
+    int ID;
     std::string name;
     Velocity Vmin = Velocity::createVkm_h(0);
     Velocity Vmax = Velocity::createVkm_h(0);
