@@ -6,6 +6,7 @@
 #include "Time.h"
 #include "Distance.h"
 #include "Velocity.h"
+using TS = std::pair<Time, Time>; //TS - time segments - временные интервалы
 
 
 Time::Time(double d)
@@ -86,33 +87,33 @@ Time operator*(const Time &t, const double &a)
         return Time::createTsec(t.getTsec() * a);
     }
 
-std::pair<Time, Time> operator+(const std::pair<Time, Time> &x, const std::pair<Time, Time> &y)
+TS operator+(const TS &x, const TS &y)
     {
         return {x.first + y.first, x.second + y.second};
     }
 
 
-std::pair<Time, Time> operator*(const double &a, const std::pair<Time, Time> &ts)
+TS operator*(const double &a, const TS &ts)
     {
         return {a * ts.first, a * ts.second};
     }
 
-std::pair<Time, Time> operator*(const int &a, const std::pair<Time, Time> &ts)
+TS operator*(const int &a, const TS &ts)
     {
         return {a * ts.first, a * ts.second};
     }
 
-std::pair<Time, Time> operator*(const std::pair<Time, Time> &ts, const double &a)
+TS operator*(const TS &ts, const double &a)
     {
         return a * ts;
     }
-std::pair<Time, Time> operator*(const std::pair<Time, Time> &ts, const int &a)
+TS operator*(const TS &ts, const int &a)
     {
         return a * ts;
     }
 
 
-std::ostream &operator<<(std::ostream &out, const std::pair<Time, Time> &pair)
+std::ostream &operator<<(std::ostream &out, const TS &pair)
     {
         return std::cout << "[" << pair.first << ", " << pair.second << "] ";
     }

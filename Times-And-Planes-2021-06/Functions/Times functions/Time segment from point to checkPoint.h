@@ -8,9 +8,9 @@
 #include <Measure units/Time.h>
 #include <Fields of Zone/Point.h>
 
-std::pair<Time, Time> plane_checkPoint_Time(const PlanePoint &plane, const CheckPoint &point_there);
+TS plane_checkPoint_Time(const PlanePoint &plane, const CheckPoint &point_there);
 
-std::pair<Time, Time> checkPoint_checkPoint_Time(const CheckPoint &point_from, const CheckPoint &point_there);
+TS checkPoint_checkPoint_Time(const CheckPoint &point_from, const CheckPoint &point_there);
 
 
 #endif //MAIN_CPP_TIME_SEGMENT_FROM_POINT_TO_CHECKPOINT_H

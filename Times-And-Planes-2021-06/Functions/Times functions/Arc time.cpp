@@ -5,7 +5,7 @@
 #include <Functions/Geometric functions/Arc length.h>
 #include "Arc time.h"
 
-std::pair<Time, Time> plane_arc_Time(const CheckPoint &start, const CheckPoint &second, const PlanePoint &plane)
+TS plane_arc_Time(const CheckPoint &start, const CheckPoint &second, const PlanePoint &plane)
     {
         Distance arc = arc_length(start, second, plane);
 
@@ -15,7 +15,7 @@ std::pair<Time, Time> plane_arc_Time(const CheckPoint &start, const CheckPoint &
         return {T_initial_min, T_initial_max};
     }
 
-std::pair<Time, Time> semicircle_Time(const CheckPoint &start, const CheckPoint &second)
+TS semicircle_Time(const CheckPoint &start, const CheckPoint &second)
     {
         Distance semicircle = arc_length(start, second, start);
         Time T_min = 2 * semicircle / (start.Vmax + second.Vmax);

@@ -8,6 +8,6 @@
 #include <vector>
 #include "Measure units/MeasureUnits.h"
 
-void mergeTimes(std::vector<std::pair<Time, Time>> &times);
+void mergeTimes(std::vector<TS> &times);
 
 #endif //TIMES_AND_PLANES_MERGETIMES_H

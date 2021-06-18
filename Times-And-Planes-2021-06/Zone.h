@@ -14,10 +14,14 @@
 #include "Fields of Zone/Flow.h"
 #include "Measure units/MeasureUnits.h"
 
+using TS = std::pair<Time, Time>; //TS - time segments - временные интервалы
+using edge = std::pair<int, int>; //Ребро графа
+
 struct Zone
 {
     std::vector<std::vector<int>> graph_of_descendants; //Граф зоны. Задан списками Следующий
     std::map<int, std::vector<int>> constricted_graph_of_parents; //Сжатый граф зоны. Задан списками предшественников
+    std::map<edge, TS> constricted_ts; //Ребро из constricted_graph_of_parents --> временнЫе интервалы
     std::vector<CheckPoint> checkPoints;
     std::vector<Scheme> schemes;
     std::vector<Flow> flows;
