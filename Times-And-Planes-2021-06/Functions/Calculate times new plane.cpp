@@ -11,7 +11,6 @@
 
 using namespace std;
 
-int topID(Flow &flow, const int point_ID);
 
 map<int, vector<pair<double, double>>>
 part_of_times(map<int, vector<pair<Time, Time>>> &times, const vector<int> &ID_for_return);
@@ -37,7 +36,7 @@ calc_plane(Zone &zone, const PlanePoint &plane,
 
         initialTimes(flow, zone.checkPoints, plane, edge_ID_ID); // Инициировали ближайшие точки и ст схему, если имеется
         int &there_ID = pointNameToID[plane.destination];//ID точки "куда"
-        calc_TimeSegments(flow, zone.checkPoints, zone.standardSchemes, topID(flow, there_ID));//Рассчитываем все времена, которые "ниже по течению"
+        calc_TimeSegments(flow, zone.checkPoints, zone.standardSchemes, there_ID, 0);//Рассчитываем все времена, которые "ниже по течению"
 //        not_merged_result = part_of_times(flow.not_merged_times, ID_points_to_calculate);
         result = part_of_times(flow.times, ID_points_to_calculate);
 
@@ -88,9 +87,3 @@ part_of_times(map<int, vector<pair<Time, Time>>> &times, const vector<int> &ID_f
     }
 
 
-int topID(Flow &flow, const int point_ID)
-    {
-        auto it_index_there = find(flow.path.begin(), flow.path.end(), point_ID);
-        const int top_ID_there = it_index_there - flow.path.begin();
-        return top_ID_there;
-    }
