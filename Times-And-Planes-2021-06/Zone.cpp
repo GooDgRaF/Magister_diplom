@@ -166,7 +166,7 @@ void Zone::print_constricted_graph_of_parents()
             }
             cout << endl;
         }
-        
+        cout << endl;
     }
 
 
