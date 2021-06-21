@@ -11,9 +11,9 @@
 void build_constricted_Zone(Zone &zone);
 
 void
-intersection(const Flow &given_flow, const std::vector<Flow> &flows,
-             std::map<int, std::vector<int>> &pointID_to_mergedFlows,
-             std::vector<int> &flows_start_point,
-             const std::vector<bool> &mask); //Возвращает ID первой точки слияния данного потока
+flow_intersection(const Flow &given_flow, const std::vector<Flow> &flows,
+                  std::map<int, std::vector<int>> &pointID_to_mergedFlows,
+                  std::vector<int> &flows_start_point,
+                  const std::vector<bool> &mask); //Возвращает ID первой точки слияния данного потока
 
 #endif //TIMES_AND_PLANES_2021_06_BUILD_CONSTRICTED_ZONE_H

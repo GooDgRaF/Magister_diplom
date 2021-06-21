@@ -2,7 +2,6 @@
 1
 Name1 (P1)(P2): Str(P2) P1 St4 St1 /Str P2
 Name2 (P2)(P4): P2 P3 P4
-NameSt (St1)(2): St1 St2 St3 St4a
 Name3 (K0)(P2): K0 K1 K2 P2
 Name4 (C0)(P1):
 Name5 (P0)(P1):

@@ -6,11 +6,13 @@
 #define TIMES_AND_PLANES_TIME_H
 
 #include "iostream"
+class Time;
+
+using TS = std::pair<Time, Time>; //TS - time segments - временные интервалы
 
 class Time
 {
 	double time_sec; //В секундах
-	
 	Time(double d);
 
 public:
@@ -36,6 +38,7 @@ public:
 	
 	friend std::ostream &operator<<(std::ostream &out, const Time &t);
 	
+	static TS create_zero_TS(); //Возвращает [0, 0]
 	
 };
 

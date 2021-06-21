@@ -62,6 +62,11 @@ std::ostream &operator<<(std::ostream &out, const Time &t)
         return out;
     }
 
+TS Time::create_zero_TS()
+    {
+        return {Time::createTsec(0), Time::createTsec(0)};
+    }
+
 Time operator/(const Distance &x, const Velocity &v)
     {
         return Time::createTsec(x.getMs() / v.getVm_s());

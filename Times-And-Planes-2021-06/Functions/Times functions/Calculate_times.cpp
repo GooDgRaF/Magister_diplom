@@ -7,7 +7,6 @@
 #include "MergeTimes.h"
 #include "Fields of Zone/Maps.h"
 #include "Time segment from point to checkPoint.h"
-#include <cmath>
 #include <iostream>
 #include "Plane enum.h"
 #include "cassert"
@@ -15,11 +14,11 @@
 using namespace std;
 
 
-
 //По умолчанию, start_point = -1, то есть рассчёт происходит с самой первой точки потока с нулевым интервалом времени
 //По умолчанию, end_point = -1, то есть рассчёт происходит до точки с флагом LAND
 void
-calc_TimeSegments(Flow &flow, const std::vector<CheckPoint> &checkPoints, const std::vector<StandardScheme> &standardSchemes, int start_point, int end_point)
+calc_TimeSegments(Flow &flow, const vector<CheckPoint> &checkPoints,
+                  const vector<StandardScheme> &standardSchemes, int start_point, int end_point)
     {
         if (end_point != -1)
         {
@@ -30,10 +29,8 @@ calc_TimeSegments(Flow &flow, const std::vector<CheckPoint> &checkPoints, const 
         auto it_current_point = flow.path.cbegin();
         if (start_point == -1)
         {
-            flow.times[flow.start_point].push_back({Time::createTsec(0),
-                                                    Time::createTsec(0)}); //Выставляем начальной точке потока времена по нулям
-            flow.not_merged_times[flow.start_point].push_back({{Time::createTsec(0),
-                                                                Time::createTsec(0)}, NO_PARENT});
+            flow.times[flow.start_point].push_back(Time::create_zero_TS()); //Выставляем начальной точке потока времена по нулям
+            flow.not_merged_times[flow.start_point].push_back({Time::create_zero_TS(), NO_PARENT});
         }
         else
         {
@@ -43,10 +40,8 @@ calc_TimeSegments(Flow &flow, const std::vector<CheckPoint> &checkPoints, const 
             
             if (flow.times.empty()) //Если нет начальных интервалов, то выставить по нулям
             {
-                flow.times[*it_current_point].push_back({Time::createTsec(0),
-                                                         Time::createTsec(0)});
-                flow.not_merged_times[*it_current_point].push_back({{Time::createTsec(0),
-                                                                     Time::createTsec(0)}, NO_PARENT});
+                flow.times[*it_current_point].push_back(Time::create_zero_TS());
+                flow.not_merged_times[*it_current_point].push_back({Time::create_zero_TS(), NO_PARENT});
             }
         }
         
@@ -153,7 +148,7 @@ void calc_TS_edges_of_constricted_zone(Zone &zone)
                 int flowID = find_flowID(zone.flows, parent);
                 calc_TimeSegments(zone.flows[flowID],
                                   zone.checkPoints, zone.standardSchemes, parent, son_parent.first);
-                zone.constricted_ts.emplace(make_pair(parent, son_parent.first),zone.flows[flowID].times[son_parent.first].at(0)); //TODO А почему у точки слияния один интервал времени?
+                zone.constricted_ts.emplace(make_pair(parent, son_parent.first), zone.flows[flowID].times[son_parent.first].at(0)); //TODO А почему у точки слияния один интервал времени?
                 zone.flows[flowID].times.clear();
                 zone.flows[flowID].not_merged_times.clear();
             }
@@ -172,19 +167,19 @@ int topID(Flow &flow, const int point_ID)
 TS plane_arc_Time(const CheckPoint &start, const CheckPoint &second, const PlanePoint &plane)
     {
         Distance arc = arc_length(start, second, plane);
-
-        Time T_initial_min = 2 * arc / (plane.V + second.Vmax);
-        Time T_initial_max = 2 * arc / (plane.V + second.Vmin);
-
+        
+        Time T_initial_min = 2*arc/(plane.V + second.Vmax);
+        Time T_initial_max = 2*arc/(plane.V + second.Vmin);
+        
         return {T_initial_min, T_initial_max};
     }
 
 TS semicircle_Time(const CheckPoint &start, const CheckPoint &second)
     {
         Distance semicircle = arc_length(start, second, start);
-        Time T_min = 2 * semicircle / (start.Vmax + second.Vmax);
-        Time T_max = 2 * semicircle / (start.Vmin + second.Vmin);
-
-
+        Time T_min = 2*semicircle/(start.Vmax + second.Vmax);
+        Time T_max = 2*semicircle/(start.Vmin + second.Vmin);
+        
+        
         return {T_min, T_max};
     }

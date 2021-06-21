@@ -35,7 +35,7 @@ void build_constricted_Zone(Zone &zone)
             {
                 if (!(is_merged_flows[flow.ID]))
                 {
-                    intersection(flow, zone.flows, constricted_zone, flows_start_point, is_merged_flows);// Собираем точки в которых сливаются потоки
+                    flow_intersection(flow, zone.flows, constricted_zone, flows_start_point, is_merged_flows);// Собираем точки в которых сливаются потоки
                 }
             }
             set<int> met_before{};//Точки в которых уже слились какие-то потоки на данном шаге
@@ -59,7 +59,7 @@ void build_constricted_Zone(Zone &zone)
     }
 
 void
-intersection(const Flow &given_flow, const std::vector<Flow> &flows, std::map<int, std::vector<int>> &pointID_to_mergedFlows, std::vector<int> &flows_start_point, const vector<bool> &mask)
+flow_intersection(const Flow &given_flow, const std::vector<Flow> &flows, std::map<int, std::vector<int>> &pointID_to_mergedFlows, std::vector<int> &flows_start_point, const vector<bool> &mask)
     {
         bool is_merged = false;
         
