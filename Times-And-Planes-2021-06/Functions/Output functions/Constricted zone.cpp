@@ -13,30 +13,38 @@ void out_constricted_zone(const Zone &zone)
         ofstream out("Constricted zone.txt");
         
         out << "@PointsQnt" << endl;
-        out << zone.constricted_graph_of_ancestors.size() << endl;
+        out << zone.constricted_graph.size() << endl;
         
         out << "@Points" << endl;
         {
             string route = "route";
-            for (const auto &item : zone.constricted_graph_of_ancestors)
+            for (const auto &item : zone.constricted_graph)
             {
                 out << zone.checkPoints[item.first].name << " " << route << endl;
             }
         }
         
         out << "@FinalPoint" << endl;
-        out << zone.checkPoints[find_final_point_in_constricted_zone(zone.constricted_graph_of_ancestors)].name << endl;
+        out << zone.checkPoints[find_final_point_in_constricted_zone(zone.constricted_graph)].name << endl;
         
         out << "@FlowsQnt" << endl;
         out << zone.flows.size() << endl;
         
         out << "@FlowsInfo" << endl;
+        set<int> start_points{};
+        for (const auto &item : zone.flows)
+        {
+            start_points.insert(item.start_point);
+        }
         auto safety_interval = " 180 ", flow_type = "-1 ";
         for (const auto &item : zone.constricted_ts)
         {
-            double t_min = round(item.second.first.getTsec()), t_max = round(item.second.second.getTsec());
-            out << zone.checkPoints[item.first.second].name << safety_interval << flow_type <<
-                t_min << " " << round((1.0/3*t_min + 2.0/3*t_max)) << " " << t_max << endl;
+            if (start_points.find(item.first.first) != start_points.end())
+            {
+                double t_min = round(item.second.first.getTsec()), t_max = round(item.second.second.getTsec());
+                out << zone.checkPoints[item.first.second].name << safety_interval << flow_type <<
+                    t_min << " " << round((1.0/3*t_min + 2.0/3*t_max)) << " " << t_max << endl;
+            }
         }
         
         out << "@RouteStructure" << endl;
