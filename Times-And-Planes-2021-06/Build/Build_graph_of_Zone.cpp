@@ -24,7 +24,7 @@ void Build_graph_of_Zone(Zone &zone){
 				 */
 			for (int i = 0; i < scheme.path.size() - 1; i++)
 			{
-				zone.graph_of_descendants[scheme.path[i]].push_back(scheme.path[i +	1]); //Соединить текущую точку со следующей
+				zone.graph[scheme.path[i]].push_back(scheme.path[i + 1]); //Соединить текущую точку со следующей
 
 			}
 

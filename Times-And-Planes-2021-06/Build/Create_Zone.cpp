@@ -19,7 +19,7 @@ Zone create_zone(std::string &path_checkPointsFile, std::string &path_SchemesFil
 	    Zone zone;
 
 		Read_CheckPointsRegExp(path_checkPointsFile, zone.checkPoints);
-		zone.graph_of_descendants.resize(zone.checkPoints.size());
+		zone.graph.resize(zone.checkPoints.size());
 
         Read_SchemesRegExp(path_SchemesFile, zone.checkPoints, zone.schemes, zone.standardSchemes);
 

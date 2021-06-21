@@ -146,7 +146,7 @@ int find_flowID(const vector<Flow> &flows, int point)
 
 void calc_TS_edges_of_constricted_zone(Zone &zone)
     {
-        for (const auto &son_parent : zone.constricted_graph_of_ancestors)
+        for (const auto &son_parent : zone.constricted_graph)
         {
             for (const auto &parent : son_parent.second)
             {

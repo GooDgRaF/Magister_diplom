@@ -14,14 +14,14 @@ void Build_Flow(Zone &zone, Flow &flow)
 		
 		stack<int> st;
 		st.push(start_of_flow);
-		vector<bool> mark(zone.graph_of_descendants.size(), false);
+		vector<bool> mark(zone.graph.size(), false);
 		
 		while (!st.empty())
 		{
 			int v = st.top();
 			st.pop();
 			
-			for (int son : zone.graph_of_descendants[v])
+			for (int son : zone.graph[v])
 			{
 				flow.graph_of_descendants[v].push_back(son);
 				if (!mark[son]) //Если сын ещё не посещён

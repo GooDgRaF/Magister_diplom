@@ -19,8 +19,8 @@ using edge = std::pair<int, int>; //Ребро графа
 
 struct Zone
 {
-    std::vector<std::vector<int>> graph_of_descendants; //Граф зоны. Задан списками Следующий
-    std::map<int, std::vector<int>> constricted_graph_of_ancestors; //Сжатый граф зоны. Задан списками предшественников
+    std::vector<std::vector<int>> graph; //Граф зоны. Задан списками Следующий
+    std::map<int, std::vector<int>> constricted_graph; //Сжатый граф зоны. Задан списками предшественников
     std::map<edge, TS> constricted_ts; //Ребро из constricted_graph_of_parents --> временнЫе интервалы
     std::vector<CheckPoint> checkPoints;
     std::vector<Scheme> schemes;

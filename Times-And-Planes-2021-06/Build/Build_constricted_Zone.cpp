@@ -55,7 +55,7 @@ void build_constricted_Zone(Zone &zone)
             }
         }
         
-        zone.constricted_graph_of_ancestors = constricted_zone;
+        zone.constricted_graph = constricted_zone;
     }
 
 void

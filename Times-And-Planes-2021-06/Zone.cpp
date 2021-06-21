@@ -37,10 +37,10 @@ void Zone::print_key_of_flow(int number_of_flow)
 
 void Zone::print_as_string()
     {
-        for (int i = 0; i < graph_of_descendants.size(); ++i)
+        for (int i = 0; i < graph.size(); ++i)
         {
             cout << checkPoints[i].name << " --> ";
-            for (auto el : graph_of_descendants[i])
+            for (auto el : graph[i])
             {
                 cout << checkPoints[el].name << " ";
             }
@@ -157,7 +157,7 @@ void Zone::print_not_merged_times()
 void Zone::print_constricted_graph_of_parents()
     {
         cout << "Constricted zone: " << endl;
-        for (const auto &item : constricted_graph_of_ancestors)
+        for (const auto &item : constricted_graph)
         {
             cout << checkPoints[item.first].name << ":";
             for (const auto &el : item.second)
