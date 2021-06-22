@@ -7,19 +7,13 @@
 
 using namespace std;
 
-void mergeTimes(vector<pair<Time, Time>> &times)
+void mergeTimes(vector<TS> &times)
 	{
-		compGreater compGr;
 		map<Time, int, compLess> valueAction; //Значение - действие
-		for (auto pair : times)
+		for (auto ts : times)
 		{
-			if (compGr(pair.first, pair.second))
-			{
-				throw runtime_error("Error: first element of pair is bigger than second");
-			}
-			
-			valueAction[pair.first]++;
-			valueAction[pair.second]--;
+			valueAction[ts.min]++;
+			valueAction[ts.max]--;
 		}
 		
 		times.clear();
@@ -32,7 +26,7 @@ void mergeTimes(vector<pair<Time, Time>> &times)
 			sum = sum + itMap->second;
 			if (sum == 0)
 			{
-				times.push_back({start, itMap->first});
+				times.emplace_back(start, itMap->first);
 				if (itMap != valueAction.end())
 				{
 					itMap++;

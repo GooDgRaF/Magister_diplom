@@ -29,8 +29,8 @@ calc_TimeSegments(Flow &flow, const vector<CheckPoint> &checkPoints,
         auto it_current_point = flow.path.cbegin();
         if (start_point == -1)
         {
-            flow.times[flow.start_point].push_back(Time::create_zero_TS()); //Выставляем начальной точке потока времена по нулям
-            flow.not_merged_times[flow.start_point].push_back({Time::create_zero_TS(), NO_PARENT});
+            flow.times[flow.start_point].push_back({0, 0}); //Выставляем начальной точке потока времена по нулям
+            flow.not_merged_times[flow.start_point].push_back({{0, 0}, NO_PARENT});
         }
         else
         {
@@ -40,8 +40,8 @@ calc_TimeSegments(Flow &flow, const vector<CheckPoint> &checkPoints,
             
             if (flow.times.empty()) //Если нет начальных интервалов, то выставить по нулям
             {
-                flow.times[*it_current_point].push_back(Time::create_zero_TS());
-                flow.not_merged_times[*it_current_point].push_back({Time::create_zero_TS(), NO_PARENT});
+                flow.times[*it_current_point].push_back({0, 0});
+                flow.not_merged_times[*it_current_point].push_back({{0, 0}, NO_PARENT});
             }
         }
         
@@ -60,7 +60,7 @@ calc_TimeSegments(Flow &flow, const vector<CheckPoint> &checkPoints,
                 {
                     for (int m = 1; m <= standardSchemes.at(scheme_ID).repeat; m++)
                     {
-                        pair<Time, Time> ts_m = {time_segment + m*standardSchemes[scheme_ID].ts};
+                        TS ts_m{time_segment + m*standardSchemes[scheme_ID].min_max_time};
                         flow.times[*it_current_point].push_back(ts_m);
                     }
                 }
@@ -68,7 +68,7 @@ calc_TimeSegments(Flow &flow, const vector<CheckPoint> &checkPoints,
                 {
                     for (int m = 1; m <= standardSchemes[scheme_ID].repeat; ++m)
                     {
-                        pair<Time, Time> ts_m = {pair_ts_parent.first + m*standardSchemes[scheme_ID].ts};
+                        TS ts_m{pair_ts_parent.first + m*standardSchemes[scheme_ID].min_max_time};
                         flow.not_merged_times[*it_current_point].push_back({ts_m, pair_ts_parent.second});
                     }
                 }
@@ -76,17 +76,17 @@ calc_TimeSegments(Flow &flow, const vector<CheckPoint> &checkPoints,
             
             for (auto const son : flow.graph_of_descendants[*it_current_point]) //Заполняем времена линейных участков
             {
-                pair<Time, Time> son_time = checkPoint_checkPoint_Time(checkPoints[*it_current_point], checkPoints[son]);
+                TS son_time = checkPoint_checkPoint_Time(checkPoints[*it_current_point], checkPoints[son]);
                 pair<int, int> edge_ID_ID = {*it_current_point, son};
                 if (edgeTo_ends_str_ID.find(edge_ID_ID) != edgeTo_ends_str_ID.end()) // участок спрямления
                 {
                     for (auto const &str_point : edgeTo_ends_str_ID[edge_ID_ID]) // для всех точек спрямления
                     {
-                        pair<Time, Time> str_time = {
-                                checkPoint_checkPoint_Time(checkPoints[*it_current_point], checkPoints[str_point]).first //мин время - по кратчайшей наибыстрейше
+                        TS str_time = {
+                                checkPoint_checkPoint_Time(checkPoints[*it_current_point], checkPoints[str_point]).min //мин время - по кратчайшей наибыстрейше
                                 , //макс время - через точку из path самым медленным способом
-                                son_time.second +
-                                checkPoint_checkPoint_Time(checkPoints[son], checkPoints[str_point]).second};
+                                son_time.max +
+                                checkPoint_checkPoint_Time(checkPoints[son], checkPoints[str_point]).max};
                         
                         for (auto const &time_segment : flow.times[*it_current_point])
                         {
@@ -148,7 +148,7 @@ void calc_TS_edges_of_constricted_zone(Zone &zone)
                 int flowID = find_flowID(zone.flows, parent);
                 calc_TimeSegments(zone.flows[flowID],
                                   zone.checkPoints, zone.standardSchemes, parent, son_parent.first);
-                zone.constricted_ts.emplace(make_pair(parent, son_parent.first), zone.flows[flowID].times[son_parent.first].at(0)); //TODO А почему у точки слияния один интервал времени?
+                zone.edge_ts.emplace(edge(parent, son_parent.first), zone.flows[flowID].times[son_parent.first].at(0)); //TODO А почему у точки слияния один интервал времени?
                 zone.flows[flowID].times.clear();
                 zone.flows[flowID].not_merged_times.clear();
             }

@@ -124,9 +124,9 @@ void Zone::print_times()
             for (int point_ID : flow.path)
             {
                 cout << checkPoints[point_ID].name << " --> ";
-                for (auto &pair : flow.times[point_ID])
+                for (auto &ts : flow.times[point_ID])
                 {
-                    cout << "[" << pair.first << ", " << pair.second << "] ";
+                    cout << "[" << ts.min << ", " << ts.max << "] ";
                 }
                 cout << endl;
             }
@@ -171,11 +171,11 @@ void Zone::print_constricted_graph_of_parents()
 
 void Zone::print_constricted_TS()
     {
-        cout << "Constricted: edges --> TS" << endl;
-        for (const auto &el : constricted_ts)
+        cout << "Constricted: edge --> TS" << endl;
+        for (const auto &ed_ts : edge_ts)
         {
-            cout << checkPoints[el.first.first].name << " --> " << checkPoints[el.first.second].name <<
-                 " : " << el.second << endl;
+            cout << checkPoints[ed_ts.first.from].name << " --> " << checkPoints[ed_ts.first.there].name <<
+                 " : " << ed_ts.second << endl;
         }
         cout << endl;
     }

@@ -10,11 +10,8 @@ using namespace std;
 
 int main()
     {
-//        TS ab = {Time::createTsec(0), Time::createTsec(400)},
-//                cd = {Time::createTsec(0), Time::createTsec(30)};
-//        auto ans = intersection_TS(ab, cd);
         
-        cout << ans << endl;
+      
         
         string nameOfPointsFile = "../Source information/Points/Test.txt";
         string nameOfSchemeFile = "../Source information/Schemes/Test.txt";//NameSt (St1)(2): St1 St2 St3 St4a
@@ -26,6 +23,7 @@ int main()
         
         Zone zone = create_zone(nameOfPointsFile, nameOfSchemeFile, nameOfFlowsFile);
 
+        zone.print_constricted_TS();
 
 
 //        for (auto &el :zone.flows)

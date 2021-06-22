@@ -29,19 +29,19 @@ struct StandardScheme
     CheckPoint end; //
 
     Distance first_semicircle_length = Distance::createM(0);//Длина дуги первой полуокружности
-    std::pair<Time,Time> first_semicircle_T = {Time::createTsec(0), Time::createTsec(0)};//Временной интервал, описывающий прохождение по первой полуокружности
+    TS first_semicircle_T{0,0};//Временной интервал, описывающий прохождение по первой полуокружности
     Distance line_back = Distance::createM(0);//Длина обратного плеча
-    std::pair<Time,Time> line_back_T = {Time::createTsec(0), Time::createTsec(0)};//Временной интервал, описывающий прохождение обратного плеча
+    TS line_back_T{0,0};//Временной интервал, описывающий прохождение обратного плеча
 
     Distance second_semicircle_length = Distance::createM(0);//Длина дуги первой полуокружности
-    std::pair<Time,Time> second_semicircle_T = {Time::createTsec(0), Time::createTsec(0)};//Временной интервал, описывающий прохождение по первой полуокружности
+    TS second_semicircle_T{0,0};//Временной интервал, описывающий прохождение по первой полуокружности
     Distance line_forward = Distance::createM(0);//Длина обратного плеча
-    std::pair<Time,Time> line_forward_T = {Time::createTsec(0), Time::createTsec(0)};//Временной интервал, описывающий прохождение обратного плеча
+    TS line_forward_T{0,0};//Временной интервал, описывающий прохождение обратного плеча
 
 
     Time Tmin = Time::createTsec(0); //Минимальное время прохода по стандартной схеме
     Time Tmax = Time::createTsec(0); //Максимальное время прохода по стандартной схеме
-    TS ts = {Time::createTsec(0), Time::createTsec(0)};
+    TS min_max_time{0, 0};
 
 };
 

@@ -7,8 +7,7 @@
 
 #include <Zone.h>
 
-void backward_propagation(Zone &zone, int flow_ID, const TS &goal = Time::create_zero_TS(), int start_point = -1);
+void backward_propagation(Zone &zone, int flow_ID, const TS &goal = {0,0}, int start_point = -1);
 
-TS intersection_TS(const TS &ab, const TS &cd);
 
 #endif //TIMES_AND_PLANES_2021_06_BACKWARD_PROPAGATION_H

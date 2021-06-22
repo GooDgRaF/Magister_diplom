@@ -9,8 +9,6 @@
 #include "Distance.h"
 #include "Time.h"
 #include "Velocity.h"
-using TS = std::pair<Time, Time>; //TS - time segments - временные интервалы
-
 
 Velocity operator/(const Distance &x, const Time &t); //Перегрузка операторов
 
@@ -51,19 +49,6 @@ Distance operator/(const Distance &x, const Distance &y);
 Distance pow(Distance x, int a);
 
 Distance sqrt(Distance x);
-
-TS operator+(const TS &x, const TS &y);
-
-TS operator*(const double &a, const TS &ts);
-
-TS operator*(const TS &ts, const double &a);
-
-TS operator*(const int &a, const TS &ts);
-
-TS operator*(const TS &ts, const int &a);
-
-
-std::ostream &operator<<(std::ostream &out, const TS &pair);
 
 
 struct compLess
