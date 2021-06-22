@@ -7,7 +7,7 @@
 
 #include <Fields of Zone/Point.h>
 #include <vector>
-#include <Fields of Zone/StandardScheme.h>
+#include <Fields of Zone/Waiting area.h>
 
 void fill_StScheme(std::vector<CheckPoint> &checkPoints, StandardScheme &stScheme);
 

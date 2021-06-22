@@ -45,5 +45,11 @@ struct StandardScheme
 
 };
 
+struct WaitingArea
+{
+    std::string name{};
+    int ID{0};
+    TS ts_min_max{0,0};
+};
 
 #endif //TIMES_AND_PLANES_STANDARDSCHEME_H
