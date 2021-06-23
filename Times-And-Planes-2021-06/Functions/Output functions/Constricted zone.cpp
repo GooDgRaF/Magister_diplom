@@ -41,7 +41,7 @@ void out_constricted_zone(const Zone &zone)
         {
             if (start_points.find(edge_ts.first.from) != start_points.end())
             {
-                double t_min = edge_ts.second.min.getTsec(1), t_max = edge_ts.second.max.getTsec(1);
+                double t_min = edge_ts.second.min.get_sec(1), t_max = edge_ts.second.max.get_sec(1);
                 out << zone.checkPoints[edge_ts.first.there].name << safety_interval << flow_type <<
                     t_min << " " << round((1.0/3*t_min + 2.0/3*t_max)) << " " << t_max << endl;
             }
@@ -61,7 +61,7 @@ void out_constricted_zone(const Zone &zone)
             }
             if (!is_start_point)
             {
-                double t_min = edge_ts.second.min.getTsec(1), t_max = edge_ts.second.max.getTsec(1);
+                double t_min = edge_ts.second.min.get_sec(1), t_max = edge_ts.second.max.get_sec(1);
                 out << zone.checkPoints[edge_ts.first.from].name << " " <<
                     zone.checkPoints[edge_ts.first.there].name << " " <<
                     t_min << " " << round((1.0/3*t_min + 2.0/3*t_max)) << " " << t_max << endl;

@@ -13,6 +13,6 @@
 
 void
 Read_SchemesRegExp(const std::string &name_of_file, std::vector<CheckPoint> &checkPoints,
-                   std::vector<Scheme> &schemes, std::vector<StandardScheme> &standardSchemes);
+                   std::vector<Scheme> &schemes, std::vector<WaitingArea> &waitingAreas);
 
 #endif

@@ -63,7 +63,7 @@ Distance operator-(const Distance &a, const Distance &b)
 
 Distance operator*(const Time &t, const Velocity &v)
 	{
-		return Distance::createM(t.getTsec() * v.getVm_s());
+		return Distance::createM(t.get_sec()*v.getVm_s());
 	}
 
 Distance operator*(const Velocity &v, const Time &t)

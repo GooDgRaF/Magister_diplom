@@ -19,17 +19,21 @@ public:
     
     static constexpr double epsilon = 0.0001; //Точность сравнения
     
-    double getTsec() const;
+    double get_sec() const;
     
-    double getTsec(const double &round_to) const;
+    double get_sec(const double &round_to) const;
     
-    double getTmin() const;
+    double get_min() const;
     
-    double getTmin(const double &round_to) const;
+    double get_min(const double &round_to) const;
     
-    static Time createTsec(double sec);
+    static Time create_sec(double sec);
     
-    static Time createTmin(double min);
+    static Time create_min(double min);
+    
+    static Time create_hour(double hour);
+    
+    static Time create(double value, const std::string& mu);
     
     Time operator+() const;
     
@@ -48,12 +52,12 @@ public:
 class TS
 {
 public:
-    Time min{Time::createTsec(0)};
-    Time max{Time::createTsec(0)};
+    Time min{Time::create_sec(0)};
+    Time max{Time::create_sec(0)};
     
     
     TS(const double t_min, const double t_max) noexcept:
-            min(Time::createTsec(t_min)), max(Time::createTsec(t_max))
+            min(Time::create_sec(t_min)), max(Time::create_sec(t_max))
         {
             assert(t_min <= t_max);
         };

@@ -55,7 +55,7 @@ struct compLess
 {
     bool operator()(const Time &t0, const Time &t1) const
         {
-            return (std::abs(t0.getTsec() - t1.getTsec()) >= Time::epsilon) && (t0.getTsec() < t1.getTsec());
+            return (std::abs(t0.get_sec() - t1.get_sec()) >= Time::epsilon) && (t0.get_sec() < t1.get_sec());
         }
 };
 
@@ -63,7 +63,7 @@ struct compGreater
 {
     bool operator()(const Time &t0, const Time &t1) const
         {
-            return (std::abs(t0.getTsec() - t1.getTsec()) >= Time::epsilon) && (t0.getTsec() > t1.getTsec());
+            return (std::abs(t0.get_sec() - t1.get_sec()) >= Time::epsilon) && (t0.get_sec() > t1.get_sec());
         }
 };
 

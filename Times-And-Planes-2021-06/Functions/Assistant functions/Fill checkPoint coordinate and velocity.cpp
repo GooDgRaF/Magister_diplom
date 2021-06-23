@@ -4,6 +4,7 @@
 
 #include "Fill checkPoint coordinate and velocity.h"
 
+//Данные странные числа - сумма символов в ASCII
 enum MeasureUnits_Coordinate
 {
     meters = 109, //m

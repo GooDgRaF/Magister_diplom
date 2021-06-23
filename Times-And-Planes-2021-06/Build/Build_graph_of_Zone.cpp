@@ -9,24 +9,14 @@
 
 using namespace std;
 
-void Build_graph_of_Zone(Zone &zone){
-
-		for (auto &stScheme : zone.standardSchemes)
-		{
-            fill_StScheme(zone.checkPoints, stScheme);
-		}
-
-		for (const auto &scheme : zone.schemes) //Строим граф списками Следующий
-		{
-			/*Идём до size - 1, так как мы соединяем дугами со следующими точками,
-				 * то есть будет связь между предпоследней точкой и последней
-				 * и так как схемы соединяются в нахлёст, то есть конец одной схемы это начало другой, то все хорошо.
-				 */
-			for (int i = 0; i < scheme.path.size() - 1; i++)
-			{
-				zone.graph[scheme.path[i]].push_back(scheme.path[i + 1]); //Соединить текущую точку со следующей
-
-			}
-
-		}
-	}
+void Build_graph_of_Zone(Zone &zone)
+    {
+        for (const auto &scheme : zone.schemes) //Строим граф списками Следующий
+        {
+            assert(!scheme.path.empty()); //Пустая схема --- см как считываешь схемы!
+            for (int i = 0; i < scheme.path.size() - 1; i++)
+            {
+                zone.graph[scheme.path[i]].push_back(scheme.path[i + 1]); //Соединить текущую точку со следующей
+            }
+        }
+    }

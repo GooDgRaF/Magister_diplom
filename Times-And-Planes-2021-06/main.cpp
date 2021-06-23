@@ -10,9 +10,6 @@ using namespace std;
 
 int main()
     {
-        
-      
-        
         string nameOfPointsFile = "../Source information/Points/Test.txt";
         string nameOfSchemeFile = "../Source information/Schemes/Test.txt";//NameSt (St1)(2): St1 St2 St3 St4a
         string nameOfFlowsFile = "../Source information/Flows/Test.txt";
@@ -23,7 +20,7 @@ int main()
         
         Zone zone = create_zone(nameOfPointsFile, nameOfSchemeFile, nameOfFlowsFile);
 
-        zone.print_constricted_TS();
+//        zone.print_constricted_TS();
 
 
 //        for (auto &el :zone.flows)

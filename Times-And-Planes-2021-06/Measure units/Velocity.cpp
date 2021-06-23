@@ -44,7 +44,7 @@ Velocity Velocity::createVNM_h(double nm_h)
 
 Velocity operator/(const Distance &x, const Time &t)
 	{
-		return Velocity::createVm_s(x.getMs() / t.getTsec());
+		return Velocity::createVm_s(x.getMs() /t.get_sec());
 	}
 
 Velocity operator+(const Velocity &v, const Velocity &w)

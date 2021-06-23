@@ -39,8 +39,8 @@ struct StandardScheme
     TS line_forward_T{0,0};//Временной интервал, описывающий прохождение обратного плеча
 
 
-    Time Tmin = Time::createTsec(0); //Минимальное время прохода по стандартной схеме
-    Time Tmax = Time::createTsec(0); //Максимальное время прохода по стандартной схеме
+    Time Tmin = Time::create_sec(0); //Минимальное время прохода по стандартной схеме
+    Time Tmax = Time::create_sec(0); //Максимальное время прохода по стандартной схеме
     TS min_max_time{0, 0};
 
 };
@@ -48,7 +48,8 @@ struct StandardScheme
 struct WaitingArea
 {
     std::string name{};
-    int ID{0};
+    int entrance{-1};
+    int ID{-1};
     TS ts_min_max{0,0};
 };
 

@@ -21,7 +21,7 @@ Zone create_zone(std::string &path_checkPointsFile, std::string &path_SchemesFil
 		Read_CheckPointsRegExp(path_checkPointsFile, zone.checkPoints);
 		zone.graph.resize(zone.checkPoints.size());
 
-        Read_SchemesRegExp(path_SchemesFile, zone.checkPoints, zone.schemes, zone.standardSchemes);
+        Read_SchemesRegExp(path_SchemesFile, zone.checkPoints, zone.schemes, zone.waitingAreas);
 
         Read_FlowsRegExp(path_FlowsFile, zone.flows);
 		

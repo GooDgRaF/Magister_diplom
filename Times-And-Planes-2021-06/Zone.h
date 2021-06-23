@@ -38,6 +38,7 @@ struct Zone
     std::vector<CheckPoint> checkPoints;
     std::vector<Scheme> schemes;
     std::vector<Flow> flows;
+    std::vector<WaitingArea> waitingAreas;
     std::vector<StandardScheme> standardSchemes;
     
     int final_point{-1};
