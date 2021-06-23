@@ -23,12 +23,12 @@ int main()
 //        zone.print_constricted_TS();
 
 
-//        for (auto &el :zone.flows)
-//        {
-//            calc_TimeSegments(el,zone.checkPoints, zone.standardSchemes, el.path[1]);
-//        }
-//         zone.print_times();
-//        zone.print_not_merged_times();
+        for (auto &el :zone.flows)
+        {
+            calc_TimeSegments(el,zone.checkPoints, zone.waitingAreas);
+        }
+         zone.print_times();
+        zone.print_not_merged_times();
 
 
 

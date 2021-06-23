@@ -18,7 +18,7 @@ using namespace std;
 //По умолчанию, end_point = -1, то есть рассчёт происходит до точки с флагом LAND
 void
 calc_TimeSegments(Flow &flow, const vector<CheckPoint> &checkPoints,
-                  const vector<StandardScheme> &standardSchemes, int start_point, int end_point)
+                  const vector<WaitingArea> &waitingAreas, int start_point, int end_point)
     {
         if (end_point != -1)
         {
@@ -48,29 +48,38 @@ calc_TimeSegments(Flow &flow, const vector<CheckPoint> &checkPoints,
         assert(it_current_point <= find(flow.path.begin(), flow.path.end(), end_point)
                && "'end_point' appears before 'start_point'!");
         
+        try //Слить времена в начале
+        {
+            mergeTimes(flow.times.at(*it_current_point));
+        }
+        catch (out_of_range &er)
+        {
+            cerr << "No key: " << *it_current_point << " in flow.times" << endl;
+        }
+        
         while ((*it_current_point != end_point)
                &&
                checkPoints[*it_current_point].landing_flag != true)
         {
-            if (checkPointIDtoStSchemeID.count(*it_current_point) != 0) //Если точка является началом стандартной схемы
+            if (checkPointID_to_waID.count(*it_current_point) != 0) //Если точка является точкой входа на ЗО
             {
-                int scheme_ID = checkPointIDtoStSchemeID.at(*it_current_point);
-                
+                int waiting_areaID = checkPointID_to_waID.at(*it_current_point);
                 for (auto const &time_segment : flow.times.at(*it_current_point))
                 {
-                    for (int m = 1; m <= standardSchemes.at(scheme_ID).repeat; m++)
-                    {
-                        TS ts_m{time_segment + m*standardSchemes[scheme_ID].min_max_time};
-                        flow.times[*it_current_point].push_back(ts_m);
-                    }
+                    flow.times[*it_current_point].emplace_back(time_segment + waitingAreas[waiting_areaID].ts_min_max);
                 }
                 for (auto const &pair_ts_parent : flow.not_merged_times.at(*it_current_point))
                 {
-                    for (int m = 1; m <= standardSchemes[scheme_ID].repeat; ++m)
-                    {
-                        TS ts_m{pair_ts_parent.first + m*standardSchemes[scheme_ID].min_max_time};
-                        flow.not_merged_times[*it_current_point].push_back({ts_m, pair_ts_parent.second});
-                    }
+                    flow.not_merged_times[*it_current_point].emplace_back(
+                            pair_ts_parent.first + waitingAreas[waiting_areaID].ts_min_max, pair_ts_parent.second);
+                }
+                try //Слить времена после зоны ожидания
+                {
+                    mergeTimes(flow.times.at(*it_current_point));
+                }
+                catch (out_of_range &er)
+                {
+                    cerr << "No key: " << *it_current_point << " in flow.times" << endl;
                 }
             }
             
@@ -111,20 +120,18 @@ calc_TimeSegments(Flow &flow, const vector<CheckPoint> &checkPoints,
                     flow.not_merged_times[son].push_back({pair_ts_parent.first + son_time, *it_current_point});
                 }
             }
-            try
+            it_current_point++;//
+    
+    
+            try //Слить времена в следующей точке
             {
                 mergeTimes(flow.times.at(*it_current_point));
-            }
-            catch (runtime_error &er)
-            {
-                cerr << er.what() << " on " << checkPoints[*it_current_point].name << endl;
-                exit(-4);
             }
             catch (out_of_range &er)
             {
                 cerr << "No key: " << *it_current_point << " in flow.times" << endl;
             }
-            it_current_point++;
+            
         }
     }
 
@@ -147,7 +154,7 @@ void calc_TS_edges_of_constricted_zone(Zone &zone)
             {
                 int flowID = find_flowID(zone.flows, parent);
                 calc_TimeSegments(zone.flows[flowID],
-                                  zone.checkPoints, zone.standardSchemes, parent, son_parent.first);
+                                  zone.checkPoints, zone.waitingAreas, parent, son_parent.first);
                 zone.edge_ts.emplace(edge(parent, son_parent.first), zone.flows[flowID].times[son_parent.first].at(0)); //TODO А почему у точки слияния один интервал времени?
                 zone.flows[flowID].times.clear();
                 zone.flows[flowID].not_merged_times.clear();

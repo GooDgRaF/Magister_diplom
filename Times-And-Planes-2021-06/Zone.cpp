@@ -145,7 +145,7 @@ void Zone::print_not_merged_times()
                 cout << checkPoints[point_ID].name << " --> ";
                 for (auto &pair : flow.not_merged_times[point_ID])
                 {
-                    cout << "[" << pair.first << ", " << pair.second << "] ";
+                    cout << "[" << pair.first << ", " << ((pair.second != -1) ? checkPoints[pair.second].name : "NO_PARENT") << "] ";
                 }
                 cout << endl;
             }

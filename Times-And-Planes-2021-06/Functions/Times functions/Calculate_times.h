@@ -11,7 +11,7 @@
 
 void
 calc_TimeSegments(Flow &flow, const std::vector<CheckPoint> &checkPoints,
-                  const std::vector<StandardScheme> &standardSchemes, int start_point = -1, int end_point = -1);
+                  const std::vector<WaitingArea> &waitingAreas, int start_point = -1, int end_point = -1);
 
 void calc_TS_edges_of_constricted_zone(Zone &zone);
 
