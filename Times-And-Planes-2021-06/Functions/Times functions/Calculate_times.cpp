@@ -20,12 +20,6 @@ void
 calc_TimeSegments(Flow &flow, const vector<CheckPoint> &checkPoints,
                   const vector<WaitingArea> &waitingAreas, int start_point, int end_point)
     {
-        if (end_point != -1)
-        {
-            assert(find(flow.path.begin(), flow.path.end(), end_point) != flow.path.end() &&
-                   "'end_point' does not belong flow");
-        }
-        
         auto it_current_point = flow.path.cbegin();
         if (start_point == -1)
         {
@@ -43,6 +37,12 @@ calc_TimeSegments(Flow &flow, const vector<CheckPoint> &checkPoints,
                 flow.times[*it_current_point].push_back({0, 0});
                 flow.not_merged_times[*it_current_point].push_back({{0, 0}, NO_PARENT});
             }
+        }
+        
+        if (end_point != -1)
+        {
+            assert(flow.points.find(end_point) != flow.points.end()
+                   && "The 'end point' does not belong to the flow");
         }
         
         assert(it_current_point <= find(flow.path.begin(), flow.path.end(), end_point)
@@ -121,8 +121,8 @@ calc_TimeSegments(Flow &flow, const vector<CheckPoint> &checkPoints,
                 }
             }
             it_current_point++;//
-    
-    
+            
+            
             try //Слить времена в следующей точке
             {
                 mergeTimes(flow.times.at(*it_current_point));

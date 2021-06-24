@@ -10,23 +10,23 @@ using namespace std;
 
 int main()
     {
-//        string nameOfPointsFile = "../Source information/Points/Test.txt";
-//        string nameOfSchemeFile = "../Source information/Schemes/Test.txt";//NameSt (St1)(2): St1 St2 St3 St4a
-//        string nameOfFlowsFile = "../Source information/Flows/Test.txt";
+        string nameOfPointsFile = "../Source information/Points/Test.txt";
+        string nameOfSchemeFile = "../Source information/Schemes/Test.txt";//NameSt (St1)(2): St1 St2 St3 St4a
+        string nameOfFlowsFile = "../Source information/Flows/Test.txt";
 
-        string nameOfPointsFile = "../Source information/Points/KoltsovoStScheme.txt";
-        string nameOfSchemeFile = "../Source information/Schemes/Koltsovo.txt";
-        string nameOfFlowsFile = "../Source information/Flows/Koltsovo.txt";
+//        string nameOfPointsFile = "../Source information/Points/KoltsovoStScheme.txt";
+//        string nameOfSchemeFile = "../Source information/Schemes/Koltsovo.txt";
+//        string nameOfFlowsFile = "../Source information/Flows/Koltsovo.txt";
         
         Zone zone = create_zone(nameOfPointsFile, nameOfSchemeFile, nameOfFlowsFile);
-        out_constricted_zone(zone);
+//        out_constricted_zone(zone);
 
-//        zone.print_constricted_TS();
+       zone.print_constricted_TS();
 
 
-//        for (auto &el :zone.flows)
+//        for (auto &flow :zone.flows)
 //        {
-//            calc_TimeSegments(el,zone.checkPoints, zone.waitingAreas);
+//            calc_TimeSegments(flow, zone.checkPoints, zone.waitingAreas);
 //        }
 //         zone.print_times();
 //        zone.print_not_merged_times();
