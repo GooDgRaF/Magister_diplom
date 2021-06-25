@@ -5,7 +5,6 @@
 #include <iostream>
 #include <Functions/Geometric functions/Calculate standard scheme.h>
 #include "Build_graph_of_Zone.h"
-#include "Functions/Assistant functions/Find-InVector-bool.h"
 
 using namespace std;
 

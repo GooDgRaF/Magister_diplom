@@ -9,7 +9,7 @@ using namespace std;
 
 struct Trajectory
 {
-    map<int, vector<TS>> trajectory;
+    map<int, vector<TS>> trajectory;// ID в топологическом порядке  --> массив временнЫх интервалов
 };
 void backward_propagation(Zone &zone, int flow_ID, const TS &goal_ts, int start_point, int stop_backward_point)
     {

@@ -6,12 +6,11 @@
 #include <string>
 #include <regex>
 #include <fstream>
-#include <Functions/Assistant functions/Find-InVector-bool.h>
 #include <Fields of Zone/Waiting area.h>
 #include "Fields of Zone/Maps.h"
 #include "Fields of Zone/Scheme.h"
-#include "Functions/Assistant functions/OpenFile.h"
-#include "Functions/Assistant functions/Fill-scheme.h"
+#include "Functions/Assistant functions/Read and build.h"
+
 
 using namespace std;
 

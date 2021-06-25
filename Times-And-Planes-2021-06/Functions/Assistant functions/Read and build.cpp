@@ -1,8 +1,12 @@
 //
-// Created by Антон on 18.01.2021.
+// Created by Антон on 25.06.2021.
 //
 
-#include "Fill checkPoint coordinate and velocity.h"
+#include "Read and build.h"
+#include <iostream>
+#include <fstream>
+#include "Fields of Zone/Maps.h"
+#include <sstream>
 
 //Данные странные числа - сумма символов в ASCII
 enum MeasureUnits_Coordinate
@@ -18,8 +22,6 @@ enum MeasureUnits_Velocity
     kilometers_per_hour = 415, //km_h
     naval_miles_per_hour = 354 //NM_h
 };
-
-
 void fill_checkPoint_coordinate(Distance &coordinate_field, const int measure_unit, const double value)
     {
         switch (measure_unit)
@@ -53,3 +55,50 @@ void fill_checkPoint_velocity(Velocity &velocity_field, const int measure_unit, 
         }
 
     }
+
+void fillScheme(const std::__cxx11::string &str, std::vector<int> &field)
+	{
+		std::stringstream ss(str);
+		std::__cxx11::string token;
+		while (ss >> token)
+		{
+			try
+			{
+				field.push_back(pointNameToID.at(token));
+			}
+			catch (const std::out_of_range &ex)
+			{
+				throw std::runtime_error(token);
+			}
+		}
+	}
+
+void sum_char_mu(const std::string &str, std::vector<int> &v)
+    {
+        std::stringstream ss(str);
+        std::string token;
+        while (ss >> token)
+        {
+            int sum = 0;
+            for (auto c : token)
+            {
+                sum += c;
+            }
+            v.push_back(sum);
+        }
+    }
+
+void openFile(const std::__cxx11::string &name_of_file, std::ifstream &openfile)
+{
+    openfile.open(name_of_file);
+
+    if (openfile.is_open())
+    {
+        std::cout << "File " << name_of_file << " is open!" << std::endl;
+    }
+    else
+    {
+        std::cerr << "Error! Can't open " << name_of_file << std::endl;
+        exit(-1) ;
+    }
+}
