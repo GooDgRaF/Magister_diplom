@@ -8,7 +8,7 @@
 
 using namespace std;
 
-void out_constricted_zone(const Zone &zone)
+void out_constricted_zone(const Zone &zone) //TODO Согласовать с Арсением формат вывода несвязных множеств
     {
         ofstream out("Constricted zone.txt");
         
@@ -37,23 +37,23 @@ void out_constricted_zone(const Zone &zone)
             start_points.insert(item.start_point);
         }
         auto safety_interval = " 180 ", flow_type = "-1 ";
-        for (const auto &edge_ts : zone.edge_ts)
+        for (const auto &[edge, tss] : zone.edge_tss)
         {
-            if (start_points.find(edge_ts.first.from) != start_points.end())
+            if (start_points.find(edge.from) != start_points.end())
             {
-                double t_min = edge_ts.second.min.get_sec(1), t_max = edge_ts.second.max.get_sec(1);
-                out << zone.checkPoints[edge_ts.first.there].name << safety_interval << flow_type <<
+                double t_min = tss.front().min.get_sec(1), t_max = tss.back().max.get_sec(1);
+                out << zone.checkPoints[edge.there].name << safety_interval << flow_type <<
                     t_min << " " << round((1.0/3*t_min + 2.0/3*t_max)) << " " << t_max << endl;
             }
         }
         
         out << "@RouteStructure" << endl;
-        for (const auto &edge_ts : zone.edge_ts)
+        for (const auto &[edge, tss] : zone.edge_tss)
         {
             bool is_start_point{false};
             for (const auto &flow : zone.flows)
             {
-                if (edge_ts.first.from == flow.start_point)
+                if (edge.from == flow.start_point)
                 {
                     is_start_point = true;
                     break;
@@ -61,9 +61,9 @@ void out_constricted_zone(const Zone &zone)
             }
             if (!is_start_point)
             {
-                double t_min = edge_ts.second.min.get_sec(1), t_max = edge_ts.second.max.get_sec(1);
-                out << zone.checkPoints[edge_ts.first.from].name << " " <<
-                    zone.checkPoints[edge_ts.first.there].name << " " <<
+                double t_min = tss.front().min.get_sec(1), t_max = tss.back().max.get_sec(1);
+                out << zone.checkPoints[edge.from].name << " " <<
+                    zone.checkPoints[edge.there].name << " " <<
                     t_min << " " << round((1.0/3*t_min + 2.0/3*t_max)) << " " << t_max << endl;
             }
         }
@@ -73,13 +73,12 @@ int find_final_point_in_constricted_zone(const map<int, vector<int>> &constricte
     {
         set<int> ancestors_in_constr_zone{};
         set<int> sons_in_constr_zone{};
-        for (const auto &item : constricted_zone)
+        for (const auto &[son, ancestors] : constricted_zone)
         {
-            for (const auto &ancestor : item.second)
-            {
+            for (const auto &ancestor : ancestors)
                 ancestors_in_constr_zone.insert(ancestor);
-            }
-            sons_in_constr_zone.insert(item.first);
+            
+            sons_in_constr_zone.insert(son);
         }
         for (const auto &son : sons_in_constr_zone)//Ищем точку которая не является родителем никакой другой точки
         {

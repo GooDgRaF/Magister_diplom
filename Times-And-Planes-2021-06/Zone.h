@@ -34,7 +34,7 @@ struct Zone
 {
     std::vector<std::vector<int>> graph; //Граф зоны. Задан списками Следующий
     std::map<int, std::vector<int>> constricted_graph; //Сжатый граф зоны. Задан списками предшественников
-    std::map<edge, TS> edge_ts; //Ребро из constricted_graph --> временнОЙ интервал TODO почему интервал один???
+    std::map<edge, std::vector<TS>> edge_tss; //Ребро из constricted_graph --> временные интервалы
     std::vector<CheckPoint> checkPoints;
     std::vector<Scheme> schemes;
     std::vector<Flow> flows;

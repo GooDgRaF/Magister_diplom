@@ -5,7 +5,6 @@
 //#include <Fields of Zone/StandardScheme.h>
 //#include <Fields of Zone/Maps.h>
 //#include "Calc time segments for StScheme.h"
-//#include "Time segment from point to checkPoint.h"
 //#include "Plane enum.h"
 //#include "Calculate_times.h"
 //

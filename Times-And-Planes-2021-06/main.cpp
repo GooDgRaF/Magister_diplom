@@ -10,6 +10,7 @@ using namespace std;
 
 int main()
     {
+    
         string nameOfPointsFile = "../Source information/Points/Test.txt";
         string nameOfSchemeFile = "../Source information/Schemes/Test.txt";//NameSt (St1)(2): St1 St2 St3 St4a
         string nameOfFlowsFile = "../Source information/Flows/Test.txt";
@@ -22,14 +23,24 @@ int main()
 //        out_constricted_zone(zone);
 
        zone.print_constricted_TS();
+//       zone.print_times();
 
 
-//        for (auto &flow :zone.flows)
-//        {
-//            calc_TimeSegments(flow, zone.checkPoints, zone.waitingAreas);
-//        }
-//         zone.print_times();
-//        zone.print_not_merged_times();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

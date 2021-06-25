@@ -145,7 +145,8 @@ void Zone::print_not_merged_times()
                 cout << checkPoints[point_ID].name << " --> ";
                 for (auto &pair : flow.not_merged_times[point_ID])
                 {
-                    cout << "[" << pair.first << ", " << ((pair.second != -1) ? checkPoints[pair.second].name : "NO_PARENT") << "] ";
+                    cout << "[" << pair.first << ", "
+                         << ((pair.second != -1) ? checkPoints[pair.second].name : "NO_PARENT") << "] ";
                 }
                 cout << endl;
             }
@@ -172,10 +173,15 @@ void Zone::print_constricted_graph_of_parents()
 void Zone::print_constricted_TS()
     {
         cout << "Constricted: edge --> TS" << endl;
-        for (const auto &ed_ts : edge_ts)
+        for (const auto &ed_tss : edge_tss)
         {
-            cout << checkPoints[ed_ts.first.from].name << " --> " << checkPoints[ed_ts.first.there].name <<
-                 " : " << ed_ts.second << endl;
+            cout << checkPoints[ed_tss.first.from].name << " --> " << checkPoints[ed_tss.first.there].name <<
+                 " : ";
+            for (const auto &ts : ed_tss.second)
+            {
+                cout << ts;
+            }
+            cout << endl;
         }
         cout << endl;
     }

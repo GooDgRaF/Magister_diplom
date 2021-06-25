@@ -2,29 +2,25 @@
 // Created by Антон on 14.04.2020.
 //
 
+#include <Functions/Geometric functions/Distance between two Points.h>
 #include <Functions/Geometric functions/Arc length.h>
 #include "Calculate_times.h"
 #include "MergeTimes.h"
 #include "Fields of Zone/Maps.h"
-#include "Time segment from point to checkPoint.h"
 #include <iostream>
 #include "Plane enum.h"
 #include "cassert"
 
 using namespace std;
 
-
-//По умолчанию, start_point = -1, то есть рассчёт происходит с самой первой точки потока с нулевым интервалом времени
-//По умолчанию, end_point = -1, то есть рассчёт происходит до точки с флагом LAND
 void
-calc_TimeSegments(Flow &flow, const vector<CheckPoint> &checkPoints,
-                  const vector<WaitingArea> &waitingAreas, int start_point, int end_point)
+calc_TimeSegments(const Flow &flow, const std::vector<CheckPoint> &checkPoints, const std::vector<WaitingArea> &waitingAreas, std::map<int, std::vector<TS>> &times, std::map<int, std::vector<std::pair<TS, int>>> &not_merged_times, int start_point, int end_point)
     {
         auto it_current_point = flow.path.cbegin();
         if (start_point == -1)
         {
-            flow.times[flow.start_point].push_back({0, 0}); //Выставляем начальной точке потока времена по нулям
-            flow.not_merged_times[flow.start_point].push_back({{0, 0}, NO_PARENT});
+            times[flow.start_point].push_back({0, 0}); //Выставляем начальной точке потока времена по нулям
+            not_merged_times[flow.start_point].push_back({{0, 0}, NO_PARENT});
         }
         else
         {
@@ -32,10 +28,10 @@ calc_TimeSegments(Flow &flow, const vector<CheckPoint> &checkPoints,
             assert(it != flow.path.end() && "'start_point' does not belong flow");
             it_current_point = it;
             
-            if (flow.times.empty()) //Если нет начальных интервалов, то выставить по нулям
+            if (times.empty()) //Если нет начальных интервалов, то выставить по нулям
             {
-                flow.times[*it_current_point].push_back({0, 0});
-                flow.not_merged_times[*it_current_point].push_back({{0, 0}, NO_PARENT});
+                times[*it_current_point].push_back({0, 0});
+                not_merged_times[*it_current_point].push_back({{0, 0}, NO_PARENT});
             }
         }
         
@@ -50,11 +46,11 @@ calc_TimeSegments(Flow &flow, const vector<CheckPoint> &checkPoints,
         
         try //Слить времена в начале
         {
-            mergeTimes(flow.times.at(*it_current_point));
+            mergeTimes(times.at(*it_current_point));
         }
         catch (out_of_range &er)
         {
-            cerr << "No key: " << *it_current_point << " in flow.times" << endl;
+            cerr << "No key: " << *it_current_point << " in times" << endl;
         }
         
         while ((*it_current_point != end_point)
@@ -64,26 +60,26 @@ calc_TimeSegments(Flow &flow, const vector<CheckPoint> &checkPoints,
             if (checkPointID_to_waID.count(*it_current_point) != 0) //Если точка является точкой входа на ЗО
             {
                 int waiting_areaID = checkPointID_to_waID.at(*it_current_point);
-                for (auto const &time_segment : flow.times.at(*it_current_point))
+                for (const auto &ts : times.at(*it_current_point))
                 {
-                    flow.times[*it_current_point].emplace_back(time_segment + waitingAreas[waiting_areaID].ts_min_max);
+                    times[*it_current_point].emplace_back(ts + waitingAreas[waiting_areaID].ts_min_max);
                 }
-                for (auto const &pair_ts_parent : flow.not_merged_times.at(*it_current_point))
+                for (const auto &[ts, parent] : not_merged_times.at(*it_current_point))
                 {
-                    flow.not_merged_times[*it_current_point].emplace_back(
-                            pair_ts_parent.first + waitingAreas[waiting_areaID].ts_min_max, pair_ts_parent.second);
+                    not_merged_times[*it_current_point].emplace_back(
+                            ts + waitingAreas[waiting_areaID].ts_min_max, parent);
                 }
                 try //Слить времена после зоны ожидания
                 {
-                    mergeTimes(flow.times.at(*it_current_point));
+                    mergeTimes(times.at(*it_current_point));
                 }
                 catch (out_of_range &er)
                 {
-                    cerr << "No key: " << *it_current_point << " in flow.times" << endl;
+                    cerr << "No key: " << *it_current_point << " in times" << endl;
                 }
             }
             
-            for (auto const son : flow.graph_of_descendants[*it_current_point]) //Заполняем времена линейных участков
+            for (auto const son : flow.graph_of_descendants.at(*it_current_point)) //Заполняем времена линейных участков
             {
                 TS son_time = checkPoint_checkPoint_Time(checkPoints[*it_current_point], checkPoints[son]);
                 pair<int, int> edge_ID_ID = {*it_current_point, son};
@@ -97,39 +93,37 @@ calc_TimeSegments(Flow &flow, const vector<CheckPoint> &checkPoints,
                                 son_time.max +
                                 checkPoint_checkPoint_Time(checkPoints[son], checkPoints[str_point]).max};
                         
-                        for (auto const &time_segment : flow.times[*it_current_point])
+                        for (auto const &time_segment : times[*it_current_point])
                         {
-                            flow.times[str_point].push_back({time_segment + str_time});
+                            times[str_point].push_back({time_segment + str_time});
                         }
-                        for (auto const &pair_ts_parent : flow.not_merged_times[*it_current_point])
+                        for (auto const &[ts, parent] : not_merged_times[*it_current_point])
                         {
-                            flow.not_merged_times[str_point].push_back({pair_ts_parent.first + str_time,
-                                                                        *it_current_point});
+                            not_merged_times[str_point].push_back({ts + str_time, *it_current_point});
                         }
-                        
                     }
                 }
                 
                 
-                for (auto const &time_segment : flow.times[*it_current_point])
+                for (auto const &time_segment : times[*it_current_point])
                 {
-                    flow.times[son].push_back(time_segment + son_time);
+                    times[son].push_back(time_segment + son_time);
                 }
-                for (auto const &pair_ts_parent : flow.not_merged_times[*it_current_point])
+                for (auto const &[ts, parent] : not_merged_times[*it_current_point])
                 {
-                    flow.not_merged_times[son].push_back({pair_ts_parent.first + son_time, *it_current_point});
+                    not_merged_times[son].push_back({ts + son_time, *it_current_point});
                 }
             }
-            it_current_point++;//
+            it_current_point++;
             
             
             try //Слить времена в следующей точке
             {
-                mergeTimes(flow.times.at(*it_current_point));
+                mergeTimes(times.at(*it_current_point));
             }
             catch (out_of_range &er)
             {
-                cerr << "No key: " << *it_current_point << " in flow.times" << endl;
+                cerr << "No key: " << *it_current_point << " in times" << endl;
             }
             
         }
@@ -148,19 +142,19 @@ int find_flowID(const vector<Flow> &flows, int point)
 
 void calc_TS_edges_of_constricted_zone(Zone &zone)
     {
-        for (const auto &son_parent : zone.constricted_graph)
+        for (const auto &[son, parents] : zone.constricted_graph)
         {
-            for (const auto &parent : son_parent.second)
+            for (const auto &parent : parents)
             {
-                int flowID = find_flowID(zone.flows, parent);
-                calc_TimeSegments(zone.flows[flowID],
-                                  zone.checkPoints, zone.waitingAreas, parent, son_parent.first);
-                zone.edge_ts.emplace(edge(parent, son_parent.first), zone.flows[flowID].times[son_parent.first].at(0)); //TODO А почему у точки слияния один интервал времени?
-                zone.flows[flowID].times.clear();
-                zone.flows[flowID].not_merged_times.clear();
+                map<int, vector<TS>> times{};
+                map<int, vector<std::pair<TS, int>>> unused;
+                int id = find_flowID(zone.flows, parent);
+                calc_TimeSegments(zone.flows[id], zone.checkPoints, zone.waitingAreas,
+                                  times, unused, parent, son);
+                
+                zone.edge_tss.emplace(edge(parent, son), times[son]);
             }
         }
-        
     }
 
 
@@ -189,4 +183,22 @@ TS semicircle_Time(const CheckPoint &start, const CheckPoint &second)
         
         
         return {T_min, T_max};
+    }
+
+TS plane_checkPoint_Time(const PlanePoint &plane, const CheckPoint &point_there)
+    {
+        Distance d = distancePoint(plane, point_there);
+        Time T_initial_min = 2 * d / (plane.V + point_there.Vmax);
+        Time T_initial_max = 2 * d / (plane.V + point_there.Vmin);
+
+        return {T_initial_min, T_initial_max};
+    }
+
+TS checkPoint_checkPoint_Time(const CheckPoint &point_from, const CheckPoint &point_there)
+    {
+        Distance d = distancePoint(point_from, point_there);
+        Time T_initial_min = 2 * d / (point_from.Vmax + point_there.Vmax);
+        Time T_initial_max = 2 * d / (point_from.Vmin + point_there.Vmin);
+
+        return {T_initial_min, T_initial_max};
     }

@@ -7,10 +7,13 @@
 
 using namespace std;
 
+struct Trajectory
+{
+    map<int, vector<TS>> trajectory;
+};
 void backward_propagation(Zone &zone, int flow_ID, const TS &goal_ts, int start_point, int stop_backward_point)
     {
         auto &flow = zone.flows[flow_ID];
-        
         if (start_point == -1)
             start_point = zone.final_point;
         else
@@ -22,7 +25,7 @@ void backward_propagation(Zone &zone, int flow_ID, const TS &goal_ts, int start_
             assert(flow.points.find(stop_backward_point) != flow.points.end()
                    && "The 'stop backward point' of the backward propagation does not belong to the flow");
         
-        
+        vector<Trajectory> trajectorys{};
         
         
     }
