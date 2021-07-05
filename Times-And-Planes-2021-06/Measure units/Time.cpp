@@ -3,6 +3,7 @@
 //
 
 #include <cmath>
+#include <Functions/Times functions/MergeTimes.h>
 #include "Time.h"
 #include "Distance.h"
 #include "Velocity.h"
@@ -76,7 +77,7 @@ bool operator<=(const Time &t0, const Time &t1)
         return t0 < t1 || t0 == t1;
     }
 
-Time Time::create(double value, const std::string &mu)
+Time Time::create(double value, const std::string_view mu)
     {
         if (mu == "s")
         { return create_sec(value); }
@@ -84,8 +85,9 @@ Time Time::create(double value, const std::string &mu)
         { return create_min(value); }
         if (mu == "h")
         { return create_hour(value); }
-        else std::cerr << "Was created a nonvalid object!"
-                          " MU must be: 's' or 'min' or 'h'. But MU was: " << mu << std::endl;
+        else
+            std::cerr << "Was created a nonvalid object!"
+                         " MU must be: 's' or 'min' or 'h'. But MU was: " << mu << std::endl;
         return create_sec(-1);
     }
 
@@ -147,7 +149,7 @@ std::ostream &operator<<(std::ostream &out, const TS &ts)
 
 TS intersection_TS(const TS &ab, const TS &cd)
     {
-        TS zero_TS{0, 0};
+        TS non_intrs_TS{-1, -1};// Не пересекаются
         double a = ab.min.get_sec(), b = ab.max.get_sec(), c = cd.min.get_sec(), d = cd.max.get_sec();
         
         if (((c < a) && (a <= d) && (d < b)))//c < a <= d < b
@@ -158,7 +160,32 @@ TS intersection_TS(const TS &ab, const TS &cd)
             return {Time::create_sec(c), Time::create_sec(d)};
         if (((c <= a) && (a <= b) && (b <= d))) //c <= a <= b <= d
             return {Time::create_sec(a), Time::create_sec(b)};
-        return zero_TS;
+        return non_intrs_TS;
+    }
+
+std::vector<TS> intersection_vTS(const std::vector<TS> &v1, const std::vector<TS> &v2)
+    {
+        std::vector<TS> res_times{};
+        for (const auto &ts1 : v1)
+        {
+            for (const auto &ts2 : v2)
+            {
+                auto el = intersection_TS(ts1, ts2);
+                if (!isIntersection_flag(el))
+                    res_times.emplace_back(el);
+            }
+        }
+        mergeTimes(res_times);
+        return res_times;
+    }
+
+bool isZero(const TS &ts)
+    {
+        return ((ts.min == Time::create_sec(0)) && (ts.max == Time::create_sec(0)));
+    }
+
+bool isIntersection_flag(const TS &ts)
+    {
+        return ((ts.min == Time::create_sec(-1)) && (ts.max == Time::create_sec(-1)));
     }
     
-

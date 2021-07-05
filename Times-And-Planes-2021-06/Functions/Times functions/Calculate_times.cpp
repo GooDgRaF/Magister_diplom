@@ -14,7 +14,9 @@
 using namespace std;
 
 void
-calc_TimeSegments(const Flow &flow, const std::vector<CheckPoint> &checkPoints, const std::vector<WaitingArea> &waitingAreas, std::map<int, std::vector<TS>> &times, std::map<int, std::vector<std::pair<TS, int>>> &not_merged_times, int start_point, int end_point)
+calc_TimeSegments(const Flow &flow, const std::vector<CheckPoint> &checkPoints, const std::vector<WaitingArea> &waitingAreas,
+                  std::map<int, std::vector<TS>> &times, std::map<int, std::vector<std::pair<TS, int>>> &not_merged_times,
+                  int start_point, int end_point)
     {
         auto it_current_point = flow.path.cbegin();
         if (start_point == -1)
@@ -82,10 +84,10 @@ calc_TimeSegments(const Flow &flow, const std::vector<CheckPoint> &checkPoints, 
             for (auto const son : flow.graph_of_descendants.at(*it_current_point)) //Заполняем времена линейных участков
             {
                 TS son_time = checkPoint_checkPoint_Time(checkPoints[*it_current_point], checkPoints[son]);
-                pair<int, int> edge_ID_ID = {*it_current_point, son};
-                if (edgeTo_ends_str_ID.find(edge_ID_ID) != edgeTo_ends_str_ID.end()) // участок спрямления
+                edge cur_son = {*it_current_point, son};
+                if (edgeTo_strEnds.find(cur_son) != edgeTo_strEnds.end()) // участок спрямления
                 {
-                    for (auto const &str_point : edgeTo_ends_str_ID[edge_ID_ID]) // для всех точек спрямления
+                    for (auto const &str_point : edgeTo_strEnds[cur_son]) // для всех точек спрямления
                     {
                         TS str_time = {
                                 checkPoint_checkPoint_Time(checkPoints[*it_current_point], checkPoints[str_point]).min //мин время - по кратчайшей наибыстрейше

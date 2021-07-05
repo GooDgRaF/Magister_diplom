@@ -134,11 +134,18 @@ Read_SchemesRegExp(const string &name_of_file, vector<CheckPoint> &checkPoints, 
                         {
                             for (int h = 0; h < schemes[i].straighteningFrom.size() - 1; h++)
                             {
-                                edgeTo_ends_str_ID[
+                                edgeTo_strEnds[
                                         {schemes[i].straighteningFrom[h],
                                          schemes[i].straighteningFrom[h + 1]}] = schemes[i].straighteningWhere;
                             }
+                            //Заполним отображение точка --> спрямление с каких точек
+                            for (int j = 0; j < schemes[i].straighteningWhere.size(); ++j)
+                            {
+                                pointTo_strStarts[schemes[i].straighteningWhere[j]] = schemes[i].straighteningFrom;
+                            }
                         }
+                        
+                        
                     }
                 }
                 catch (const runtime_error &ex) //Ловим ошибку о не обнаружении точки из схемы среди точек из checkPoints

@@ -28,7 +28,7 @@ void build_constricted_Zone(Zone &zone)
         
         map<int, vector<int>> constricted_zone{};// ID точки --> стартовые точки потоков, которые слились в данной точке
         
-        
+        //TODO сделать проверку на  met_before до цикла, то есть если сразу же на входе есть вложенные потоки
         while ((count(is_merged_flows.begin(), is_merged_flows.end(), false)) >= 2)
         {
             for (const auto &flow : zone.flows)

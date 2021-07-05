@@ -7,7 +7,7 @@
 
 #include <Zone.h>
 
-void backward_propagation(Zone &zone, int flow_ID, const TS &goal_ts, int start_point = -1, int stop_backward_point = -1);
+Trajectory backward_propagation(Zone &zone, int flow_ID, const Time &goal, int start_point = -1, int stop_backward_point = -1);
 
 
 #endif //TIMES_AND_PLANES_2021_06_BACKWARD_PROPAGATION_H

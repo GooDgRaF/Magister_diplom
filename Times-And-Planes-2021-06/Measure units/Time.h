@@ -5,6 +5,7 @@
 #ifndef TIMES_AND_PLANES_TIME_H
 #define TIMES_AND_PLANES_TIME_H
 
+#include <vector>
 #include "iostream"
 #include "cassert"
 
@@ -33,7 +34,7 @@ public:
     
     static Time create_hour(double hour);
     
-    static Time create(double value, const std::string& mu);
+    static Time create(double value, std::string_view mu);
     
     Time operator+() const;
     
@@ -56,8 +57,8 @@ public:
     Time max{Time::create_sec(0)};
     
     
-    TS(const double t_min, const double t_max) noexcept:
-            min(Time::create_sec(t_min)), max(Time::create_sec(t_max))
+    TS(const double t_min, const double t_max, const std::string_view mu = "s") noexcept:
+            min(Time::create(t_min, mu)), max(Time::create(t_max, mu))
         {
             assert(t_min <= t_max);
         };
@@ -82,7 +83,12 @@ public:
     
     
 };
+bool isZero(const TS &ts);
+
+bool isIntersection_flag(const TS &ts);// true - если пересечения не было
 
 TS intersection_TS(const TS &ab, const TS &cd);
+
+std::vector<TS> intersection_vTS(const std::vector<TS> &v1, const std::vector<TS> &v2);
 
 #endif //TIMES_AND_PLANES_TIME_H

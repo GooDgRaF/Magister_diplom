@@ -18,10 +18,10 @@
 
 struct edge
 {
-    size_t from;
-    size_t there;
+    int from;
+    int there;
     
-    edge(const size_t from, const size_t there) : from{from}, there{there}
+    edge(const int from, const int there) : from{from}, there{there}
         {};
     
     friend bool operator<(const edge &ed1, const edge &ed2)
@@ -30,18 +30,52 @@ struct edge
         };
 };
 
+struct Trajectory
+{
+private:
+    std::map<int, std::vector<TS>> trajectory;// ID в топологическом порядке  --> массив временнЫх интервалов
+
+public:
+    Trajectory(const int i, const std::vector<TS> &times) : trajectory{}
+        {
+            trajectory.emplace(i, times);
+        };
+    
+    Trajectory(): trajectory{}
+        {};
+    
+    void emplace(const int i, const std::vector<TS> &times)
+        {
+            trajectory.emplace(i, times);
+        }
+    
+    void erase(const int i)
+        {
+            trajectory.erase(i);
+        }
+    
+    std::vector<TS>& at(const int i)
+        {
+            return trajectory.at(i);
+        }
+};
+
 struct Zone
 {
+    std::vector<CheckPoint> checkPoints;
+    std::vector<Scheme> schemes;
+    std::vector<WaitingArea> waitingAreas;
+    std::vector<Flow> flows;
+    
     std::vector<std::vector<int>> graph; //Граф зоны. Задан списками Следующий
     std::map<int, std::vector<int>> constricted_graph; //Сжатый граф зоны. Задан списками предшественников
     std::map<edge, std::vector<TS>> edge_tss; //Ребро из constricted_graph --> временные интервалы
-    std::vector<CheckPoint> checkPoints;
-    std::vector<Scheme> schemes;
-    std::vector<Flow> flows;
-    std::vector<WaitingArea> waitingAreas;
+    
+    
     std::vector<StandardScheme> standardSchemes;
     
     int final_point{-1};
+    
     
     void print_flows_keys();
     

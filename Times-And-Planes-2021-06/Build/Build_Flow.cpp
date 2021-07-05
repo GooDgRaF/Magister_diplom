@@ -4,6 +4,7 @@
 
 #include <stack>
 #include <iostream>
+#include "Fields of Zone/Maps.h"
 #include "Zone.h"
 
 using namespace std;
@@ -33,10 +34,22 @@ void Build_Flow(Zone &zone, Flow &flow)
 			
 		}
 		
-		for (auto &pair : flow.graph_of_descendants) //Собираем граф списками Предшественник
+		for (auto &[parent, sons] : flow.graph_of_descendants) //Собираем граф списками Предшественник
 		{
-			for (auto el : pair.second)
-				flow.graph_of_ancestors[el].push_back(pair.first);
+            for (auto son : sons)
+            {
+                flow.graph_of_ancestors[son].push_back(parent);
+                if (pointTo_strStarts.find(son) != pointTo_strStarts.end())
+                {
+                    for (const auto &strStart : pointTo_strStarts.at(son))
+                    {
+                        if (parent != strStart)//Родителя уже добавили
+                        {
+                            flow.graph_of_ancestors[son].push_back(strStart);
+                        }
+                    }
+                }
+            }
 		}
 		
 		flow.points.insert(flow.start_point); //Собираем точки потока
