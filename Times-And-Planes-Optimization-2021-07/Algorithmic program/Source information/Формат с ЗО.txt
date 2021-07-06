@@ -49,7 +49,7 @@ Str(Название1 Название2  ...  НазваниеН) - Возмож
 NameA (DIPOP)(EE500 KOLOS): Str(KOLOS) DIPOP EE500 /Str
 NameB (KOLOS)(BEKAR) : KOLOS VALET Str(RODEL) EE020 EE021 EE022 EE023 EE024 EE025 /Str RODEL BEKAR
 NameС (RODEL)(RW25R): RODEL BEKAR KVOTA EE252 EE253 RW25R
-Name_waiting_area (GALEB): 2min 0.3h
+Name waiting area (GALEB): 2min 0.3h
 
 Пример файла схем:
 1
