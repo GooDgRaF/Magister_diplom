@@ -1,17 +1,22 @@
-#include <Algorithmic program/Fields of Zone/Maps.h>
-#include <Algorithmic program/Functions/Geometric functions/Distance between two Points.h>
-#include <Algorithmic program/Functions/Calculate times new plane.h>
-#include <Algorithmic program/Functions/Times functions/Calculate_times.h>
-#include <Algorithmic program/Functions/Output functions/Constricted zone.h>
-#include <Algorithmic program/Functions/Times functions/Backward propagation.h>
-#include "Algorithmic program/Build/Create_Zone.h"
+//#include <Algorithmic program/Fields of Zone/Maps.h>
+//#include <Algorithmic program/Functions/Geometric functions/Distance between two Points.h>
+//#include <Algorithmic program/Functions/Calculate times new plane.h>
+//#include <Algorithmic program/Functions/Times functions/Calculate_times.h>
+//#include <Algorithmic program/Functions/Output functions/Constricted zone.h>
+//#include <Algorithmic program/Functions/Times functions/Backward propagation.h>
+//#include "Algorithmic program/Build/Create_Zone.h"
+#include "iostream"
+#include "Optimization program/Measure units/Measure units.h"
+
+
 
 using namespace std;
 
 int main()
     {
-    
-    
+        Distance a{30,"m"}, b{9,"m"};
+        cout << (a-b).meter;
+        
     
     
     
