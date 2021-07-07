@@ -8,11 +8,11 @@ include_directories(.)
 add_executable(Times-And-Planes-Optimization-2021-07
         main.cpp
 
-        "Optimization program/Zone.cpp" "Optimization program/Zone.h" "Optimization program/Fields of Zone/Point.h"
+        "Optimization program/Zone.cpp" "Optimization program/Zone.h" "Optimization program/Fields of Zone/Fields of Zone.h"
         "Optimization program/Measure units/Measure units.h" "Optimization program/Measure units/Measure units.cpp"
 
 
-        )
+        "Optimization program/Read/Read points.cpp" "Optimization program/Read/Read points.h" "Optimization program/Read/Assistant.h" "Optimization program/Errors/Errors.h")
 
 
 target_include_directories(Times-And-Planes-Optimization-2021-07 PRIVATE "/opt/gurobi911/include")

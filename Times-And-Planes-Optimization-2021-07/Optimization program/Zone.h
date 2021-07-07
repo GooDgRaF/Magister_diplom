@@ -2,14 +2,20 @@
 // Created by Антон on 07.07.2021.
 //
 
-#ifndef TIMES_AND_PLANES_OPTIMIZATION_2021_07_1_H
-#define TIMES_AND_PLANES_OPTIMIZATION_2021_07_1_H
+#ifndef TIMES_AND_PLANES_OPTIMIZATION_2021_07_ZONE_H
+#define TIMES_AND_PLANES_OPTIMIZATION_2021_07_ZONE_H
 #include <vector>
 #include <set>
+#include <map>
 #include <algorithm>
+#include <Optimization program/Fields of Zone/Fields of Zone.h>
+
+class CheckPoint;
+
 struct Zone
 {
-//    std::vector <CheckPoint> checkPoints;
+    std::vector<CheckPoint> checkPoints{};
+    std::map<std::string, int> pointName_to_ID{};
 //    std::vector <Scheme> schemes;
 //    std::vector <WaitingArea> waitingAreas;
 //    std::vector <Flow> flows;
@@ -22,5 +28,11 @@ struct Zone
 //    std::vector <StandardScheme> standardSchemes;
     
     int final_point{-1};
+    
+    static Zone& get_instance();
+private:
+    Zone() = default;
 };
-#endif //TIMES_AND_PLANES_OPTIMIZATION_2021_07_1_H
+
+extern Zone zone;
+#endif //TIMES_AND_PLANES_OPTIMIZATION_2021_07_ZONE_H

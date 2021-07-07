@@ -1,27 +1,28 @@
-//#include <Algorithmic program/Fields of Zone/Maps.h>
-//#include <Algorithmic program/Functions/Geometric functions/Distance between two Points.h>
-//#include <Algorithmic program/Functions/Calculate times new plane.h>
-//#include <Algorithmic program/Functions/Times functions/Calculate_times.h>
-//#include <Algorithmic program/Functions/Output functions/Constricted zone.h>
-//#include <Algorithmic program/Functions/Times functions/Backward propagation.h>
-//#include "Algorithmic program/Build/Create_Zone.h"
 #include "iostream"
 #include "Optimization program/Measure units/Measure units.h"
-
-
+#include "Optimization program/Zone.h"
+#include "Optimization program/Read/Read points.h"
 
 using namespace std;
 
 int main()
     {
-        Distance a{30,"m"}, b{9,"m"};
-        cout << (a-b).meter;
+//        Distance a{30,"m"}, b{9,"m"};
+//        cout << (a-b).meter << endl;
         
-    
-    
-    
-    
-    
+//        Velocity v{10,"m_s"}, va{20,"m_s"};
+//        cout << (v+va).meters_per_second << endl;
+
+//        string nameOfPointsFile = "../Optimization program/Source information/Points/Test.txt";
+//        string nameOfSchemeFile = "../Optimization program/Source information/Schemes/Test.txt";
+//        string nameOfFlowsFile = "../Optimization program/Source information/Flows/Test.txt";
+        
+        string nameOfPointsFile = "../Optimization program/Source information/Points/Koltsovo.txt";
+        string nameOfSchemeFile = "../Optimization program/Source information/Schemes/Koltsovo.txt";
+        string nameOfFlowsFile = "../Optimization program/Source information/Flows/Koltsovo.txt";
+
+        read_CheckPoints(nameOfPointsFile);
+    zone;
     
     
     
