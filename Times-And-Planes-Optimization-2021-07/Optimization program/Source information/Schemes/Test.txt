@@ -1,0 +1,3 @@
+P0: [O]Str(P0) P0 P0 /Str
+P0 : P0 P0 [F]Str( P0 P0 ) P0 P0 P0/Str P0 P0
+P0: P0 P0 P0 P0 P0 P0

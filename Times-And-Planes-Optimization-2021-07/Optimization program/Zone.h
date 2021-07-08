@@ -16,7 +16,7 @@ struct Zone
 {
     std::vector<CheckPoint> checkPoints{};
     std::map<std::string, int> pointName_to_ID{};
-//    std::vector <Scheme> schemes;
+    std::vector <Scheme> schemes;
 //    std::vector <WaitingArea> waitingAreas;
 //    std::vector <Flow> flows;
     

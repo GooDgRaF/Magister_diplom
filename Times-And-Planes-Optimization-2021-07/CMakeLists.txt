@@ -12,7 +12,7 @@ add_executable(Times-And-Planes-Optimization-2021-07
         "Optimization program/Measure units/Measure units.h" "Optimization program/Measure units/Measure units.cpp"
 
 
-        "Optimization program/Read/Read points.cpp" "Optimization program/Read/Read points.h" "Optimization program/Read/Assistant.h" "Optimization program/Errors/Errors.h")
+        "Optimization program/Read/Read.cpp" "Optimization program/Read/Read.h" "Optimization program/Read/Assistant.h" "Optimization program/Errors/Errors.h")
 
 
 target_include_directories(Times-And-Planes-Optimization-2021-07 PRIVATE "/opt/gurobi911/include")

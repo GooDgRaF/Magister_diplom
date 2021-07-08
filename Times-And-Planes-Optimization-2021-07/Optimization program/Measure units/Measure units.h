@@ -8,10 +8,10 @@
 #include "string_view"
 #include "cassert"
 
-struct Distance
+struct Coordinate
 {
     double meter{0}; //В метрах
-    Distance(const double value, const std::string_view mu = "m") noexcept
+    Coordinate(const double value, const std::string_view mu = "m") noexcept
         {
             if (mu == "m")
                 meter = value;
