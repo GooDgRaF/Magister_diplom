@@ -139,21 +139,20 @@ void read_schemes(string_view path)
          * Пояснение к регулярому выражению:
          * Всего 6 групп захвата, согласно формату:
          *
-         * NameP: P0 P1 ... [type_of_str]Str(F0 F1 ...) T0 T1 ... /Str L0 L1 ...
+         * P0 P1 ... [type]StrFrom(F0 F1 ...) StrTo(T0 T1 ...) K0 K1 ...
          *
-         * 1) Название точки начала схемы [NameP]
-         * 2) Точки предшествующие спрямлению [P0 P1 ...]
-         * 3) Тип спрямления [type_of_str]: F(an) - веер, T(rombone) - полутромбон, O(uter) - внешнее, B(elong) - конечная(ые) точки спрямления принадлежат схеме
-         * 4) Точки на которые можно спрямляться [F0 F1 ...]
-         * 5) Точки откуда можно спрямляться [T0 T1 ...]
-         * 6) Точки после спрямления [L0 L1 ...]
+         * 1) Точки предшествующие спрямлению [P0 P1 ...]
+         * 2) Тип спрямления [type]: F(an) - веер, T(rombone) - полутромбон, O(uter) - внешнее, B(elong) - конечная(ые) точки спрямления принадлежат схеме
+         * 3) Точки откуда можно спрямляться [F0 F1 ...]
+         * 4) Точки на которые можно спрямляться [T0 T1 ...]
+         * 5) Точки после спрямления [K0 K1 ...]
          *
-         * Если спрямления нет, то группы 3,4,5,6 - пустые
+         * Если спрямления нет, то группы 2,3,4,5 - пустые
          */
         
         string line{};
         cmatch res{};
-        regex regular(R"((\w+)\s*:([\w\s]*)(?:\[(F|T|O|B)\]Str\(([\w\s]+)\)([\w\s]+)\/Str)?([\w\s]*))");
+        regex regular(R"(([\w\s]*)(?:\[(F|T|O|B)\]StrFrom\(([\w\s]+)\)\s*StrTo\(([\w\s]+)\))?([\w\s]*))");
         
         for (int i = 0; i < zone.schemes.size(); ++i)
         {
@@ -166,23 +165,16 @@ void read_schemes(string_view path)
             
             auto &scheme = zone.schemes[i];
             scheme.ID = i;
-            if (auto str_type = string(res[3]); !str_type.empty())
+            if (auto str_type = string(res[2]); !str_type.empty())
                 scheme.type = str_type;
             try
             {
-                try
-                { scheme.start_point = zone.pointName_to_ID.at(string(res[1])); }
-                catch (const out_of_range &ex)
-                {
-                    throw runtime_error(string(res[1]));
-                }
-                
+                fill_scheme_field(res[3], scheme.straighteningFrom);
                 fill_scheme_field(res[4], scheme.straighteningTo);
-                fill_scheme_field(res[5], scheme.straighteningFrom);
                 
-                fill_scheme_field(res[2], scheme.path);
+                fill_scheme_field(res[1], scheme.path);
+                fill_scheme_field(res[3], scheme.path);
                 fill_scheme_field(res[5], scheme.path);
-                fill_scheme_field(res[6], scheme.path);
             }
             catch (const runtime_error &ex) //Ловим ошибку о не обнаружении точки из схемы среди точек из checkPoints
             {
