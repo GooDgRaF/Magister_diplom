@@ -68,29 +68,29 @@ private:
     static constexpr double m_s2km_h = 3.6;
     static constexpr double m_s2NM_h = 1.94;
 };
-//
-//struct Time
-//{
-//    double time_sec; //В секундах
-//
-//    Time(const double value, const std::string_view mu = "s") noexcept
-//        {
-//            assert(value >= 0 && "Time can not be negative!");
-//
-//            if (mu == "m_s")
-//                meters_per_second = value;
-//            else if (mu == "km_h")
-//                meters_per_second = value*m_s2km_h;
-//            else if (mu == "NM_h")
-//                meters_per_second = value*m_s2NM_h;
-//            else
-//                assert(false &&
-//                       "Check the correctness of the entered units of measurement: it should be --> 'm_s' - meters per second, 'km_h' - kilometers per hour, 'NM_h' - naval miles per hour");
-//        };
-//private:
-//    static constexpr double _2sec = 60;
-//    static constexpr double epsilon = 0.0001; //Точность сравнения
-//};
+
+struct Time
+{
+    double seconds{0}; //В секундах
+
+    Time(const double value, const std::string_view mu = "s") noexcept
+        {
+            assert(value >= 0 && "Time can not be negative!");
+
+            if (mu == "s")
+                seconds = value;
+            else if (mu == "min")
+                seconds = value*_2sec;
+            else if (mu == "h")
+                seconds = value*_2sec*_2sec;
+            else
+                assert(false &&
+                       "Check the correctness of the entered units of measurement: it should be --> 's' - seconds, 'min' - minutes, 'h' - hours");
+        };
+private:
+    static constexpr double _2sec = 60;
+    static constexpr double epsilon = 0.0001; //Точность сравнения
+};
 //
 //Distance operator+(const Distance &l_d, const Distance &r_d);
 //

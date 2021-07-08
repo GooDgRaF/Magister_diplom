@@ -7,9 +7,11 @@
 
 #include "string_view"
 
-void read_CheckPoints(std::string_view path);
+void read_checkPoints(std::string_view path);
 
-void read_Schemes(std::string_view path);
+void read_schemes(std::string_view path);
+
+void read_holding_areas(std::string_view path);
 
 void openFile(const std::string_view &path, std::ifstream &openFile);
 int count_number_of_line(std::string_view path);

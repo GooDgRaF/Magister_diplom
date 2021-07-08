@@ -26,13 +26,21 @@ struct CheckPoint
 
 struct Scheme
 {
-    int start{};
     int ID{-1};
+    int start_point{};
     std::vector<int> path{};// Номинальный путь
     
     std::string type{"N"}; //Тип спрямления: N - нет спрямления, F - веер, T - полутромбон, O - внешнее, B - конечная(ые) точки спрямления принадлежат схеме
     std::vector<int> straighteningFrom{};
     std::vector<int> straighteningTo{};
+};
+
+struct HoldingArea
+{
+    int ID{-1};
+    int start_point{};
+    Time t_min{0};
+    Time t_max{0};
 };
 
 

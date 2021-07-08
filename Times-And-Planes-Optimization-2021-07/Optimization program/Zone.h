@@ -16,8 +16,11 @@ struct Zone
 {
     std::vector<CheckPoint> checkPoints{};
     std::map<std::string, int> pointName_to_ID{};
-    std::vector <Scheme> schemes;
-//    std::vector <WaitingArea> waitingAreas;
+    
+    std::vector <Scheme> schemes{};
+    
+    std::vector <HoldingArea> holdingAreas{};
+    std::map<int, int> point_to_holdingArea{};
 //    std::vector <Flow> flows;
     
 //    std::vector <std::vector<int>> graph; //Граф зоны. Задан списками Следующий

@@ -24,10 +24,10 @@ void openFile(const string_view &path, ifstream &openFile)
 
 int count_number_of_line(string_view path)
     {
-        ifstream checkPointFile;
+        ifstream checkPointFile{};
         openFile(path, checkPointFile);
         int i{};
-        string tmp;
+        string tmp{};
         while (getline(checkPointFile, tmp))
             i++;
         return i;
@@ -36,7 +36,7 @@ int count_number_of_line(string_view path)
 void fill_scheme_field(sub_match<const char *> str, vector<int> &field)
     {
         std::stringstream ss({string(str)});
-        string token;
+        string token{};
         while (ss >> token)
         {
             try
@@ -50,14 +50,14 @@ void fill_scheme_field(sub_match<const char *> str, vector<int> &field)
         }
     }
 
-void read_CheckPoints(string_view path)
+void read_checkPoints(string_view path)
     {
         zone.checkPoints.resize(count_number_of_line(path) - 1);
         
-        ifstream file;
+        ifstream file{};
         openFile(path, file);
         
-        string x_mu, y_mu, z_mu, Vmin_mu, Vmax_mu;
+        string x_mu{}, y_mu{}, z_mu{}, Vmin_mu{}, Vmax_mu{};
         file >> x_mu >> y_mu >> z_mu >> Vmin_mu >> Vmax_mu; //Собрали информацию о единицах измерений
         
         /*
@@ -72,8 +72,8 @@ void read_CheckPoints(string_view path)
          * 7) - флаг посадочной полосы - LAND или пусто или 0
          */
         
-        string line;
-        cmatch res;
+        string line{};
+        cmatch res{};
         regex regular(R"(([a-z,A-Z]\w*)\s+([-+]?[0-9]*\.?[0-9]+)\s+([-+]?[0-9]*\.?[0-9]+)\s+([-+]?[0-9]*\.?[0-9]+)\s+([0-9]*\.?[0-9]+)\s+([0-9]*\.?[0-9]+)\s*(LAND|0)?\s*)");
         
         getline(file, line);// Пропустить первую строку с единицами измерений
@@ -101,20 +101,22 @@ void read_CheckPoints(string_view path)
             v_min = stod(string(res[5]));
             v_max = stod(string(res[6]));
             
-            zone.checkPoints[i].name = res[1];
-            zone.checkPoints[i].ID = i;
-            zone.checkPoints[i].x = {x_value, x_mu};
-            zone.checkPoints[i].y = {y_value, y_mu};
-            zone.checkPoints[i].z = {z_value, z_mu};
-            zone.checkPoints[i].Vmin = {v_min, Vmin_mu};
-            zone.checkPoints[i].Vmax = {v_max, Vmax_mu};
+            auto &checkPoint = zone.checkPoints[i];
+            checkPoint.name = res[1];
+            checkPoint.ID = i;
+            checkPoint.x = {x_value, x_mu};
+            checkPoint.y = {y_value, y_mu};
+            checkPoint.z = {z_value, z_mu};
+            checkPoint.Vmin = {v_min, Vmin_mu};
+            checkPoint.Vmax = {v_max, Vmax_mu};
             
             if (res[7] == "LAND")
             {
-                zone.checkPoints[i].landing_flag = true;
+                checkPoint.landing_flag = true;
                 count_land_flag++;
+                
+                zone.final_point = i;
             }
-            
             zone.pointName_to_ID.insert({res[1], i});
         }
         file.close();
@@ -126,11 +128,11 @@ void read_CheckPoints(string_view path)
         }
     }
 
-void read_Schemes(string_view path)
+void read_schemes(string_view path)
     {
         zone.schemes.resize(count_number_of_line(path));
         
-        ifstream file;
+        ifstream file{};
         openFile(path, file);
         
         /*
@@ -149,8 +151,8 @@ void read_Schemes(string_view path)
          * Если спрямления нет, то группы 3,4,5,6 - пустые
          */
         
-        string line;
-        cmatch res;
+        string line{};
+        cmatch res{};
         regex regular(R"((\w+)\s*:([\w\s]*)(?:\[(F|T|O|B)\]Str\(([\w\s]+)\)([\w\s]+)\/Str)?([\w\s]*))");
         
         for (int i = 0; i < zone.schemes.size(); ++i)
@@ -161,23 +163,26 @@ void read_Schemes(string_view path)
                 cerr << "Warning! Line '" << i + 1 << "' in " << path << " doesn't follow the input format." << endl;
                 exit(FILE_NOT_ALLOWED_FORMAT);
             }
-            zone.schemes[i].ID = i;
+            
+            auto &scheme = zone.schemes[i];
+            scheme.ID = i;
             if (auto str_type = string(res[3]); !str_type.empty())
-                zone.schemes[i].type = str_type;
+                scheme.type = str_type;
             try
             {
                 try
-                { zone.schemes[i].start = zone.pointName_to_ID.at(string(res[1])); }
+                { scheme.start_point = zone.pointName_to_ID.at(string(res[1])); }
                 catch (const out_of_range &ex)
                 {
                     throw runtime_error(string(res[1]));
                 }
-                fill_scheme_field(res[4], zone.schemes[i].straighteningTo);
-                fill_scheme_field(res[5], zone.schemes[i].straighteningFrom);
                 
-                fill_scheme_field(res[2], zone.schemes[i].path);
-                fill_scheme_field(res[5], zone.schemes[i].path);
-                fill_scheme_field(res[6], zone.schemes[i].path);
+                fill_scheme_field(res[4], scheme.straighteningTo);
+                fill_scheme_field(res[5], scheme.straighteningFrom);
+                
+                fill_scheme_field(res[2], scheme.path);
+                fill_scheme_field(res[5], scheme.path);
+                fill_scheme_field(res[6], scheme.path);
             }
             catch (const runtime_error &ex) //Ловим ошибку о не обнаружении точки из схемы среди точек из checkPoints
             {
@@ -186,6 +191,64 @@ void read_Schemes(string_view path)
                 exit(NO_OBJECT);
             }
         }
+        file.close();
+    }
+
+void read_holding_areas(std::string_view path)
+    {
+        zone.holdingAreas.resize(count_number_of_line(path));
+        
+        ifstream file{};
+        openFile(path, file);
+        
+        
+        /*
+         *  SOMETHING
+         */
+        string line{};
+        cmatch res{};
+        regex regular(R"((\w+)\s*:\s*([0-9]*\.?[0-9]+)(s|min|h)\s*([0-9]*\.?[0-9]+)(s|min|h)\s*)");
+        for (int i = 0; i < zone.holdingAreas.size(); ++i)
+        {
+            getline(file, line);
+            if (!regex_match(line.c_str(), res, regular))
+            {
+                cerr << "Warning! Line '" << i + 1 << "' in " << path << " doesn't follow the input format." << endl;
+                exit(FILE_NOT_ALLOWED_FORMAT);
+            }
+            
+            auto &hA = zone.holdingAreas[i];
+            hA.ID = i;
+            
+            //SOMETHING
+            try
+            {
+                hA.start_point = zone.pointName_to_ID.at(res[1]);
+            }
+            catch (const out_of_range &ex) //Ловим ошибку о не обнаружении точки среди точек из checkPoints
+            {
+                cerr << "Can't find '" << string(res[1]) << "' in line '" << i + 1
+                     << "' among points from Points file" << endl;
+                exit(NO_OBJECT);
+            }
+            
+            zone.point_to_holdingArea.insert({hA.start_point, hA.ID});
+            
+            auto t_minMU = string(res[3]);
+            auto t_min = stod(string(res[2]));
+            hA.t_min = {t_min, t_minMU};
+            
+            auto t_maxMU = string(res[5]);
+            auto t_max = stod(string(res[4]));
+            hA.t_max = {t_max, t_maxMU};
+            
+            
+            auto replica = zone.checkPoints[hA.start_point];
+            replica.name += "_hA";
+            replica.ID = zone.checkPoints.size();
+            zone.checkPoints.push_back(replica);
+        }
+        
         file.close();
     }
 
