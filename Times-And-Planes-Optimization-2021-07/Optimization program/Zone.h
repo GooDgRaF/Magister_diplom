@@ -17,18 +17,19 @@ struct Zone
     std::vector<CheckPoint> checkPoints{};
     std::map<std::string, int> pointName_to_ID{};
     
-    std::vector <Scheme> schemes{};
+    std::vector<Scheme> schemes{};
+    std::map<int, std::vector<int>> point_to_strFrom{};
     
     std::vector <HoldingArea> holdingAreas{};
     std::map<int, int> point_to_holdingArea{};
 //    std::vector <Flow> flows;
     
-//    std::vector <std::vector<int>> graph; //Граф зоны. Задан списками Следующий
+    std::vector<std::set<int>> graph{}; //Граф зоны. Задан списком потомков
+    std::vector<std::set<int>> ancestors_graph{}; //Граф зоны. Задан списком предшественников. Спрямления являются рёбрами графа
 //    std::map<int, std::vector<int>> constricted_graph; //Сжатый граф зоны. Задан списками предшественников
 //    std::map <edge, std::vector<TS>> edge_tss; //Ребро из constricted_graph --> временные интервалы
 //
     
-//    std::vector <StandardScheme> standardSchemes;
     
     int final_point{-1};
     
@@ -36,6 +37,7 @@ struct Zone
 private:
     Zone() = default;
 };
-
 extern Zone zone;
+
+void print_Zone();
 #endif //TIMES_AND_PLANES_OPTIMIZATION_2021_07_ZONE_H

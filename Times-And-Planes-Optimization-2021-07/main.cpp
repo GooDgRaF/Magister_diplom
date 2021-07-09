@@ -1,3 +1,4 @@
+#include <Optimization program/Build/Build.h>
 #include "iostream"
 #include "Optimization program/Measure units/Measure units.h"
 #include "Optimization program/Zone.h"
@@ -15,8 +16,6 @@ int main()
 
 
 
-
-
         string path_to_CPointsFile = "../Optimization program/Source information/Points/Test.txt";
         string path_to_HoldingAreasFile = "../Optimization program/Source information/Schemes/Test_hA.txt";
         string path_to_SchemesFile = "../Optimization program/Source information/Schemes/Test.txt";
@@ -26,11 +25,9 @@ int main()
 //        string nameOfSchemeFile = "../Optimization program/Source information/Schemes/Koltsovo.txt";
 //        string nameOfFlowsFile = "../Optimization program/Source information/Flows/Koltsovo.txt";
         
-        read_checkPoints(path_to_CPointsFile);
-        read_schemes(path_to_SchemesFile);
-        read_holding_areas(path_to_HoldingAreasFile);
+        fill_Zone(path_to_CPointsFile, path_to_HoldingAreasFile, path_to_SchemesFile);
         
-        
+        print_Zone();
         
         
         

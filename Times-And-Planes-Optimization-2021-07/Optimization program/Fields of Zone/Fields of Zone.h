@@ -37,7 +37,6 @@ struct Scheme
 struct HoldingArea
 {
     int ID{-1};
-    int start_point{};
     Time t_min{0};
     Time t_max{0};
 };

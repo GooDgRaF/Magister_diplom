@@ -12,43 +12,6 @@
 
 using namespace std;
 
-void openFile(const string_view &path, ifstream &openFile)
-    {
-        openFile.open(string(path));
-        if (!openFile.is_open())
-        {
-            cerr << "Error! File " << path << " does not exist!" << endl;
-            exit(FILE_NOT_EXIST);
-        }
-    }
-
-int count_number_of_line(string_view path)
-    {
-        ifstream checkPointFile{};
-        openFile(path, checkPointFile);
-        int i{};
-        string tmp{};
-        while (getline(checkPointFile, tmp))
-            i++;
-        return i;
-    }
-
-void fill_scheme_field(sub_match<const char *> str, vector<int> &field)
-    {
-        std::stringstream ss({string(str)});
-        string token{};
-        while (ss >> token)
-        {
-            try
-            {
-                field.push_back(zone.pointName_to_ID.at(token));
-            }
-            catch (const std::out_of_range &ex)
-            {
-                throw std::runtime_error(token);
-            }
-        }
-    }
 
 void read_checkPoints(string_view path)
     {
@@ -128,6 +91,24 @@ void read_checkPoints(string_view path)
         }
     }
 
+void fill_scheme_field(sub_match<const char *> str, vector<int> &field)
+    {
+        std::stringstream ss({string(str)});
+        string token{};
+        while (ss >> token)
+        {
+            try
+            {
+                field.push_back(zone.pointName_to_ID.at(token));
+            }
+            catch (const std::out_of_range &ex)
+            {
+                throw std::runtime_error(token);
+            }
+        }
+    }
+
+
 void read_schemes(string_view path)
     {
         zone.schemes.resize(count_number_of_line(path));
@@ -171,6 +152,11 @@ void read_schemes(string_view path)
             {
                 fill_scheme_field(res[3], scheme.straighteningFrom);
                 fill_scheme_field(res[4], scheme.straighteningTo);
+    
+                for (const auto &point : scheme.straighteningTo)
+                {
+                    zone.point_to_strFrom.emplace(point, scheme.straighteningFrom);
+                }
                 
                 fill_scheme_field(res[1], scheme.path);
                 fill_scheme_field(res[3], scheme.path);
@@ -215,7 +201,7 @@ void read_holding_areas(std::string_view path)
             //SOMETHING
             try
             {
-                hA.start_point = zone.pointName_to_ID.at(res[1]);
+                zone.point_to_holdingArea.insert({zone.pointName_to_ID.at(res[1]), hA.ID});
             }
             catch (const out_of_range &ex) //Ловим ошибку о не обнаружении точки среди точек из checkPoints
             {
@@ -224,8 +210,6 @@ void read_holding_areas(std::string_view path)
                 exit(NO_OBJECT);
             }
             
-            zone.point_to_holdingArea.insert({hA.start_point, hA.ID});
-            
             auto t_minMU = string(res[3]);
             auto t_min = stod(string(res[2]));
             hA.t_min = {t_min, t_minMU};
@@ -233,15 +217,29 @@ void read_holding_areas(std::string_view path)
             auto t_maxMU = string(res[5]);
             auto t_max = stod(string(res[4]));
             hA.t_max = {t_max, t_maxMU};
-            
-            
-            auto replica = zone.checkPoints[hA.start_point];
-            replica.name += "_hA";
-            replica.ID = zone.checkPoints.size();
-            zone.checkPoints.push_back(replica);
         }
-        
         file.close();
     }
 
- 
+
+void openFile(const string_view &path, ifstream &openFile)
+    {
+        openFile.open(string(path));
+        if (!openFile.is_open())
+        {
+            cerr << "Error! File " << path << " does not exist!" << endl;
+            exit(FILE_NOT_EXIST);
+        }
+    }
+
+int count_number_of_line(string_view path)
+    {
+        ifstream checkPointFile{};
+        openFile(path, checkPointFile);
+        int i{};
+        string tmp{};
+        while (getline(checkPointFile, tmp))
+            i++;
+        return i;
+    }
+
