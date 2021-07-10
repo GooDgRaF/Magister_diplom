@@ -29,7 +29,18 @@ int main()
         
         print_Zone();
         
+        map<int,int> tmp{};
+        calc_best_trajectory(tmp,0, 2);
         
+        for (const auto &trj : zone.trjs)
+        {
+            cout<< "Trj:"<<endl;
+            for (const auto &[parent, son] : trj)
+            {
+                cout << zone.checkPoints[parent].name << " --> "
+                     <<zone.checkPoints[son].name << endl;
+            }
+        }
         
         
         

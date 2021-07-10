@@ -1,4 +1,5 @@
-P0 [T]StrFrom(P1 P2 P3)StrTo(P4) P4 P5
-P0 P1 P4 [O]StrFrom(P5 P6)StrTo(P9)
-[B]StrFrom(P6 P7)StrTo(P8 P9) P8 P9 P10
-[F]StrFrom(P10 P11 P12 P13)StrTo(P14) P14 P15
+P0 P1 [T]StrFrom(P2 P3 P4)StrTo(P5) P5 P6
+P2 P5
+[O]StrFrom(P6 P7)StrTo(P10)
+[B]StrFrom(P7 P8) StrTo(P9 P10) P9 P10 P11
+[F]StrFrom(P11 P12 P13 P14) StrTo(P15) P15 P16

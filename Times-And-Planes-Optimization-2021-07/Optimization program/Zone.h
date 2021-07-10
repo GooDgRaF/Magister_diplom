@@ -18,7 +18,7 @@ struct Zone
     std::map<std::string, int> pointName_to_ID{};
     
     std::vector<Scheme> schemes{};
-    std::map<int, std::vector<int>> point_to_strFrom{};
+    std::map<int, std::set<int>> point_to_strFrom{};
     
     std::vector <HoldingArea> holdingAreas{};
     std::map<int, int> point_to_holdingArea{};
@@ -30,6 +30,8 @@ struct Zone
 //    std::map <edge, std::vector<TS>> edge_tss; //Ребро из constricted_graph --> временные интервалы
 //
     
+    std::map<int, int> trj; // Точка --> потомок
+    std::vector<std::map<int, int>> trjs;
     
     int final_point{-1};
     
@@ -40,4 +42,6 @@ private:
 extern Zone zone;
 
 void print_Zone();
+
+std::map<int, int> calc_best_trajectory(std::map<int, int> &trj, const int stop_point, const int current_point);
 #endif //TIMES_AND_PLANES_OPTIMIZATION_2021_07_ZONE_H

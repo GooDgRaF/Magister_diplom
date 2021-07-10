@@ -20,22 +20,22 @@ void fill_Zone(std::string_view path_PointsFile, std::string_view path_HoldingAr
 
 void build_graph_of_Zone()
     {
-        zone.graph.resize(zone.checkPoints.size());
-        for (const auto &scheme : zone.schemes) //Строим граф списками Следующий
+        zone.graph.resize(zone.checkPoints.size());//Строим граф списками Следующий
+        for (const auto &scheme : zone.schemes)
         {
             assert(!scheme.path.empty()); //Пустая схема --- см как считываешь схемы!
             for (int i = 0; i < scheme.path.size() - 1; i++)
             {
-                zone.graph[scheme.path[i]].insert(scheme.path[i + 1]); //Соединить текущую точку со следующей
+                zone.graph[scheme.path[i]].insert(scheme.path[i + 1]);
             }
         }
         
-        zone.ancestors_graph.resize(zone.checkPoints.size());
+        zone.ancestors_graph.resize(zone.checkPoints.size()); //Строим граф списками Предок с учётом спрямлений
         for (const auto &scheme : zone.schemes)
         {
             for (int i = scheme.path.size() - 1; i > 0; --i)
             {
-                zone.ancestors_graph[scheme.path[i]].insert(scheme.path[i - 1]); //Соединить текущую точку с предком
+                zone.ancestors_graph[scheme.path[i]].insert(scheme.path[i - 1]);
                 if (zone.point_to_strFrom.find(scheme.path[i]) != zone.point_to_strFrom.end())
                 {
                     for (const auto &parent : zone.point_to_strFrom.at(scheme.path[i]))
@@ -45,20 +45,6 @@ void build_graph_of_Zone()
                 }
             }
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        //TODO Дублировать точку ЗО
         
         set<int> sons{};
         set<int> parents{};
@@ -88,9 +74,5 @@ void build_graph_of_Zone()
                 zone.graph[parent].insert(point);
             for (const auto &son : sons)
                 zone.ancestors_graph[son].insert(point);
-            
-            
         }
-        
-        
     }

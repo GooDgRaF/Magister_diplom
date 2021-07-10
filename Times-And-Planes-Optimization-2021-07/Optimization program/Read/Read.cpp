@@ -46,7 +46,7 @@ void read_checkPoints(string_view path)
             getline(file, line);
             if (!regex_match(line.c_str(), res, regular))
             {
-                cerr << "Warning! Line '" << i + 1 << "' in " << path << " doesn't follow the input format." << endl;
+                cerr << "Warning! Line '" << i + 2 << "' in " << path << " doesn't follow the input format." << endl;
                 exit(FILE_NOT_ALLOWED_FORMAT);
             }
             for (const auto &el : zone.checkPoints) //Проверка, чтобы две точки с одинаковым названием не встречались
@@ -153,9 +153,12 @@ void read_schemes(string_view path)
                 fill_scheme_field(res[3], scheme.straighteningFrom);
                 fill_scheme_field(res[4], scheme.straighteningTo);
     
-                for (const auto &point : scheme.straighteningTo)
+                for (const auto pointTo : scheme.straighteningTo)
                 {
-                    zone.point_to_strFrom.emplace(point, scheme.straighteningFrom);
+                    for (const auto pointFrom : scheme.straighteningFrom)
+                    {
+                        zone.point_to_strFrom[pointTo].insert(pointFrom);
+                    }
                 }
                 
                 fill_scheme_field(res[1], scheme.path);
