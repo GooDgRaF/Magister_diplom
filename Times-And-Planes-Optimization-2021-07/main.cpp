@@ -30,7 +30,7 @@ int main()
         print_Zone();
         
         map<int,int> tmp{};
-        calc_best_trajectory(tmp,0, 2);
+        calc_best_trajectory(zone.trjs, 0, 16);
         
         for (const auto &trj : zone.trjs)
         {

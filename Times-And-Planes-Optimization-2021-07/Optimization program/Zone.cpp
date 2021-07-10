@@ -40,22 +40,22 @@ void print_Zone()
         cout << endl;
     }
 
-std::map<int, int> calc_best_trajectory(std::map<int, int> &trj, const int stop_point, const int current_point)
+void
+calc_best_trajectory(std::vector<std::map<int, int>> &trjs, const int point_to_reach, const int current_point)
     {
-        if (current_point == stop_point)
-            return trj;
+        static std::map<int, int> trj{};
+        if (current_point == point_to_reach)
+        {
+            //estimate trj
+            trjs.push_back(trj);
+        }
         else
         {
             for (const auto parent : zone.ancestors_graph.at(current_point))
             {
                 trj.insert({parent, current_point});
-                auto trj_to_estimate = calc_best_trajectory(trj,stop_point, parent);
-                //estimate_Trajectory(trj_to_estimate);
-                zone.trj = trj_to_estimate;
-                zone.trjs.push_back(trj_to_estimate);
-                //zone.trjs.push_back(trj); //Все возможные пути
+                calc_best_trajectory(trjs, point_to_reach, parent);
                 trj.erase(parent);
             }
-            return trj;
         }
     }

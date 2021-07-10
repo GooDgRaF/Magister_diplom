@@ -43,5 +43,6 @@ extern Zone zone;
 
 void print_Zone();
 
-std::map<int, int> calc_best_trajectory(std::map<int, int> &trj, const int stop_point, const int current_point);
+void
+calc_best_trajectory(std::vector<std::map<int, int>> &trjs, const int point_to_reach, const int current_point);
 #endif //TIMES_AND_PLANES_OPTIMIZATION_2021_07_ZONE_H

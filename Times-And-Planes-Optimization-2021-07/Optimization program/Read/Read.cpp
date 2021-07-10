@@ -123,7 +123,7 @@ void read_schemes(string_view path)
          * P0 P1 ... [type]StrFrom(F0 F1 ...) StrTo(T0 T1 ...) K0 K1 ...
          *
          * 1) Точки предшествующие спрямлению [P0 P1 ...]
-         * 2) Тип спрямления [type]: F(an) - веер, T(rombone) - полутромбон, O(uter) - внешнее, B(elong) - конечная(ые) точки спрямления принадлежат схеме
+         * 2) Тип спрямления [type]: F(an) - веер, T(rombone) - полутромбон, O(uter) - внешнее, I(nner) - внутреннее
          * 3) Точки откуда можно спрямляться [F0 F1 ...]
          * 4) Точки на которые можно спрямляться [T0 T1 ...]
          * 5) Точки после спрямления [K0 K1 ...]
@@ -133,7 +133,7 @@ void read_schemes(string_view path)
         
         string line{};
         cmatch res{};
-        regex regular(R"(([\w\s]*)(?:\[(F|T|O|B)\]StrFrom\(([\w\s]+)\)\s*StrTo\(([\w\s]+)\))?([\w\s]*))");
+        regex regular(R"(([\w\s]*)(?:\[(F|T|O|I)\]StrFrom\(([\w\s]+)\)\s*StrTo\(([\w\s]+)\))?([\w\s]*))");
         
         for (int i = 0; i < zone.schemes.size(); ++i)
         {

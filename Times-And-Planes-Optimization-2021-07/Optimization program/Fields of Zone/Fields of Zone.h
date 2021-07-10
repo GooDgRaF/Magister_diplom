@@ -29,7 +29,7 @@ struct Scheme
     int ID{-1};
     std::vector<int> path{};// Номинальный путь
     
-    std::string type{"N"}; //Тип спрямления: N - нет спрямления, F - веер, T - полутромбон, O - внешнее, B - конечная(ые) точки спрямления принадлежат схеме
+    std::string type{"N"}; //Тип спрямления: N - нет спрямления, F - веер, T - полутромбон, O - внешнее, I - внутреннее
     std::vector<int> straighteningFrom{};
     std::vector<int> straighteningTo{};
 };
