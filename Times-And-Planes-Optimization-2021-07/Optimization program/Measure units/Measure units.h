@@ -12,32 +12,26 @@ struct Coordinate
 {
     double meter{0}; //В метрах
     Coordinate(const double value, const std::string_view mu = "m") noexcept
-        {
-            if (mu == "m")
-                meter = value;
-            else if (mu == "km")
-                meter = value*km2m;
-            else if (mu == "NM")
-                meter = value*NMs2m;
-            else
-                assert(false &&
-                       "Check the correctness of the entered units of measurement: it should be --> 'm' - meters, 'km' - kilometers, 'NM' - naval miles");
-        };
-
+    {
+        if (mu == "m")
+            meter = value;
+        else if (mu == "km")
+            meter = value*km2m;
+        else if (mu == "NM")
+            meter = value*NMs2m;
+        else
+            assert(false &&
+                   "Check the correctness of the entered units of measurement: it should be --> 'm' - meters, 'km' - kilometers, 'NM' - naval miles");
+    };
+    
     double getM() const
-        {
-            return meter;
-        }
-
+    { return meter; }
+    
     double getKm() const
-        {
-            return meter/km2m;
-        }
-
+    { return meter/km2m; }
+    
     double getNM() const
-        {
-            return meter/NMs2m;
-        }
+    { return meter/NMs2m; }
 
 
 private:
@@ -48,21 +42,21 @@ private:
 struct Velocity
 {
     double meters_per_second{0}; //В метрах в секунду
-
+    
     Velocity(const double value, const std::string_view mu = "m_s") noexcept
-        {
-            assert(value >= 0 && "Velocity can not be negative!");
-
-            if (mu == "m_s")
-                meters_per_second = value;
-            else if (mu == "km_h")
-                meters_per_second = value*m_s2km_h;
-            else if (mu == "NM_h")
-                meters_per_second = value*m_s2NM_h;
-            else
-                assert(false &&
-                       "Check the correctness of the entered units of measurement: it should be --> 'm_s' - meters per second, 'km_h' - kilometers per hour, 'NM_h' - naval miles per hour");
-        };
+    {
+        assert(value >= 0 && "Velocity can not be negative!");
+        
+        if (mu == "m_s")
+            meters_per_second = value;
+        else if (mu == "km_h")
+            meters_per_second = value*m_s2km_h;
+        else if (mu == "NM_h")
+            meters_per_second = value*m_s2NM_h;
+        else
+            assert(false &&
+                   "Check the correctness of the entered units of measurement: it should be --> 'm_s' - meters per second, 'km_h' - kilometers per hour, 'NM_h' - naval miles per hour");
+    };
 
 private:
     static constexpr double m_s2km_h = 3.6;
@@ -72,21 +66,21 @@ private:
 struct Time
 {
     double seconds{0}; //В секундах
-
+    
     Time(const double value, const std::string_view mu = "s") noexcept
-        {
-            assert(value >= 0 && "Time can not be negative!");
-
-            if (mu == "s")
-                seconds = value;
-            else if (mu == "min")
-                seconds = value*_2sec;
-            else if (mu == "h")
-                seconds = value*_2sec*_2sec;
-            else
-                assert(false &&
-                       "Check the correctness of the entered units of measurement: it should be --> 's' - seconds, 'min' - minutes, 'h' - hours");
-        };
+    {
+        assert(value >= 0 && "Time can not be negative!");
+        
+        if (mu == "s")
+            seconds = value;
+        else if (mu == "min")
+            seconds = value*_2sec;
+        else if (mu == "h")
+            seconds = value*_2sec*_2sec;
+        else
+            assert(false &&
+                   "Check the correctness of the entered units of measurement: it should be --> 's' - seconds, 'min' - minutes, 'h' - hours");
+    };
 private:
     static constexpr double _2sec = 60;
     static constexpr double epsilon = 0.0001; //Точность сравнения
