@@ -28,10 +28,10 @@ int main()
         fill_Zone(path_to_CPointsFile, path_to_HoldingAreasFile, path_to_SchemesFile);
         
         print_Zone();
-        
+
         map<int,int> tmp{};
         calc_best_trajectory(zone.trjs, 0, 16);
-        
+
         for (const auto &trj : zone.trjs)
         {
             cout<< "Trj:"<<endl;

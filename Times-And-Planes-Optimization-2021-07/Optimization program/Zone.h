@@ -29,9 +29,9 @@ struct Zone
     std::vector<std::set<int>> ancestors_graph{}; //Граф зоны. Задан списком предшественников. Спрямления являются рёбрами графа
 //    std::map<int, std::vector<int>> constricted_graph; //Сжатый граф зоны. Задан списками предшественников
 //    std::map <edge, std::vector<TS>> edge_tss; //Ребро из constricted_graph --> временные интервалы
-
     
-    std::map<int, int> trj; // Точка --> потомок
+    
+    std::map<int, int> best_trj; // Точка --> потомок
     std::vector<std::map<int, int>> trjs;
     
     int final_point{-1};
@@ -43,8 +43,9 @@ private:
 
 extern Zone zone;
 
+void calc_best_trajectory(std::vector<std::map<int, int>> &trjs, const int point_to_reach, const int current_point);
+bool isBetter(const std::map<int, int> &trj, int start_point, double t0, double v0, double t_end);
+
 void print_Zone();
 
-void
-calc_best_trajectory(std::vector<std::map<int, int>> &trjs, const int point_to_reach, const int current_point);
 #endif //TIMES_AND_PLANES_OPTIMIZATION_2021_07_ZONE_H
