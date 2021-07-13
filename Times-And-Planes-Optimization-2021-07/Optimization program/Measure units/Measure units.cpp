@@ -1,9 +1,9 @@
-////
-//// Created by Антон on 07.07.2021.
-////
-//#include "Measure units.h"
-//#include "cmath"
 //
+// Created by Антон on 07.07.2021.
+//
+#include "Measure units.h"
+#include "cmath"
+
 //Distance operator+(const Distance &l_d, const Distance &r_d)
 //    {
 //        return {l_d.meter + r_d.meter};
@@ -59,3 +59,9 @@
 //    {
 //        return a*l_v;
 //    }
+
+double Velocity::getKm_h()
+{
+    return meters_per_second*m_s2km_h;
+}
+

@@ -43,7 +43,7 @@ void out_constricted_zone(const Zone &zone) //TODO Согласовать с А�
             {
                 double t_min = tss.front().min.get_sec(1), t_max = tss.back().max.get_sec(1);
                 out << zone.checkPoints[edge.there].name << safety_interval << flow_type <<
-                    t_min << " " << round((1.0/3*t_min + 2.0/3*t_max)) << " " << t_max << endl;
+                    t_min << " " << round((0.73*t_min + 0.27*t_max)) << " " << t_max << endl;
             }
         }
         
@@ -64,7 +64,7 @@ void out_constricted_zone(const Zone &zone) //TODO Согласовать с А�
                 double t_min = tss.front().min.get_sec(1), t_max = tss.back().max.get_sec(1);
                 out << zone.checkPoints[edge.from].name << " " <<
                     zone.checkPoints[edge.there].name << " " <<
-                    t_min << " " << round((1.0/3*t_min + 2.0/3*t_max)) << " " << t_max << endl;
+                    t_min << " " << round((0.73*t_min + 0.27*t_max)) << " " << t_max << endl;
             }
         }
     }

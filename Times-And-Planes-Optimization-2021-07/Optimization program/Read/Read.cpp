@@ -71,8 +71,8 @@ void read_checkPoints(string_view path)
         checkPoint.x = {x_value, x_mu};
         checkPoint.y = {y_value, y_mu};
         checkPoint.z = {z_value, z_mu};
-        checkPoint.Vmin = {v_min, Vmin_mu};
-        checkPoint.Vmax = {v_max, Vmax_mu};
+        checkPoint.V_min = {v_min, Vmin_mu};
+        checkPoint.V_max = {v_max, Vmax_mu};
         
         if (res[7] == "LAND")
         {
@@ -123,7 +123,7 @@ void read_schemes(string_view path)
      * P0 P1 ... [type]StrFrom(F0 F1 ...) StrTo(T0 T1 ...) K0 K1 ...
      *
      * 1) Точки предшествующие спрямлению [P0 P1 ...]
-     * 2) Тип спрямления [type]: F(an) - веер, T(rombone) - полутромбон, O(uter) - внешнее, I(nner) - внутреннее
+     * 2) Тип спрямления [type]: F(an) - веер, T(rombone) - полутромбон, S(traighten) - спрямление
      * 3) Точки откуда можно спрямляться [F0 F1 ...]
      * 4) Точки на которые можно спрямляться [T0 T1 ...]
      * 5) Точки после спрямления [K0 K1 ...]
@@ -133,7 +133,7 @@ void read_schemes(string_view path)
     
     string line{};
     cmatch res{};
-    regex regular(R"(([\w\s]*)(?:\[(F|T|O|I)\]StrFrom\(([\w\s]+)\)\s*StrTo\(([\w\s]+)\))?([\w\s]*))");
+    regex regular(R"(([\w\s]*)(?:\[(F|T|S)\]StrFrom\(([\w\s]+)\)\s*StrTo\(([\w\s]+)\))?([\w\s]*))");
     
     for (int i = 0; i < zone.schemes.size(); ++i)
     {

@@ -9,6 +9,7 @@
 #include <vector>
 #include <set>
 #include "Optimization program/Measure units/Measure units.h"
+#include "cmath"
 
 struct CheckPoint
 {
@@ -17,19 +18,19 @@ struct CheckPoint
     Coordinate x{0};
     Coordinate y{0};
     Coordinate z{0};
-    Velocity Vmin{0};
-    Velocity Vmax{0};
+    Velocity V_min{0};
+    Velocity V_max{0};
     bool landing_flag = false;
-    
-    std::set<int> schemes_start{};//?
 };
+
+Coordinate distance(const CheckPoint &a, const CheckPoint &b);
 
 struct Scheme
 {
     int ID{-1};
     std::vector<int> path{};// Номинальный путь
     
-    std::string type{"N"}; //Тип спрямления: N - нет спрямления, F - веер, T - полутромбон, O - внешнее, I - внутреннее
+    std::string type{"N"}; //Тип спрямления: N - нет спрямления, F - веер, T - полутромбон, S - спрямление
     std::vector<int> straighteningFrom{};
     std::vector<int> straighteningTo{};
 };

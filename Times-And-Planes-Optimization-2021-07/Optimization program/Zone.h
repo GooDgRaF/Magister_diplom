@@ -44,7 +44,7 @@ private:
 extern Zone zone;
 
 void calc_best_trajectory(std::vector<std::map<int, int>> &trjs, const int point_to_reach, const int current_point);
-bool isBetter(const std::map<int, int> &trj, int start_point, double t0, double v0, double t_end);
+bool isBetter(const std::map<int, int> &trj, int start_point, int end_point, double t0, double v0, double tEnd);
 
 void print_Zone();
 

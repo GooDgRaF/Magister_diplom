@@ -11,7 +11,7 @@
 struct Coordinate
 {
     double meter{0}; //В метрах
-    Coordinate(const double value, const std::string_view mu = "m") noexcept
+    Coordinate(const double value, const std::string_view mu = "m") noexcept // Метры по умолчанию
     {
         if (mu == "m")
             meter = value;
@@ -24,13 +24,13 @@ struct Coordinate
                    "Check the correctness of the entered units of measurement: it should be --> 'm' - meters, 'km' - kilometers, 'NM' - naval miles");
     };
     
-    double getM() const
+    double m() const
     { return meter; }
     
-    double getKm() const
+    double km() const
     { return meter/km2m; }
     
-    double getNM() const
+    double NM() const
     { return meter/NMs2m; }
 
 
@@ -50,14 +50,16 @@ struct Velocity
         if (mu == "m_s")
             meters_per_second = value;
         else if (mu == "km_h")
-            meters_per_second = value*m_s2km_h;
+            meters_per_second = value/m_s2km_h;
         else if (mu == "NM_h")
-            meters_per_second = value*m_s2NM_h;
+            meters_per_second = value/m_s2NM_h;
         else
             assert(false &&
                    "Check the correctness of the entered units of measurement: it should be --> 'm_s' - meters per second, 'km_h' - kilometers per hour, 'NM_h' - naval miles per hour");
     };
 
+    double getKm_h();
+    
 private:
     static constexpr double m_s2km_h = 3.6;
     static constexpr double m_s2NM_h = 1.94;
@@ -85,42 +87,41 @@ private:
     static constexpr double _2sec = 60;
     static constexpr double epsilon = 0.0001; //Точность сравнения
 };
+
+//Coordinate operator+(const Coordinate &l_d, const Coordinate &r_d);
 //
-//Distance operator+(const Distance &l_d, const Distance &r_d);
+//Coordinate operator-(const Coordinate &l_d, const Coordinate &r_d);
 //
-//Distance operator-(const Distance &l_d, const Distance &r_d);
+//Coordinate operator*(const Time &l_t, const Velocity &r_v);
 //
-//Distance operator*(const Time &l_t, const Velocity &r_v);
+//Coordinate operator*(const Velocity &l_v, const Time &r_t);
 //
-//Distance operator*(const Velocity &l_v, const Time &r_t);
 //
-////TODO Космический корабль приди, порядок наведи
+//Coordinate operator*(const double &a, const Coordinate &r_d);
 //
-//Distance operator*(const double &a, const Distance &r_d);
+//Coordinate operator*(const Coordinate &l_d, const double &a);
 //
-//Distance operator*(const Distance &l_d, const double &a);
+//Coordinate operator*(const Coordinate &l_d, const Coordinate &r_d);
 //
-//Distance operator*(const Distance &l_d, const Distance &r_d);
+//Coordinate operator/(const Coordinate &l_d, const Coordinate &r_d);
 //
-//Distance operator/(const Distance &l_d, const Distance &r_d);
+//Coordinate pow(Coordinate x, int a);
 //
-//Distance pow(Distance x, int a);
-//
-//Distance sqrt(Distance x);
-//
+//Coordinate sqrt(Coordinate x);
+
 ////Скорости
 //
 //Velocity operator+(const Velocity &l_v, const Velocity &r_v);
 //
 //Velocity operator-(const Velocity &l_v, const Velocity &r_v);
 //
-//Velocity operator/(const Distance &l_d, const Time &t);
+//Velocity operator/(const Coordinate &l_d, const Time &t);
 //
 //Velocity operator*(const double &a, const Velocity &r_v);
 //
 //Velocity operator*(const Velocity &l_v, const double &a);
 //
-//Time operator/(const Distance &l_d, const Velocity &v);
+//Time operator/(const Coordinate &l_d, const Velocity &v);
 //
 //Time operator+(const Time &t0, const Time &t1);
 //

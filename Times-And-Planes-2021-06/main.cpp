@@ -41,23 +41,23 @@ int main()
 //zone.print_flows_as_string_des();
 //       zone.print_constricted_TS();
 
-        auto times = zone.flows[0].times; times.clear();
-        auto u = zone.flows[0].not_merged_times;
-        calc_TimeSegments(zone.flows[0], zone.checkPoints, zone.waitingAreas, times, u);
-
-        for (auto &[ID, tss] : times)
-        {
-            cout << zone.checkPoints[ID].name << " --> ";
-            for (auto &ts : tss)
-            {
-                cout << "[" << ts.min << ", " << ts.max << "] ";
-            }
-            cout << endl;
-        }
-        cout << endl;
-        
-       auto res = backward_propagation(zone, 0, TS(3600,5000).min);
-//       zone.print_times();
+//        auto times = zone.flows[0].times; times.clear();
+//        auto u = zone.flows[0].not_merged_times;
+//        calc_TimeSegments(zone.flows[0], zone.checkPoints, zone.waitingAreas, times, u);
+//
+//        for (auto &[ID, tss] : times)
+//        {
+//            cout << zone.checkPoints[ID].name << " --> ";
+//            for (auto &ts : tss)
+//            {
+//                cout << "[" << ts.min << ", " << ts.max << "] ";
+//            }
+//            cout << endl;
+//        }
+//        cout << endl;
+//
+//       auto res = backward_propagation(zone, 0, TS(3600,5000).min);
+       zone.print_times();
 
 
 
