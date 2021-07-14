@@ -49,7 +49,7 @@ int main()
             {15, 16}};
     
     Velocity v0{500, "km_h"};
-    isBetter(linearZone, 0, 16, 0, v0.meters_per_second, 12000);
+    isBetter(linearZone, 0, 16, 0, v0.m_s(), 13000);
 //        map<int,int> tmp{};
 //        calc_best_trajectory(zone.trjs, 0, 16);
 //

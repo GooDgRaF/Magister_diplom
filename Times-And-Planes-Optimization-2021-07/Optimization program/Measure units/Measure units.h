@@ -58,9 +58,10 @@ struct Velocity
                    "Check the correctness of the entered units of measurement: it should be --> 'm_s' - meters per second, 'km_h' - kilometers per hour, 'NM_h' - naval miles per hour");
     };
 
-    double getKm_h();
-    
-private:
+    double km_h() const;
+    double m_s() const;
+  
+  private:
     static constexpr double m_s2km_h = 3.6;
     static constexpr double m_s2NM_h = 1.94;
 };
@@ -83,6 +84,9 @@ struct Time
             assert(false &&
                    "Check the correctness of the entered units of measurement: it should be --> 's' - seconds, 'min' - minutes, 'h' - hours");
     };
+    
+    double s() const;
+    
 private:
     static constexpr double _2sec = 60;
     static constexpr double epsilon = 0.0001; //Точность сравнения

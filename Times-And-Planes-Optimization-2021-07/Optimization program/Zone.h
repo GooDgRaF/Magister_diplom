@@ -22,7 +22,7 @@ struct Zone
     std::map<int, std::set<int>> point_to_strFrom{};
     
     std::vector<HoldingArea> holdingAreas{};
-    std::map<int, int> point_to_holdingArea{};
+    std::map<int, int> point_to_HA{};
 //    std::vector <Flow> flows;
     
     std::vector<std::set<int>> graph{}; //Граф зоны. Задан списком потомков

@@ -49,7 +49,7 @@ void build_graph_of_Zone()
     set<int> parents{};
     vector<pair<int, int>> to_insert{};// Запомнить пару Копия_Точки и ID ЗО
     
-    for (const auto[pointID, hA_ID] : zone.point_to_holdingArea)
+    for (const auto[pointID, hA_ID] : zone.point_to_HA)
     {
         auto replica = zone.checkPoints[pointID];
         replica.name += "_hA";
@@ -61,10 +61,10 @@ void build_graph_of_Zone()
         parents = zone.ancestors_graph[pointID];
     }
     
-    zone.point_to_holdingArea.clear();
+    zone.point_to_HA.clear();
     for (const auto &[point, hA] : to_insert)
     {
-        zone.point_to_holdingArea.insert({point, hA});
+        zone.point_to_HA.insert({point, hA});
         zone.graph.push_back(sons);
         zone.ancestors_graph.push_back(parents);
         

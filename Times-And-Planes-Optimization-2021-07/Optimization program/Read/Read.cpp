@@ -204,7 +204,7 @@ void read_holding_areas(std::string_view path)
         //SOMETHING
         try
         {
-            zone.point_to_holdingArea.insert({zone.pointName_to_ID.at(res[1]), hA.ID});
+            zone.point_to_HA.insert({zone.pointName_to_ID.at(res[1]), hA.ID});
         }
         catch (const out_of_range &ex) //Ловим ошибку о не обнаружении точки среди точек из checkPoints
         {

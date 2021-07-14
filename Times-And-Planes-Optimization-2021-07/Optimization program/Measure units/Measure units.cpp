@@ -60,8 +60,16 @@
 //        return a*l_v;
 //    }
 
-double Velocity::getKm_h()
+double Velocity::km_h() const
 {
     return meters_per_second*m_s2km_h;
 }
+double Velocity::m_s() const
+{
+  return meters_per_second;
+}
 
+double Time::s() const
+{
+    return seconds;
+}
