@@ -3,74 +3,137 @@
 //
 
 #include "Build.h"
-#include "Optimization program/Zone.h"
+#include "Optimization program/Flow.h"
 #include "Optimization program/Read/Read.h"
 
 using namespace std;
 
-void fill_Zone(std::string_view path_PointsFile, std::string_view path_HoldingAreas, std::string_view path_SchemesFile)
+void build_Flow(std::string_view path_PointsFile, std::string_view path_HoldingAreas, std::string_view path_SchemesFile)
 {
     read_checkPoints(path_PointsFile);
     read_holding_areas(path_HoldingAreas);
     read_schemes(path_SchemesFile);
     
-    build_graph_of_Zone();
+    build_hull_of_Flow();
+    build_graph_of_Flow(0);
 }
 
-void build_graph_of_Zone()
+void build_hull_of_Flow()//TODO ДИСКРИМИНАЦИЯ ТРОМБОНА. За схему не считают!
 {
-    zone.graph.resize(zone.checkPoints.size());//Строим граф списками Следующий
-    for (const auto &scheme : zone.schemes)
+    flow.hull.resize(flow.checkPoints.size());//Строим каркас списками Следующий
+    for (const auto &scheme : flow.schemes)
     {
         assert(!scheme.path.empty()); //Пустая схема --- см как считываешь схемы!
         for (int i = 0; i < scheme.path.size() - 1; i++)
         {
-            zone.graph[scheme.path[i]].insert(scheme.path[i + 1]);
+            if (scheme.type != "T")
+                flow.hull[scheme.path[i]].insert(scheme.path[i + 1]);
         }
     }
+}
+
+Vertex phantom(const CheckPoint &cp)
+{
+    Vertex v{cp.ID};
+    v.name = cp.name;
     
-    zone.ancestors_graph.resize(zone.checkPoints.size()); //Строим граф списками Предок с учётом спрямлений
-    for (const auto &scheme : zone.schemes)
+    return v;
+}
+
+Vertex init_vertex(const int cpID, const string_view append_to_name = "")
+{
+    Vertex v = phantom(flow.checkPoints.at(cpID));// Создать вершину
+    v.name += append_to_name;
+    flow.checkPoints.at(cpID).vs.push_back(v.ID);
+    flow.graph.push_back(v);
+    
+    return v;
+}
+
+void build_graph_of_Flow(int start_point)
+{
+    const auto &h = flow.hull;
+    auto &g = flow.graph;
+    auto &cps = flow.checkPoints;
+    
+    if (auto it = flow.CP2HA.find(start_point);
+            it != flow.CP2HA.end())
     {
-        for (int i = scheme.path.size() - 1; i > 0; --i)
+        init_vertex(start_point, "_HA-" + to_string(it->second));// Создали вершину, на которой есть ЗО
+        flow.vex2HA.insert({g.back().ID, it->second}); // Запомнили в отображение
+        
+        init_vertex(start_point);// На этой нет ЗО
+    }
+    else
+        init_vertex(start_point);
+    
+    
+    int predID{start_point};
+    bool isEnd{false};
+    do
+    {
+        for (const auto &currID : h.at(predID))
         {
-            zone.ancestors_graph[scheme.path[i]].insert(scheme.path[i - 1]);
-            if (zone.point_to_strFrom.find(scheme.path[i]) != zone.point_to_strFrom.end())
+            if (auto itHA = flow.CP2HA.find(currID); //Если есть ЗО
+                    itHA != flow.CP2HA.end())
             {
-                for (const auto &parent : zone.point_to_strFrom.at(scheme.path[i]))
+                Vertex vHA = init_vertex(currID, "_HA-" + to_string(itHA->second));// Создали вершину, на которой есть ЗО
+                flow.vex2HA.insert({g.back().ID, itHA->second}); // Запомнили в отображение
+                Vertex v = init_vertex(currID);// Создали вершину, на которой нет ЗО
+                
+                vector<int> to_insert{v.ID, vHA.ID};
+                for (const auto &vID : to_insert) // Соединить предыдущие вершины и две вершины ЗО
                 {
-                    zone.ancestors_graph[scheme.path[i]].insert(parent);
+                    for (const auto &v_pred : cps.at(predID).vs)
+                    {
+                        g.at(v_pred).sons.insert(vID);
+                    }
                 }
             }
+            else if (auto itSSch = flow.point_toSScheme.find(currID); itSSch != flow.point_toSScheme.end())//Точка начала спрямления
+            {
+                //Создать size() + 1 точек
+                int schFrom_size = flow.schemes.at(itSSch->second).stFrom.size();
+                auto it_stFrom = flow.schemes.at(itSSch->second).stFrom.begin();
+                vector<int> vSSch_IDs{};
+                for (int i = 0; i < schFrom_size + 1; ++i)
+                {
+                    Vertex vSSch = init_vertex(*it_stFrom, "-" + to_string(i));
+                    vSSch_IDs.push_back(vSSch.ID);
+                    for (const auto &v_pred : cps.at(predID).vs)
+                    {
+                        g.at(v_pred).sons.insert(vSSch.ID);
+                    }
+                }
+                
+                //TODO Думать ниже. От 0 до всех 1 выше.
+                //Для каждой последующей точки нужно создавать на одну меньше и соединять только с нужной + добавлять ребро в отображение
+                for (int i = schFrom_size; i > 1 ; --i)
+                {
+                    it_stFrom++;//Сдвинули на след. точку из точек возможных спрямлений
+                    for (int j = 0; j < schFrom_size; ++j)
+                    {
+                        init_vertex(*it_stFrom,"-" + to_string(j));
+                        
+                    }
+                
+                }
+            }
+            else
+            {
+                Vertex v_curr = init_vertex(currID);
+                for (const auto &v_pred : cps.at(predID).vs)
+                {
+                    g.at(v_pred).sons.insert(v_curr.ID);
+                }
+            }
+            
+            if (h.at(currID).empty())
+                isEnd = true;
+            else
+                predID = currID;
         }
-    }
-    
-    set<int> sons{};
-    set<int> parents{};
-    vector<pair<int, int>> to_insert{};// Запомнить пару Копия_Точки и ID ЗО
-    
-    for (const auto[pointID, hA_ID] : zone.point_to_HA)
-    {
-        auto replica = zone.checkPoints[pointID];
-        replica.name += "_hA";
-        replica.ID = zone.checkPoints.size(); //TODO generateID?
-        zone.checkPoints.push_back(replica);
         
-        to_insert.emplace_back(replica.ID, hA_ID);
-        sons = zone.graph[pointID];
-        parents = zone.ancestors_graph[pointID];
     }
-    
-    zone.point_to_HA.clear();
-    for (const auto &[point, hA] : to_insert)
-    {
-        zone.point_to_HA.insert({point, hA});
-        zone.graph.push_back(sons);
-        zone.ancestors_graph.push_back(parents);
-        
-        for (const auto &parent : parents)
-            zone.graph[parent].insert(point);
-        for (const auto &son : sons)
-            zone.ancestors_graph[son].insert(point);
-    }
+    while (!isEnd);
 }

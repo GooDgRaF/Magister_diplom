@@ -3,7 +3,7 @@
 //
 
 #include "Read.h"
-#include "Optimization program/Zone.h"
+#include "Optimization program/Flow.h"
 #include <regex>
 #include "string_view"
 #include "iostream"
@@ -15,7 +15,7 @@ using namespace std;
 
 void read_checkPoints(string_view path)
 {
-    zone.checkPoints.resize(count_number_of_line(path) - 1);
+    flow.checkPoints.resize(count_number_of_line(path) - 1);
     
     ifstream file{};
     openFile(path, file);
@@ -42,7 +42,7 @@ void read_checkPoints(string_view path)
     
     getline(file, line);// Пропустить первую строку с единицами измерений
     int count_land_flag{0};
-    for (int i = 0; i < zone.checkPoints.size(); ++i)
+    for (int i = 0; i < flow.checkPoints.size(); ++i)
     {
         getline(file, line);
         if (!regex_match(line.c_str(), res, regular))
@@ -50,7 +50,7 @@ void read_checkPoints(string_view path)
             cerr << "Warning! Line '" << i + 2 << "' in " << path << " doesn't follow the input format." << endl;
             exit(FILE_NOT_ALLOWED_FORMAT);
         }
-        for (const auto &el : zone.checkPoints) //Проверка, чтобы две точки с одинаковым названием не встречались
+        for (const auto &el : flow.checkPoints) //Проверка, чтобы две точки с одинаковым названием не встречались
         {
             if (el.name == res[1])
             {
@@ -65,7 +65,7 @@ void read_checkPoints(string_view path)
         v_min = stod(string(res[5]));
         v_max = stod(string(res[6]));
         
-        auto &checkPoint = zone.checkPoints[i];
+        auto &checkPoint = flow.checkPoints[i];
         checkPoint.name = res[1];
         checkPoint.ID = i;
         checkPoint.x = {x_value, x_mu};
@@ -79,9 +79,9 @@ void read_checkPoints(string_view path)
             checkPoint.landing_flag = true;
             count_land_flag++;
             
-            zone.final_point = i;
+            flow.final_point = i;
         }
-        zone.pointName_to_ID.insert({res[1], i});
+        flow.pointName_to_ID.insert({res[1], i});
     }
     file.close();
     
@@ -100,7 +100,7 @@ void fill_scheme_field(sub_match<const char *> str, vector<int> &field)
     {
         try
         {
-            field.push_back(zone.pointName_to_ID.at(token));
+            field.push_back(flow.pointName_to_ID.at(token));
         }
         catch (const std::out_of_range &ex)
         {
@@ -111,7 +111,7 @@ void fill_scheme_field(sub_match<const char *> str, vector<int> &field)
 
 void read_schemes(string_view path)
 {
-    zone.schemes.resize(count_number_of_line(path));
+    flow.schemes.resize(count_number_of_line(path));
     
     ifstream file{};
     openFile(path, file);
@@ -135,7 +135,7 @@ void read_schemes(string_view path)
     cmatch res{};
     regex regular(R"(([\w\s]*)(?:\[(F|T|S)\]StrFrom\(([\w\s]+)\)\s*StrTo\(([\w\s]+)\))?([\w\s]*))");
     
-    for (int i = 0; i < zone.schemes.size(); ++i)
+    for (int i = 0; i < flow.schemes.size(); ++i)
     {
         getline(file, line);
         if (!regex_match(line.c_str(), res, regular))
@@ -144,22 +144,17 @@ void read_schemes(string_view path)
             exit(FILE_NOT_ALLOWED_FORMAT);
         }
         
-        auto &scheme = zone.schemes[i];
+        auto &scheme = flow.schemes[i];
         scheme.ID = i;
         if (auto str_type = string(res[2]); !str_type.empty())
             scheme.type = str_type;
         try
         {
-            fill_scheme_field(res[3], scheme.straighteningFrom);
-            fill_scheme_field(res[4], scheme.straighteningTo);
-            
-            for (const auto pointTo : scheme.straighteningTo)
-            {
-                for (const auto pointFrom : scheme.straighteningFrom)
-                {
-                    zone.point_to_strFrom[pointTo].insert(pointFrom);
-                }
-            }
+            fill_scheme_field(res[3], scheme.stFrom);
+            fill_scheme_field(res[4], scheme.stTo);
+    
+            if (scheme.type == "S" && !scheme.stFrom.empty())
+                flow.point_toSScheme[scheme.stFrom.front()] = scheme.ID;
             
             fill_scheme_field(res[1], scheme.path);
             fill_scheme_field(res[3], scheme.path);
@@ -177,7 +172,7 @@ void read_schemes(string_view path)
 
 void read_holding_areas(std::string_view path)
 {
-    zone.holdingAreas.resize(count_number_of_line(path));
+    flow.holdingAreas.resize(count_number_of_line(path));
     
     ifstream file{};
     openFile(path, file);
@@ -189,7 +184,7 @@ void read_holding_areas(std::string_view path)
     string line{};
     cmatch res{};
     regex regular(R"((\w+)\s*:\s*([0-9]*\.?[0-9]+)(s|min|h)\s*([0-9]*\.?[0-9]+)(s|min|h)\s*)");
-    for (int i = 0; i < zone.holdingAreas.size(); ++i)
+    for (int i = 0; i < flow.holdingAreas.size(); ++i)
     {
         getline(file, line);
         if (!regex_match(line.c_str(), res, regular))
@@ -198,13 +193,13 @@ void read_holding_areas(std::string_view path)
             exit(FILE_NOT_ALLOWED_FORMAT);
         }
         
-        auto &hA = zone.holdingAreas[i];
+        auto &hA = flow.holdingAreas[i];
         hA.ID = i;
         
         //SOMETHING
         try
         {
-            zone.point_to_HA.insert({zone.pointName_to_ID.at(res[1]), hA.ID});
+            flow.CP2HA.insert({flow.pointName_to_ID.at(res[1]), hA.ID});
         }
         catch (const out_of_range &ex) //Ловим ошибку о не обнаружении точки среди точек из checkPoints
         {

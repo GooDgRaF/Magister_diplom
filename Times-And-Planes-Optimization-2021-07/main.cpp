@@ -1,7 +1,7 @@
 #include <Optimization program/Build/Build.h>
 #include "iostream"
 #include "Optimization program/Measure units/Measure units.h"
-#include "Optimization program/Zone.h"
+#include "Optimization program/Flow.h"
 #include "Optimization program/Read/Read.h"
 using namespace std;
 
@@ -26,42 +26,26 @@ int main()
 //        string nameOfSchemeFile = "../Optimization program/Source information/Schemes/Koltsovo.txt";
 //        string nameOfFlowsFile = "../Optimization program/Source information/Flows/Koltsovo.txt";
     
-    fill_Zone(path_to_CPointsFile, path_to_HoldingAreasFile, path_to_SchemesFile);
+    build_Flow(path_to_CPointsFile, path_to_HoldingAreasFile, path_to_SchemesFile);
     
-    print_Zone();
+    print_hull();
+    print_graph();
     
-    map<int, int> linearZone{
-            {0, 1},
-            {1, 2},
-            {2, 3},
-            {3,  4},
-            {4,  5},
-            {5,  6},
-            {6,  7},
-            {7,  8},
-            {8,  9},
-            {9,  10},
-            {10, 11},
-            {11, 12},
-            {12, 13},
-            {13, 14},
-            {14, 15},
-            {15, 16}};
+    
+    calc_best_trajectory(flow.trjs, 0, 15);
+    
+    for (const auto &trj : flow.trjs)
+        {
+            cout<< "Trj:"<<endl;
+            for (const auto &[parent, son] : trj)
+            {
+                cout << flow.graph[parent].name << " --> "
+                     <<flow.graph[son].name << endl;
+            }
+        }
     
     Velocity v0{500, "km_h"};
-    isBetter(linearZone, 0, 16, 0, v0.m_s(), 13000);
-//        map<int,int> tmp{};
-//        calc_best_trajectory(zone.trjs, 0, 16);
-//
-//        for (const auto &trj : zone.trjs)
-//        {
-//            cout<< "Trj:"<<endl;
-//            for (const auto &[parent, son] : trj)
-//            {
-//                cout << zone.checkPoints[parent].name << " --> "
-//                     <<zone.checkPoints[son].name << endl;
-//            }
-//        }
+    isBetter(flow.trjs[0], 0, 15, 0, v0.m_s(), 12000);
     
     
     
@@ -69,6 +53,7 @@ int main()
     
     
     
-    zone;
+    
+    flow;
     return 0;
 }
