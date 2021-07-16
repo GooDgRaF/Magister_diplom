@@ -45,7 +45,7 @@ Vertex init_vertex(const int cpID, const string_view append_to_name = "")
     Vertex v = phantom(flow.checkPoints.at(cpID));// Создать вершину
     v.name += append_to_name;
     flow.checkPoints.at(cpID).vs.push_back(v.ID);
-    flow.graph.push_back(v);
+    flow.graph.vs.push_back(v);
     
     return v;
 }
@@ -59,14 +59,13 @@ void build_graph_of_Flow(int start_point)
     if (auto it = flow.CP2HA.find(start_point);
             it != flow.CP2HA.end())
     {
-        init_vertex(start_point, "_HA-" + to_string(it->second));// Создали вершину, на которой есть ЗО
-        flow.vex2HA.insert({g.back().ID, it->second}); // Запомнили в отображение
-        
         init_vertex(start_point);// На этой нет ЗО
+        init_vertex(start_point, "_HA-" + to_string(it->second));// Создали вершину, на которой есть ЗО
+        flow.vex2HA.insert({g.vs.back().ID, it->second}); // Запомнили в отображение
+        
     }
     else
         init_vertex(start_point);
-    
     
     int predID{start_point};
     bool isEnd{false};
@@ -78,8 +77,10 @@ void build_graph_of_Flow(int start_point)
                     itHA != flow.CP2HA.end())
             {
                 Vertex vHA = init_vertex(currID, "_HA-" + to_string(itHA->second));// Создали вершину, на которой есть ЗО
-                flow.vex2HA.insert({g.back().ID, itHA->second}); // Запомнили в отображение
+                flow.vex2HA.insert({g.vs.back().ID, itHA->second}); // Запомнили в отображение
                 Vertex v = init_vertex(currID);// Создали вершину, на которой нет ЗО
+                
+                v.sons.insert(vHA.ID);//От обычной к точке с ЗО.
                 
                 vector<int> to_insert{v.ID, vHA.ID};
                 for (const auto &vID : to_insert) // Соединить предыдущие вершины и две вершины ЗО

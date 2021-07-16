@@ -10,6 +10,7 @@
 #include <map>
 #include <algorithm>
 #include <Optimization program/Fields of Zone/Fields of Flow.h>
+#include "Optimization program/Fields of Zone/Graph.h"
 
 class CheckPoint;
 
@@ -18,7 +19,7 @@ struct Flow
     std::vector<CheckPoint> checkPoints{};
     std::map<std::string, int> pointName_to_ID{};
     
-    std::vector<Vertex> graph{};
+    Graph graph{};
     
     std::vector<Scheme> schemes{};
     std::map<int, int> point_toSScheme{};

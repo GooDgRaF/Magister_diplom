@@ -2,6 +2,7 @@
 // Created by Антон on 13.07.2021.
 //
 #include "Fields of Flow.h"
+#include "Graph.h"
 
 
 Coordinate distance(const CheckPoint &a, const CheckPoint &b)
@@ -11,9 +12,3 @@ Coordinate distance(const CheckPoint &a, const CheckPoint &b)
                  pow(b.y.m() - a.y.m(), 2) +
                  pow(b.z.m() - a.z.m(), 2)));
 };
-int Vertex::genID()
-{
-    static int id{-1};
-    id += 1;
-    return id;
-}

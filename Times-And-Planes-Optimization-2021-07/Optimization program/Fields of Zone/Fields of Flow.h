@@ -26,22 +26,6 @@ struct CheckPoint
 };
 Coordinate distance(const CheckPoint &a, const CheckPoint &b);
 
-struct Vertex
-{
-    int ID{-1};
-    int cpID{-1};
-    std::set<int> sons{}; // Множество Vertex.ID
-    
-    std::string name{};// Для отладки
-    
-    Vertex(const int cpID): cpID{cpID}, sons{}
-    {
-        ID = genID();
-    }
-private:
-    static int genID();
-};
-
 struct Scheme
 {
     int ID{-1};
