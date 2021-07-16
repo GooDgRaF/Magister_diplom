@@ -22,25 +22,31 @@ struct CheckPoint
     Velocity V_max{0};
     bool landing_flag = false;
     
-    std::vector<int> vs; //vs - vertexs  связанные с данной контрольной точкой вершины
+    std::set<int> schemesID{};
 };
+
 Coordinate distance(const CheckPoint &a, const CheckPoint &b);
 
 struct Scheme
 {
     int ID{-1};
-    std::vector<int> path{};//Полный путь по схеме
+    int startP{-1};
+    int endP{-1};
     
-    std::string type{"N"}; //Тип спрямления: N - нет спрямления, F - веер, T - полутромбон, S - спрямление
+    std::string type{""}; //Тип схемы: HA - Зона Ожидания, L - линейная, F - веер, T - полутромбон, S - спрямление
+    
+    std::vector<int> lin{};//Линейная схема
+    
     std::vector<int> stFrom{}; // st - straightening
-    std::vector<int> stTo{};
+    std::vector<int> stTo{}; // Схема со спрямлением
+    
+    Time t_min{0};// Для ЗО
+    Time t_max{0};
 };
 
 struct HoldingArea
 {
     int ID{-1};
-    Time t_min{0};
-    Time t_max{0};
 };
 
 

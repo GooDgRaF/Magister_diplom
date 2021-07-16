@@ -9,10 +9,9 @@
 
 void read_checkPoints(std::string_view path);
 void read_schemes(std::string_view path);
-void read_holding_areas(std::string_view path);
 
 void openFile(const std::string_view &path, std::ifstream &openFile);
-
 int count_number_of_line(std::string_view path);
+
 
 #endif //TIMES_AND_PLANES_OPTIMIZATION_2021_07_READ_H

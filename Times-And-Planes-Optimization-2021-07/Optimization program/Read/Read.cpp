@@ -10,6 +10,7 @@
 #include <fstream>
 #include "Optimization program/Errors/Errors.h"
 #include <string>
+
 using namespace std;
 
 
@@ -81,7 +82,7 @@ void read_checkPoints(string_view path)
             
             flow.final_point = i;
         }
-        flow.pointName_to_ID.insert({res[1], i});
+        flow.cpName2cpID.insert({res[1], i});
     }
     file.close();
     
@@ -100,7 +101,7 @@ void fill_scheme_field(sub_match<const char *> str, vector<int> &field)
     {
         try
         {
-            field.push_back(flow.pointName_to_ID.at(token));
+            field.push_back(flow.cpName2cpID.at(token));
         }
         catch (const std::out_of_range &ex)
         {
@@ -108,6 +109,9 @@ void fill_scheme_field(sub_match<const char *> str, vector<int> &field)
         }
     }
 }
+//Запомнить в контрольную точку, какая в ней начинается схема
+void cpScheme(Scheme &scheme)
+{ flow.checkPoints.at(scheme.startP).schemesID.insert(scheme.ID); }
 
 void read_schemes(string_view path)
 {
@@ -117,104 +121,99 @@ void read_schemes(string_view path)
     openFile(path, file);
     
     /*
-     * Пояснение к регулярому выражению:
-     * Всего 6 групп захвата, согласно формату:
+     * Всего три регулярных выражения:
      *
-     * P0 P1 ... [type]StrFrom(F0 F1 ...) StrTo(T0 T1 ...) K0 K1 ...
+     * Для линейной схемы
+     *  Одна группа захвата
+     *  L0 L1 ...
      *
-     * 1) Точки предшествующие спрямлению [P0 P1 ...]
-     * 2) Тип спрямления [type]: F(an) - веер, T(rombone) - полутромбон, S(traighten) - спрямление
-     * 3) Точки откуда можно спрямляться [F0 F1 ...]
-     * 4) Точки на которые можно спрямляться [T0 T1 ...]
-     * 5) Точки после спрямления [K0 K1 ...]
+     *  1) Точки линейной схемы [L0 L1 ...]
      *
-     * Если спрямления нет, то группы 2,3,4,5 - пустые
+     * Для схем типа спрямление
+     *  Три группы захвата
+     *  [type]StrFrom(F0 F1 ...) StrTo(T0 T1 ...)
+     *
+     *  1) Тип спрямления [type]: F(an) - веер, T(rombone) - полутромбон, S(traighten) - спрямление
+     *  2) Точки откуда можно спрямляться [F0 F1 ...]
+     *  3) Точки на которые можно спрямляться [T0 T1 ...]
+     *
+     * Для Зон Ожидания (ЗО)
+     *  Пять групп захвата
+     *  Point: time_minMU time_maxMU
+     *
+     *  1) Точка захода на ЗО [Point]
+     *  2) Минимальное время ожидания на ЗО [time_min]
+     *  3) Единицы измерения [MU] s - секунды, min - минуты, h - часы
+     *  4) Максимальное время ожидания на ЗО [time_max]
+     *  5) Единицы измерения [MU] s - секунды, min - минуты, h - часы
      */
     
     string line{};
     cmatch res{};
-    regex regular(R"(([\w\s]*)(?:\[(F|T|S)\]StrFrom\(([\w\s]+)\)\s*StrTo\(([\w\s]+)\))?([\w\s]*))");
-    
+    regex regLin(R"(([\w]+\s+[\w\s]+))");
+    regex regStr(R"(\[(F|T|S)\]StrFrom\(([\w\s]+)\)\s*StrTo\(([\w\s]+)\))");
+    regex regHA(R"((\w+)\s*:\s*([0-9]*\.?[0-9]+)(s|min|h)\s*([0-9]*\.?[0-9]+)(s|min|h)\s*)");
     for (int i = 0; i < flow.schemes.size(); ++i)
     {
-        getline(file, line);
-        if (!regex_match(line.c_str(), res, regular))
-        {
-            cerr << "Warning! Line '" << i + 1 << "' in " << path << " doesn't follow the input format." << endl;
-            exit(FILE_NOT_ALLOWED_FORMAT);
-        }
-        
         auto &scheme = flow.schemes[i];
         scheme.ID = i;
-        if (auto str_type = string(res[2]); !str_type.empty())
-            scheme.type = str_type;
+        
+        getline(file, line);
         try
         {
-            fill_scheme_field(res[3], scheme.stFrom);
-            fill_scheme_field(res[4], scheme.stTo);
+            if (regex_match(line.c_str(), res, regLin)) //Обработка Линейной схемы
+            {
+                scheme.type = "L";
+                fill_scheme_field(res[1], scheme.lin);
+                scheme.startP = scheme.lin.front();
+                scheme.endP = scheme.lin.back();
+                cpScheme(scheme);
+            }
+            else if (regex_match(line.c_str(), res, regHA)) //Обработка схемы ЗО
+            {
+                try
+                {
+                    scheme.startP = flow.cpName2cpID.at(res[1]);
+                    scheme.endP = flow.cpName2cpID.at(res[1]);
+                }
+                catch (const std::out_of_range &ex)
+                {
+                    throw std::runtime_error(res[1]);
+                }
+                scheme.type = "HA";
+                
+                cpScheme(scheme);
+                
+                auto t_minMU = string(res[3]);
+                auto t_min = stod(string(res[2]));
+                scheme.t_min = {t_min, t_minMU};
+                
+                auto t_maxMU = string(res[5]);
+                auto t_max = stod(string(res[4]));
+                scheme.t_max = {t_max, t_maxMU};
+            }
+            else if (regex_match(line.c_str(), res, regStr)) //Обработка схемы типа спрямления
+            {
+                scheme.type = res[1];
+                fill_scheme_field(res[2], scheme.stFrom);
+                fill_scheme_field(res[3], scheme.stTo);
+                scheme.startP = scheme.stFrom.front();
+                scheme.endP = scheme.stFrom.back();
     
-            if (scheme.type == "S" && !scheme.stFrom.empty())
-                flow.point_toSScheme[scheme.stFrom.front()] = scheme.ID;
-            
-            fill_scheme_field(res[1], scheme.path);
-            fill_scheme_field(res[3], scheme.path);
-            fill_scheme_field(res[5], scheme.path);
+                cpScheme(scheme);
+            }
+            else
+            {
+                cerr << "Warning! Line '" << i + 1 << "' in " << path << " doesn't follow the input format." << endl;
+                exit(FILE_NOT_ALLOWED_FORMAT);
+            }
         }
-        catch (const runtime_error &ex) //Ловим ошибку о не обнаружении точки из схемы среди точек из checkPoints
+        catch (const out_of_range &ex) //Ловим ошибку о не обнаружении точки среди точек из checkPoints
         {
             cerr << "Can't find '" << ex.what() << "' in line '" << i + 1
                  << "' among points from Points file" << endl;
             exit(NO_OBJECT);
         }
-    }
-    file.close();
-}
-
-void read_holding_areas(std::string_view path)
-{
-    flow.holdingAreas.resize(count_number_of_line(path));
-    
-    ifstream file{};
-    openFile(path, file);
-    
-    
-    /*
-     *  SOMETHING
-     */
-    string line{};
-    cmatch res{};
-    regex regular(R"((\w+)\s*:\s*([0-9]*\.?[0-9]+)(s|min|h)\s*([0-9]*\.?[0-9]+)(s|min|h)\s*)");
-    for (int i = 0; i < flow.holdingAreas.size(); ++i)
-    {
-        getline(file, line);
-        if (!regex_match(line.c_str(), res, regular))
-        {
-            cerr << "Warning! Line '" << i + 1 << "' in " << path << " doesn't follow the input format." << endl;
-            exit(FILE_NOT_ALLOWED_FORMAT);
-        }
-        
-        auto &hA = flow.holdingAreas[i];
-        hA.ID = i;
-        
-        //SOMETHING
-        try
-        {
-            flow.CP2HA.insert({flow.pointName_to_ID.at(res[1]), hA.ID});
-        }
-        catch (const out_of_range &ex) //Ловим ошибку о не обнаружении точки среди точек из checkPoints
-        {
-            cerr << "Can't find '" << string(res[1]) << "' in line '" << i + 1
-                 << "' among points from Points file" << endl;
-            exit(NO_OBJECT);
-        }
-        
-        auto t_minMU = string(res[3]);
-        auto t_min = stod(string(res[2]));
-        hA.t_min = {t_min, t_minMU};
-        
-        auto t_maxMU = string(res[5]);
-        auto t_max = stod(string(res[4]));
-        hA.t_max = {t_max, t_maxMU};
     }
     file.close();
 }
