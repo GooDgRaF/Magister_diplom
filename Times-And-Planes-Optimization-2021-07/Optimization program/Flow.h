@@ -19,6 +19,9 @@ struct Flow
     std::map<std::string, int> cpName2cpID{};
     
     std::vector<Scheme> schemes{};
+    std::map<int, int> HAs{};
+    std::map<int, std::vector<int>> starts{};
+    
     std::map<int, int> scheme_path{};
     
     int final_point{-1};

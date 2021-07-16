@@ -109,9 +109,29 @@ void fill_scheme_field(sub_match<const char *> str, vector<int> &field)
         }
     }
 }
-//Запомнить в контрольную точку, какая в ней начинается схема
+
+//Пройтись по всем точкам схемы и запонить, что эти точки относятся к этой схеме
 void cpScheme(Scheme &scheme)
-{ flow.checkPoints.at(scheme.startP).schemesID.insert(scheme.ID); }
+{
+    if (scheme.type == "L")
+    {
+        for (const auto pointID : scheme.lin)
+        {
+            flow.checkPoints.at(pointID).schemesID.insert(scheme.ID);
+        }
+    }
+    if (scheme.type == "S")
+    {
+        for (const auto pointID : scheme.stFrom)
+        {
+            flow.checkPoints.at(pointID).schemesID.insert(scheme.ID);
+        }
+        for (const auto pointID : scheme.stTo)
+        {
+            flow.checkPoints.at(pointID).schemesID.insert(scheme.ID);
+        }
+    }
+}
 
 void read_schemes(string_view path)
 {
@@ -167,6 +187,7 @@ void read_schemes(string_view path)
                 fill_scheme_field(res[1], scheme.lin);
                 scheme.startP = scheme.lin.front();
                 scheme.endP = scheme.lin.back();
+                flow.starts[scheme.startP].push_back(scheme.ID);
                 cpScheme(scheme);
             }
             else if (regex_match(line.c_str(), res, regHA)) //Обработка схемы ЗО
@@ -182,7 +203,7 @@ void read_schemes(string_view path)
                 }
                 scheme.type = "HA";
                 
-                cpScheme(scheme);
+                flow.HAs.insert({scheme.startP, scheme.ID});
                 
                 auto t_minMU = string(res[3]);
                 auto t_min = stod(string(res[2]));
@@ -199,8 +220,8 @@ void read_schemes(string_view path)
                 fill_scheme_field(res[3], scheme.stTo);
                 scheme.startP = scheme.stFrom.front();
                 scheme.endP = scheme.stFrom.back();
-    
                 cpScheme(scheme);
+                flow.starts[scheme.startP].push_back(scheme.ID);
             }
             else
             {

@@ -12,12 +12,5 @@ void build_Flow(string_view path_PointsFile, string_view path_SchemesFile, int s
 {
     read_checkPoints(path_PointsFile);
     read_schemes(path_SchemesFile);
-    
-    
-    for (const auto &schemeId : flow.checkPoints.at(start_point).schemesID)
-    {
-        flow.scheme_path.push_back(schemeId);
-        
-    };
 }
 
