@@ -110,25 +110,25 @@ void fill_scheme_field(sub_match<const char *> str, vector<int> &field)
     }
 }
 
-//Пройтись по всем точкам схемы и запонить, что эти точки относятся к этой схеме
+//Пройтись по всем точкам схемы и запомнить, что эти точки относятся к этой схеме
 void cpScheme(Scheme &scheme)
 {
-    if (scheme.type == "L")
+    if (scheme.type == "L") // Если схема линейная, то нужно пройтись только по точкам линейного участка
     {
         for (const auto pointID : scheme.lin)
         {
-            flow.checkPoints.at(pointID).schemesID.insert(scheme.ID);
+            flow.checkPoints.at(pointID).schemeIDs.insert(scheme.ID);
         }
     }
-    if (scheme.type == "S")
+    else // Иначе, нужно пройтись по точкам обеих частей спрямления
     {
         for (const auto pointID : scheme.stFrom)
         {
-            flow.checkPoints.at(pointID).schemesID.insert(scheme.ID);
+            flow.checkPoints.at(pointID).schemeIDs.insert(scheme.ID);
         }
         for (const auto pointID : scheme.stTo)
         {
-            flow.checkPoints.at(pointID).schemesID.insert(scheme.ID);
+            flow.checkPoints.at(pointID).schemeIDs.insert(scheme.ID);
         }
     }
 }

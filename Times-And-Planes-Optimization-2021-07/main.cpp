@@ -13,9 +13,9 @@ int main()
     string path_to_SchemesFile = "../Optimization program/Source information/Schemes/Test.txt";
     
     build_Flow(path_to_CPointsFile, path_to_SchemesFile, 0);
-    print_schemes_flow();
-    
-    
+//    print_schemes();
+    print_gSch();
+//    print_point_schemes();
     
     
     

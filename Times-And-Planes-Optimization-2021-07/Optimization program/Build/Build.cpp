@@ -12,5 +12,16 @@ void build_Flow(string_view path_PointsFile, string_view path_SchemesFile, int s
 {
     read_checkPoints(path_PointsFile);
     read_schemes(path_SchemesFile);
+    
+    build_scheme_graph();
+}
+
+void build_scheme_graph()
+{
+    for (const auto &scheme : flow.schemes)
+    {
+        if (scheme.type != "HA")
+            flow.gSch[scheme.ID] = flow.starts[scheme.endP];
+    }
 }
 

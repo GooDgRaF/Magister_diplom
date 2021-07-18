@@ -9,4 +9,6 @@
 
 void build_Flow(std::string_view path_PointsFile, std::string_view path_SchemesFile, int start_point);
 
+void build_scheme_graph();
+
 #endif //TIMES_AND_PLANES_OPTIMIZATION_2021_07_BUILD_H

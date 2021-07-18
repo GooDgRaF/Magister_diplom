@@ -20,9 +20,9 @@ struct Flow
     
     std::vector<Scheme> schemes{};
     std::map<int, int> HAs{};
-    std::map<int, std::vector<int>> starts{};
+    std::map<int, std::vector<int>> starts{};// ID точки --> ID схем, которые начинаются в данной точке
     
-    std::map<int, int> scheme_path{};
+    std::map<int, std::vector<int>> gSch{};// graph scheme  - граф схем
     
     int final_point{-1};
     
@@ -33,7 +33,9 @@ private:
 
 extern Flow flow;
 
-void print_schemes_flow();
+void print_schemes();
+void print_gSch();
+void print_point_schemes();
 
 //void calc_best_trajectory(std::vector<std::map<int, int>> &trjs, const int current_vertex, const int vertex_to_reach);
 //bool isBetter(const std::map<int, int> &trj, int start_vertex, int end_vertex, double t0, double v0, double tEnd);

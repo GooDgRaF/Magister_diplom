@@ -18,8 +18,9 @@ Flow &Flow::get_instance()
 
 Flow flow = Flow::get_instance();
 
-void print_schemes_flow()
+void print_schemes()
 {
+    cout << "Schemes stored in flow:" << endl;
     cout << "ID \t" << "Type \t" << "Start\t" << "End" << endl << endl;
     for (const auto &scheme : flow.schemes)
     {
@@ -32,6 +33,39 @@ void print_schemes_flow()
              << flow.checkPoints.at(scheme.endP).name
              << endl;
     }
+}
+void print_gSch()
+{
+    cout << "Scheme graph:" << endl;
+    cout << "Scheme\t" << "Next scheme" << endl << endl;
+    for (const auto &[sID, sonIDs] : flow.gSch)
+    {
+        const auto &sch = flow.schemes.at(sID);
+        cout << "[" << sch.type << "]"
+             << flow.checkPoints.at(sch.startP).name
+             << "\t";
+        for (const auto &son : sonIDs)
+        {
+            cout << " [" << sch.type << "]"
+                 << flow.checkPoints.at(flow.schemes.at(son).startP).name;
+        }
+        cout << endl;
+    }
+}
+void print_point_schemes()
+{
+    cout << "Point\t[type]StScheme:" << endl;
+    for (const auto &checkPoint : flow.checkPoints)
+    {
+        cout << checkPoint.name << ":\t";
+        for (const auto &schId : checkPoint.schemeIDs)
+        {
+            const auto &sch = flow.schemes.at(schId);
+            cout << " [" << sch.type << "]" << flow.checkPoints.at(sch.startP).name;
+        }
+        cout << endl;
+    }
+    cout << endl;
 }
 //struct Point;
 //bool isIn(const std::map<int, int> &m, const int key, int &HA_ID);

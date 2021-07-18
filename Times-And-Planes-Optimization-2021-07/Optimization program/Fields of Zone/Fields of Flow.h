@@ -22,7 +22,7 @@ struct CheckPoint
     Velocity V_max{0};
     bool landing_flag = false;
     
-    std::set<int> schemesID{};
+    std::set<int> schemeIDs{}; // Схемы, проходящие через данную точку
 };
 
 Coordinate distance(const CheckPoint &a, const CheckPoint &b);
