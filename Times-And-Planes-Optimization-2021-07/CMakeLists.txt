@@ -17,7 +17,6 @@ add_executable(Times-And-Planes-Optimization-2021-07
         "Optimization program/Fields of Zone/Fields of Zone.cpp")
 
 
-target_include_directories(Times-And-Planes-Optimization-2021-07 PRIVATE "/opt/gurobi911/include")
-target_link_directories(Times-And-Planes-Optimization-2021-07 PRIVATE "/opt/gurobi911/lib")
-target_link_libraries(Times-And-Planes-Optimization-2021-07 gurobi_c++)
-target_link_libraries(Times-And-Planes-Optimization-2021-07 gurobi91)
+target_include_directories(Times-And-Planes-Optimization-2021-07 PUBLIC C:/gurobi912/win64/include)
+target_link_directories(Times-And-Planes-Optimization-2021-07 PUBLIC C:/gurobi912/win64/lib)
+target_link_libraries(Times-And-Planes-Optimization-2021-07 gurobi_c++ gurobi91)
